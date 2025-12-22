@@ -983,7 +983,7 @@ function showPaymentSuccessConfirmation(orderId, source) {
     }
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
   
@@ -1055,7 +1055,7 @@ function goToCheckout() {
     if (item) itemsTotal += item.price;
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const orderId = Math.floor(1000 + Math.random() * 9000);
   
@@ -1071,7 +1071,7 @@ function goToStcPay() {
     if (item) itemsTotal += item.price;
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const orderId = Math.floor(1000 + Math.random() * 9000);
   
@@ -1345,7 +1345,7 @@ function showDeliveryOptions() {
         <div class="delivery-details">
           <h4>توصيل إلى العنوان</h4>
           <p>سيقوم سائقنا الخاص بتوصيل طلبك مع تجهيزات خاصة للحفاظ على جودة الطعام</p>
-          <p style="color: #00a884; margin-top: 5px;">+ 25 ريال (خدمة توصيل)</p>
+          <p style="color: #00a884; margin-top: 5px;">+ 16 ريال (خدمة توصيل)</p>
         </div>
       </div>
       <div class="delivery-option ${deliveryType === 'pickup' ? 'selected' : ''}" onclick="selectDelivery('pickup')">
@@ -1530,7 +1530,7 @@ function showPaymentOptions() {
     if (item) itemsTotal += item.price;
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   
   const paymentHTML = `
@@ -1605,7 +1605,7 @@ function completePayment() {
     }
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
   const orderId = Math.floor(1000 + Math.random() * 9000);
@@ -1629,7 +1629,7 @@ function completePayment() {
         <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
           <p style="color: white; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
           ${itemsList}
-          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 25 ريال</p>` : ''}
+          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}
           <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
         </div>
         <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
@@ -1682,4 +1682,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
