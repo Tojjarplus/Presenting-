@@ -76,6 +76,38 @@ body {
   border-radius: 6px;
 }
 
+/* Order Summary */
+.order-summary {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #e9ecef;
+}
+
+.order-summary h4 {
+  margin: 0 0 15px 0;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.order-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.order-detail.total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #e2e8f0;
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 18px;
+}
+
 .section {
   margin-top: 25px;
 }
@@ -172,6 +204,15 @@ body {
   font-size: 14px;
   color: #777;
 }
+
+.redirect-message {
+  margin-top: 20px;
+  padding: 12px;
+  background: #edf2f7;
+  border-radius: 8px;
+  color: #4a5568;
+  font-size: 13px;
+}
 </style>
 </head>
 
@@ -184,7 +225,7 @@ body {
     <div>
       <div class="brand-name">تجار بلس – مطعم جو كرسبي</div>
       <div class="total-label">Total Amount</div>
-      <div class="total-amount">﷼ 10.00</div>
+      <div class="total-amount" id="totalAmount">﷼ 0.00</div>
     </div>
     <div class="footer-left">Powered by paymob</div>
   </div>
@@ -194,6 +235,14 @@ body {
     <div class="header">
       <h2>Checkout</h2>
       <div class="lang">EN</div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h4>ملخص الطلب</h4>
+      <div id="orderDetails">
+        <!-- Order details will be populated by JavaScript -->
+      </div>
     </div>
 
     <div class="section">
@@ -223,7 +272,7 @@ body {
       <input class="input" type="text" placeholder="ex. Abdullah Adel">
     </div>
 
-    <button id="payBtn" class="pay-btn" onclick="processPayment()">Pay ﷼ 10.00</button>
+    <button id="payBtn" class="pay-btn" onclick="processPayment()">Pay ﷼ 0.00</button>
     <div class="secure">🔒 Secure payment</div>
   </div>
 </div>
@@ -234,21 +283,83 @@ body {
     <div class="success-icon">✔</div>
     <h2>Payment Successful</h2>
     <p>Your payment has been completed successfully.</p>
-    <div class="txn">Transaction ID: #TXN<?=Math.floor(Math.random()*1000000)?></div>
+    <div class="txn">Transaction ID: #TXN<span id="txnId">000000</span></div>
+    <div class="redirect-message">
+      جاري العودة إلى WhatsApp مع ملخص الطلب...
+    </div>
   </div>
 </div>
 
 <script>
+// Get order details from URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get('orderId') || '1234';
+const total = urlParams.get('total') || '0';
+const items = urlParams.get('items') || '0';
+const delivery = urlParams.get('delivery') || 'pickup';
+
+// Display order details
+function displayOrderDetails() {
+  // Update total amount
+  document.getElementById('totalAmount').textContent = `﷼ ${total}`;
+  document.getElementById('payBtn').textContent = `Pay ﷼ ${total}`;
+  
+  // Display order summary
+  const orderDetails = document.getElementById('orderDetails');
+  const deliveryFee = delivery === 'delivery' ? 25 : 0;
+  const subtotal = total - deliveryFee;
+  
+  orderDetails.innerHTML = `
+    <div class="order-detail">
+      <span>عدد الأصناف:</span>
+      <span>${items}</span>
+    </div>
+    <div class="order-detail">
+      <span>المجموع الفرعي:</span>
+      <span>${subtotal} ريال</span>
+    </div>
+    ${delivery === 'delivery' ? `
+    <div class="order-detail">
+      <span>رسوم التوصيل:</span>
+      <span>25 ريال</span>
+    </div>
+    ` : ''}
+    <div class="order-detail total">
+      <span>الإجمالي:</span>
+      <span>${total} ريال</span>
+    </div>
+  `;
+}
+
+// Auto-redirect back to WhatsApp after payment success
+function redirectToWhatsApp() {
+  setTimeout(() => {
+    // Redirect back to WhatsApp with success parameters
+    window.location.href = `./index.html?payment=success&orderId=${orderId}&source=checkout`;
+  }, 3000); // 3 seconds delay to show success message
+}
+
 function processPayment() {
   const btn = document.getElementById("payBtn");
   btn.innerText = "Processing payment...";
   btn.disabled = true;
 
+  // Generate random transaction ID
+  document.getElementById("txnId").textContent = Math.floor(100000 + Math.random() * 900000);
+
   setTimeout(() => {
     document.getElementById("checkoutPage").style.display = "none";
     document.getElementById("successScreen").style.display = "flex";
+    
+    // Auto-redirect to WhatsApp after payment success
+    redirectToWhatsApp();
   }, 2500);
 }
+
+// Initialize page
+window.onload = function() {
+  displayOrderDetails();
+};
 </script>
 
 </body>
