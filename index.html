@@ -6,6 +6,7 @@
 <title>WhatsApp Order - جو كرسبي</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+/* [ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME - NO CHANGES] */
 * {
   margin: 0;
   padding: 0;
@@ -950,34 +951,161 @@ let deliveryType = '';
 let currentStep = 'welcome';
 let userAddress = '';
 
-// ADDED: Checkout redirect function
+// NEW: Check for payment success on page load
+function checkPaymentSuccess() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentStatus = urlParams.get('payment');
+  const orderId = urlParams.get('orderId');
+  const source = urlParams.get('source');
+  
+  if (paymentStatus === 'success' && orderId) {
+    // Clear URL parameters
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    // Show payment success confirmation
+    showPaymentSuccessConfirmation(orderId, source);
+    return true;
+  }
+  return false;
+}
+
+// NEW: Show payment success confirmation
+function showPaymentSuccessConfirmation(orderId, source) {
+  // Calculate totals for confirmation
+  let itemsTotal = 0;
+  let itemsList = '';
+  
+  Object.keys(selectedItems).forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      itemsTotal += item.price;
+      itemsList += `<p>• ${item.name} - ${item.price} ريال</p>`;
+    }
+  });
+  
+  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const total = itemsTotal + deliveryFee;
+  const loyaltyPoints = Math.floor(total / 10);
+  
+  let paymentMethodText = '';
+  if (source === 'stcpay') {
+    paymentMethodText = 'STC Pay';
+  } else if (source === 'checkout') {
+    paymentMethodText = 'بطاقة بنكية';
+  } else {
+    paymentMethodText = 'الدفع الإلكتروني';
+  }
+  
+  const confirmationHTML = `
+    <div class="confirmation-card">
+      <div class="confirmation-header">
+        <div class="confirmation-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <div>
+          <h3>تم تأكيد طلبك! 🎉</h3>
+        </div>
+      </div>
+      <div class="confirmation-details">
+        <p><strong>رقم الطلب:</strong> #${orderId}</p>
+        <p><strong>طريقة الدفع:</strong> ${paymentMethodText}</p>
+        <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
+        ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
+        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
+        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+          <p style="color: white; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
+          ${itemsList}
+          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 25 ريال</p>` : ''}
+          <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
+        </div>
+        <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
+      </div>
+      <div class="confirmation-points">
+        <h4><i class="fas fa-gift"></i> مكافآت الولاء</h4>
+        <p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p>
+        <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
+      </div>
+    </div>
+    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 20px;">
+      شكراً لاختياركم جو كرسبي. نتمنى لكم وجبة شهية! 🍽️✨
+    </div>
+  `;
+  
+  addBotMessage(confirmationHTML, getCurrentTime());
+  scrollToBottom();
+  
+  // Reset for new order
+  setTimeout(() => {
+    cart = [];
+    selectedItems = {};
+    deliveryType = '';
+    userAddress = '';
+    currentStep = 'welcome';
+    
+    addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
+  }, 5000);
+}
+
+// NEW: Redirect functions
 function goToCheckout() {
-  window.location.href = "./checkout.html";
+  // Calculate order total
+  let itemsTotal = 0;
+  Object.keys(selectedItems).forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) itemsTotal += item.price;
+  });
+  
+  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const total = itemsTotal + deliveryFee;
+  const orderId = Math.floor(1000 + Math.random() * 9000);
+  
+  // Redirect to checkout with order details
+  window.location.href = `./checkout.html?orderId=${orderId}&total=${total}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}`;
+}
+
+function goToStcPay() {
+  // Calculate order total
+  let itemsTotal = 0;
+  Object.keys(selectedItems).forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) itemsTotal += item.price;
+  });
+  
+  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const total = itemsTotal + deliveryFee;
+  const orderId = Math.floor(1000 + Math.random() * 9000);
+  
+  // Redirect to STC Pay with order details
+  window.location.href = `./stcpay.html?orderId=${orderId}&total=${total}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}`;
 }
 
 // Initialize chat
 function initChat() {
-  addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
-  addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
-  
-  // Add quick order button
-  setTimeout(() => {
-    const quickBtn = document.createElement('button');
-    quickBtn.className = 'quick-message';
-    quickBtn.textContent = 'ابغي اطلب';
-    quickBtn.onclick = function() {
-      addUserMessage('ابغي اطلب');
-      setTimeout(() => showCatalog(), 500);
-    };
+  // Check if we're returning from a successful payment
+  if (!checkPaymentSuccess()) {
+    // Only show welcome messages if not returning from payment
+    addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
+    addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
     
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message user';
-    messageDiv.style.justifyContent = 'flex-end';
-    messageDiv.appendChild(quickBtn);
-    
-    document.getElementById('chatContent').appendChild(messageDiv);
-    scrollToBottom();
-  }, 1000);
+    // Add quick order button
+    setTimeout(() => {
+      const quickBtn = document.createElement('button');
+      quickBtn.className = 'quick-message';
+      quickBtn.textContent = 'ابغي اطلب';
+      quickBtn.onclick = function() {
+        addUserMessage('ابغي اطلب');
+        setTimeout(() => showCatalog(), 500);
+      };
+      
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user';
+      messageDiv.style.justifyContent = 'flex-end';
+      messageDiv.appendChild(quickBtn);
+      
+      document.getElementById('chatContent').appendChild(messageDiv);
+      scrollToBottom();
+    }, 1000);
+  }
 }
 
 // Go back function
@@ -1433,7 +1561,7 @@ function showPaymentOptions() {
         <div class="payment-name">Apple Pay</div>
         <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
       </div>
-      <div class="payment-option" onclick="completePayment()">
+      <div class="payment-option" onclick="goToStcPay()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
           <i class="fas fa-mobile-alt"></i>
         </div>
@@ -1461,7 +1589,7 @@ function showPaymentOptions() {
   scrollToBottom();
 }
 
-// Complete payment
+// Complete payment (for Apple Pay demo)
 function completePayment() {
   currentStep = 'complete';
   
@@ -1480,6 +1608,7 @@ function completePayment() {
   const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
+  const orderId = Math.floor(1000 + Math.random() * 9000);
   
   const confirmationHTML = `
     <div class="confirmation-card">
@@ -1492,7 +1621,8 @@ function completePayment() {
         </div>
       </div>
       <div class="confirmation-details">
-        <p><strong>رقم الطلب:</strong> #${Math.floor(1000 + Math.random() * 9000)}</p>
+        <p><strong>رقم الطلب:</strong> #${orderId}</p>
+        <p><strong>طريقة الدفع:</strong> Apple Pay</p>
         <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
         ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
         <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
