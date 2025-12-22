@@ -306,7 +306,7 @@ function displayOrderDetails() {
   
   // Display order summary
   const orderDetails = document.getElementById('orderDetails');
-  const deliveryFee = delivery === 'delivery' ? 25 : 0;
+  const deliveryFee = delivery === 'delivery' ? 16 : 0;
   const subtotal = total - deliveryFee;
   
   orderDetails.innerHTML = `
@@ -321,7 +321,7 @@ function displayOrderDetails() {
     ${delivery === 'delivery' ? `
     <div class="order-detail">
       <span>رسوم التوصيل:</span>
-      <span>25 ريال</span>
+      <span>16 ريال</span>
     </div>
     ` : ''}
     <div class="order-detail total">
