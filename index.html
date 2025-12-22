@@ -2,1818 +2,259 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WhatsApp Order - مطعم لين</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Arabic', Roboto, Helvetica, Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 15px;
-  touch-action: manipulation;
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-    background: #0c2461;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 5px;
-  }
-}
-
-.phone-container {
-  width: 100%;
-  max-width: 400px;
-  height: 90vh;
-  min-height: 700px;
-  max-height: 850px;
-  background: #000;
-  border-radius: 40px;
-  padding: 15px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-@media (max-width: 480px) {
-  .phone-container {
-    border-radius: 30px;
-    padding: 12px;
-    height: 95vh;
-    max-height: 800px;
-  }
-}
-
-.phone-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 25px;
-  background: #000;
-  border-radius: 0 0 15px 15px;
-  z-index: 10;
-}
-
-@media (max-width: 480px) {
-  .phone-container::before {
-    width: 120px;
-    height: 20px;
-  }
-}
-
-.screen {
-  width: 100%;
-  height: 100%;
-  background: #0d1418;
-  border-radius: 35px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-@media (max-width: 480px) {
-  .screen {
-    border-radius: 25px;
-  }
-}
-
-/* WhatsApp Header */
-.whatsapp-header {
-  background: #1f2c34;
-  padding: 12px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .whatsapp-header {
-    padding: 10px 12px;
-  }
-}
-
-.back-btn {
-  color: #8696a0;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.restaurant-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  min-width: 0;
-}
-
-.restaurant-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #00a884;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .restaurant-avatar {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-.restaurant-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.restaurant-details {
-  min-width: 0;
-}
-
-.restaurant-details h2 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media (max-width: 480px) {
-  .restaurant-details h2 {
-    font-size: 15px;
-  }
-}
-
-.restaurant-details p {
-  font-size: 12px;
-  color: #8696a0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.header-icons {
-  display: flex;
-  gap: 15px;
-  color: #8696a0;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .header-icons {
-    gap: 12px;
-    font-size: 16px;
-  }
-}
-
-/* Chat Area */
-.chat-area {
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px 12px;
-  background: url('https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=2574&auto=format&fit=crop') no-repeat center center;
-  background-size: cover;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-}
-
-.chat-area::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(13, 20, 24, 0.95);
-  z-index: 1;
-}
-
-.chat-content {
-  position: relative;
-  z-index: 2;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Message Bubbles */
-.message {
-  display: flex;
-  width: 100%;
-}
-
-.message.user {
-  justify-content: flex-end;
-}
-
-.message.bot {
-  justify-content: flex-start;
-}
-
-.bubble {
-  max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 18px;
-  position: relative;
-  font-size: 14px;
-  line-height: 1.4;
-  word-wrap: break-word;
-  word-break: break-word;
-}
-
-@media (max-width: 480px) {
-  .bubble {
-    max-width: 90%;
-    padding: 8px 12px;
-    font-size: 13.5px;
-  }
-}
-
-.user .bubble {
-  background: #005c4b;
-  color: white;
-  border-bottom-right-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.bot .bubble {
-  background: #1f2c34;
-  color: #e9edef;
-  border-bottom-left-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.time {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  text-align: left;
-  margin-top: 4px;
-  direction: ltr;
-}
-
-/* Catalog Card */
-.catalog-card {
-  background: #1f2c34;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.catalog-image {
-  height: 160px;
-  overflow: hidden;
-}
-
-@media (max-width: 480px) {
-  .catalog-image {
-    height: 140px;
-  }
-}
-
-.catalog-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.catalog-details {
-  padding: 15px;
-}
-
-.catalog-details h3 {
-  color: white;
-  font-size: 18px;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-@media (max-width: 480px) {
-  .catalog-details h3 {
-    font-size: 16px;
-  }
-}
-
-.catalog-details p {
-  color: #8696a0;
-  font-size: 13px;
-  margin-bottom: 15px;
-  line-height: 1.5;
-}
-
-@media (max-width: 480px) {
-  .catalog-details p {
-    font-size: 12px;
-  }
-}
-
-.catalog-btn {
-  background: #00a884;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: none;
-  width: 100%;
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .catalog-btn {
-    padding: 10px;
-    font-size: 13px;
-  }
-}
-
-.catalog-btn:hover, .catalog-btn:active {
-  background: #008f70;
-}
-
-/* Menu Items */
-.menu-card {
-  background: #1f2c34;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  gap: 12px;
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .menu-item {
-    padding: 12px;
-    gap: 10px;
-  }
-}
-
-.menu-item:last-child {
-  border-bottom: none;
-}
-
-.menu-item-image {
-  width: 65px;
-  height: 65px;
-  border-radius: 10px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .menu-item-image {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-.menu-item-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.menu-item-details {
-  flex: 1;
-  min-width: 0;
-}
-
-.menu-item-name {
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media (max-width: 480px) {
-  .menu-item-name {
-    font-size: 14px;
-  }
-}
-
-.menu-item-price {
-  color: #00a884;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-@media (max-width: 480px) {
-  .menu-item-price {
-    font-size: 15px;
-  }
-}
-
-.menu-item-add {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(0, 168, 132, 0.1);
-  border: 2px solid #00a884;
-  color: #00a884;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .menu-item-add {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
-  }
-}
-
-.menu-item-add.selected {
-  background: #00a884;
-  color: white;
-  transform: rotate(45deg);
-}
-
-.menu-item-add:active {
-  transform: scale(0.95);
-}
-
-/* Cart Summary */
-.cart-summary {
-  background: #1f2c34;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 168, 132, 0.3);
-}
-
-.cart-summary h3 {
-  color: white;
-  font-size: 16px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cart-items {
-  margin-bottom: 15px;
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.cart-item:last-child {
-  border-bottom: none;
-}
-
-.cart-item-name {
-  color: #e9edef;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 70%;
-}
-
-.cart-item-price {
-  color: #00a884;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 12px;
-  border-top: 2px solid rgba(0, 168, 132, 0.5);
-}
-
-.cart-total-label {
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.cart-total-amount {
-  color: #00a884;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.checkout-btn {
-  background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
-  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
-  border: none;
-  width: 100%;
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .checkout-btn {
-    padding: 13px;
-    font-size: 14px;
-  }
-}
-
-.checkout-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 10px rgba(0, 168, 132, 0.4);
-}
-
-/* Delivery Options */
-.delivery-card {
-  background: #1f2c34;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.delivery-header {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.delivery-header h3 {
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.delivery-option {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: background 0.2s ease;
-  touch-action: manipulation;
-}
-
-.delivery-option:last-child {
-  border-bottom: none;
-}
-
-.delivery-option:active {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.delivery-option.selected {
-  background: rgba(0, 168, 132, 0.1);
-  border-right: 4px solid #00a884;
-}
-
-.delivery-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(0, 168, 132, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  font-size: 20px;
-  color: #00a884;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .delivery-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    margin-left: 10px;
-  }
-}
-
-.delivery-details {
-  flex: 1;
-  min-width: 0;
-}
-
-.delivery-details h4 {
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.delivery-details p {
-  color: #8696a0;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-/* Location Sharing */
-.location-card {
-  background: #1f2c34;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.location-header {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.location-header h3 {
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.location-options {
-  padding: 15px;
-}
-
-.location-option {
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  touch-action: manipulation;
-}
-
-.location-option:last-child {
-  margin-bottom: 0;
-}
-
-.location-option:active {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(0.98);
-}
-
-.location-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(0, 168, 132, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  font-size: 18px;
-  color: #00a884;
-  flex-shrink: 0;
-}
-
-.location-details h4 {
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 3px;
-}
-
-.location-details p {
-  color: #8696a0;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-/* Payment Options */
-.payment-card {
-  background: #1f2c34;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.payment-header {
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.payment-header h3 {
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.payment-option {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: background 0.2s ease;
-  touch-action: manipulation;
-}
-
-.payment-option:last-child {
-  border-bottom: none;
-}
-
-.payment-option:active {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.payment-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  font-size: 18px;
-  color: white;
-  flex-shrink: 0;
-}
-
-.payment-name {
-  color: white;
-  font-size: 15px;
-  font-weight: 500;
-  flex: 1;
-}
-
-/* Input Area */
-.input-area {
-  background: #1f2c34;
-  padding: 12px 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .input-area {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-}
-
-.input-area input {
-  flex: 1;
-  background: #2a3942;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 18px;
-  color: white;
-  font-size: 14px;
-  outline: none;
-  font-family: inherit;
-  min-width: 0;
-}
-
-@media (max-width: 480px) {
-  .input-area input {
-    padding: 8px 15px;
-    font-size: 13px;
-  }
-}
-
-.input-area input::placeholder {
-  color: #8696a0;
-}
-
-.send-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #00a884;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  flex-shrink: 0;
-  touch-action: manipulation;
-}
-
-@media (max-width: 480px) {
-  .send-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-  }
-}
-
-.send-btn:active {
-  background: #008f70;
-  transform: scale(0.95);
-}
-
-/* Confirmation Message */
-.confirmation-card {
-  background: rgba(0, 168, 132, 0.1);
-  border-radius: 15px;
-  padding: 20px;
-  border: 2px solid #00a884;
-  box-shadow: 0 5px 20px rgba(0, 168, 132, 0.2);
-}
-
-@media (max-width: 480px) {
-  .confirmation-card {
-    padding: 15px;
-  }
-}
-
-.confirmation-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.confirmation-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #00a884;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: white;
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .confirmation-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-}
-
-.confirmation-header h3 {
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-@media (max-width: 480px) {
-  .confirmation-header h3 {
-    font-size: 16px;
-  }
-}
-
-.confirmation-details {
-  color: #e9edef;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-
-.confirmation-details p {
-  margin-bottom: 8px;
-}
-
-.confirmation-points {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 15px;
-  text-align: center;
-  border: 1px solid rgba(0, 168, 132, 0.3);
-}
-
-.confirmation-points h4 {
-  color: white;
-  font-size: 15px;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.confirmation-points p {
-  color: #00a884;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #00a884;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #008f70;
-}
-
-/* Empty state */
-.empty-state {
-  text-align: center;
-  color: #8696a0;
-  padding: 40px 20px;
-  font-size: 14px;
-}
-
-/* Loading animation */
-.loading-dots {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.loading-dots span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #8696a0;
-  animation: bounce 1.4s infinite ease-in-out both;
-}
-
-.loading-dots span:nth-child(1) {
-  animation-delay: -0.32s;
-}
-
-.loading-dots span:nth-child(2) {
-  animation-delay: -0.16s;
-}
-
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: scale(0);
-  }
-  40% {
-    transform: scale(1);
-  }
-}
-
-/* Prevent text selection */
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+body{
+  background:#0c2461;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+.phone{
+  width:380px;
+  height:780px;
+  background:#000;
+  border-radius:45px;
+  padding:18px;
+}
+.screen{
+  background:#0d1418;
+  border-radius:35px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.header{
+  background:#1f2c34;
+  color:#fff;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.header img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+}
+.chat{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+}
+.msg-user{
+  background:#005c4b;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:18px;
+  margin-bottom:10px;
+  max-width:80%;
+  margin-right:auto;
+}
+.msg-bot{
+  background:#1f2c34;
+  color:#e9edef;
+  padding:10px 14px;
+  border-radius:18px;
+  margin-bottom:10px;
+  max-width:90%;
+}
+.catalog, .card{
+  background:#1f2c34;
+  border-radius:15px;
+  overflow:hidden;
+  margin-bottom:15px;
+}
+.catalog img{
+  width:100%;
+}
+.catalog-body{
+  padding:15px;
+}
+.btn{
+  background:#00a884;
+  color:#fff;
+  text-align:center;
+  padding:14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.menu-item{
+  display:flex;
+  align-items:center;
+  padding:15px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.menu-item:last-child{border:none}
+.menu-item img{
+  width:65px;
+  height:65px;
+  border-radius:10px;
+  margin-left:12px;
+}
+.menu-info{
+  flex:1;
+}
+.price{
+  color:#00a884;
+  font-weight:bold;
+}
+.add{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:2px solid #00a884;
+  color:#00a884;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.add.active{
+  background:#00a884;
+  color:#fff;
+}
+.input{
+  background:#1f2c34;
+  padding:12px;
+  display:flex;
+  gap:10px;
+}
+.input input{
+  flex:1;
+  background:#2a3942;
+  border:none;
+  border-radius:25px;
+  padding:12px;
+  color:#fff;
+}
+.send{
+  background:#00a884;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  cursor:pointer;
 }
 </style>
 </head>
-<body class="noselect">
 
-<div class="phone-container">
-  <div class="screen">
-    
-    <!-- WhatsApp Header -->
-    <div class="whatsapp-header">
-      <div class="back-btn" onclick="goBack()">
-        <i class="fas fa-chevron-right"></i>
-      </div>
-      
-      <div class="restaurant-info">
-        <div class="restaurant-avatar">
-          <img src="https://raw.githubusercontent.com/username/images/main/restaurant-logo.jpg" alt="مطعم لين" onerror="this.src='https://via.placeholder.com/150/075e54/ffffff?text=مطعم+لين'">
-        </div>
-        <div class="restaurant-details">
-          <h2>مطعم لين</h2>
-          <p>متصل الآن • توصيل سريع</p>
-        </div>
-      </div>
-      
-      <div class="header-icons">
-        <i class="fas fa-video"></i>
-        <i class="fas fa-phone"></i>
-        <i class="fas fa-ellipsis-v"></i>
-      </div>
-    </div>
-    
-    <!-- Chat Area -->
-    <div class="chat-area" id="chatArea">
-      <div class="chat-content" id="chatContent">
-        <!-- Messages will be added here by JavaScript -->
-      </div>
-    </div>
-    
-    <!-- Input Area -->
-    <div class="input-area">
-      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 20px;"></i>
-      <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="handleKeyDown(event)">
-      <button class="send-btn" onclick="sendMessage()">
-        <i class="fas fa-paper-plane"></i>
-      </button>
-    </div>
-    
+<body>
+
+<div class="phone">
+<div class="screen">
+
+<div class="header">
+  <img src="images/catalog.jpg">
+  <div>
+    <strong>مطعم لين</strong><br>
+    <small style="color:#aaa">متصل الآن</small>
   </div>
 </div>
 
-<script>
-// Replace 'username' with your actual GitHub username
-const GITHUB_USERNAME = 'username';
-const IMAGE_BASE_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/images/main/`;
+<div class="chat" id="chat"></div>
 
-// Your menu items with Arabic names
-const menuItems = [
-  {
-    id: 1,
-    name: "ساندويتش فطور بالبيض والجبن",
-    description: "ساندويتش فطور لذيذ مع بيض طازج وجبنة",
-    price: 18,
-    image: `${IMAGE_BASE_URL}item1.jpg`
-  },
-  {
-    id: 2,
-    name: "مافن سجق بالبيض",
-    description: "مافن إنجليزي مع سجق وبيض",
-    price: 22,
-    image: `${IMAGE_BASE_URL}item2.jpg`
-  },
-  {
-    id: 3,
-    name: "طبق فطور دجاج",
-    description: "طبق فطور كامل مع دجاج",
-    price: 25,
-    image: `${IMAGE_BASE_URL}item3.jpg`
-  },
-  {
-    id: 4,
-    name: "ساندويتش دجاج مقرمش",
-    description: "ساندويتش دجاج مقرمش مع صلصة خاصة",
-    price: 20,
-    image: `${IMAGE_BASE_URL}item4.jpg`
-  },
-  {
-    id: 5,
-    name: "برجر دجاج مقرمش",
-    description: "برجر دجاج مقرمش مع خضار طازجة",
-    price: 24,
-    image: `${IMAGE_BASE_URL}item5.jpg`
-  },
-  {
-    id: 6,
-    name: "برجر دجاج مشوي",
-    description: "برجر دجاج مشوي صحي",
-    price: 23,
-    image: `${IMAGE_BASE_URL}item6.jpg`
-  },
-  {
-    id: 7,
-    name: "وجبة ناجتس الدجاج",
-    description: "ناجتس دجاج مع صلصات متنوعة",
-    price: 21,
-    image: `${IMAGE_BASE_URL}item7.jpg`
-  },
-  {
-    id: 8,
-    name: "مافن دجاج بالبيض والجبن",
-    description: "مافن مع دجاج وبيض وجبن",
-    price: 26,
-    image: `${IMAGE_BASE_URL}item8.jpg`
-  },
-  {
-    id: 9,
-    name: "قطع دجاج مقلية",
-    description: "قطع دجاج مقلية مقرمشة",
-    price: 19,
-    image: `${IMAGE_BASE_URL}item9.jpg`
-  },
-  {
-    id: 10,
-    name: "راب دجاج",
-    description: "راب دجاج مع خضار وصلصة",
-    price: 22,
-    image: `${IMAGE_BASE_URL}item10.jpg`
-  }
+<div class="input">
+  <div class="send" onclick="send()">➤</div>
+  <input id="msg" value="ابغي اطلب" onkeydown="if(event.key==='Enter')send()">
+</div>
+
+</div>
+</div>
+
+<script>
+const menu=[
+ {id:1,name:"ساندويتش فطور بالبيض والجبن",price:20,img:"item1.png"},
+ {id:2,name:"مافن سجق بالبيض",price:22,img:"item2.png"},
+ {id:3,name:"طبق فطور دجاج",price:25,img:"item3.png"},
+ {id:4,name:"ساندويتش دجاج مقرمش",price:27,img:"item4.png"},
+ {id:5,name:"برجر دجاج مقرمش",price:30,img:"item5.png"},
+ {id:6,name:"برجر دجاج مشوي",price:32,img:"item6.png"},
+ {id:7,name:"وجبة ناجتس الدجاج",price:35,img:"item7.png"},
+ {id:8,name:"مافن دجاج بالبيض",price:24,img:"item8.png"},
+ {id:9,name:"قطع دجاج مقلية",price:28,img:"item9.png"},
+ {id:10,name:"راب دجاج",price:26,img:"item10.png"}
 ];
 
-// Restaurant information
-const restaurant = {
-  name: "مطعم لين",
-  description: "أفضل وجبات الفطور والوجبات السريعة",
-  address: "حي السلامة، جدة، المملكة العربية السعودية",
-  phone: "012 345 6789",
-  deliveryFee: 10,
-  pickupTime: "15-20 دقيقة",
-  deliveryTime: "30-45 دقيقة"
-};
+let cart=[];
+let catalogShown=false;
 
-// Application state
-let cart = [];
-let selectedItems = {};
-let deliveryType = '';
-let currentStep = 'welcome';
-let userAddress = '';
-let orderHistory = [];
-
-// Initialize chat
-function initChat() {
-  addBotMessage("أهلًا وسهلًا! 👋", "10:30");
-  addBotMessage(`مرحبًا بكم في ${restaurant.name}! 🍳🍗<br>نقدم لكم أشهى وجبات الفطور والوجبات السريعة.`, "10:30");
-  addBotMessage("كيف يمكنني مساعدتك اليوم؟ اكتب 'أريد طلب' لبدء طلب جديد.", "10:30");
+function send(){
+ const chat=document.getElementById("chat");
+ chat.innerHTML+=`<div class="msg-user">ابغي اطلب</div>`;
+ if(!catalogShown){
+   showCatalog();
+   catalogShown=true;
+ }
 }
 
-// Add message to chat
-function addMessage(text, sender, time) {
-  const chatContent = document.getElementById('chatContent');
-  const messageDiv = document.createElement('div');
-  messageDiv.className = `message ${sender}`;
-  
-  const timeText = time || getCurrentTime();
-  
-  messageDiv.innerHTML = `
-    <div class="bubble">
-      ${text}
-      <div class="time">${timeText}</div>
-    </div>
-  `;
-  
-  chatContent.appendChild(messageDiv);
-  scrollToBottom();
+function showCatalog(){
+ chat.innerHTML+=`
+ <div class="catalog">
+   <img src="images/catalog.jpg">
+   <div class="catalog-body">
+     <b>مطعم لين</b><br>
+     تصفح المنيو واطلب مباشرة
+   </div>
+   <div class="btn" onclick="showMenu()">عرض المنيو</div>
+ </div>`;
 }
 
-function addBotMessage(text, time) {
-  addMessage(text, 'bot', time);
+function showMenu(){
+ let html='<div class="card">';
+ menu.forEach(m=>{
+   html+=`
+   <div class="menu-item">
+     <div class="add" onclick="addItem(this,${m.price})">+</div>
+     <div class="menu-info">
+       ${m.name}<br>
+       <span class="price">${m.price} ريال</span>
+     </div>
+     <img src="images/${m.img}">
+   </div>`;
+ });
+ html+='</div>';
+ chat.innerHTML+=html;
 }
 
-function addUserMessage(text, time) {
-  addMessage(text, 'user', time);
+function addItem(btn,price){
+ btn.classList.toggle("active");
+ if(btn.classList.contains("active")){
+   cart.push(price);
+ }else{
+   cart.pop();
+ }
+ if(cart.length===1){
+   chat.innerHTML+=`
+   <div class="card">
+     <div class="btn" onclick="checkout()">تنفيذ الطلب</div>
+   </div>`;
+ }
 }
 
-// Get current time
-function getCurrentTime() {
-  const now = new Date();
-  return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+function checkout(){
+ chat.innerHTML+=`
+ <div class="card">
+   <div class="btn">📍 مشاركة الموقع</div>
+   <div class="btn">STC Pay</div>
+   <div class="btn">مدى</div>
+   <div class="btn">Visa / Apple Pay</div>
+ </div>
+ <div class="msg-bot">
+   ✅ تم الدفع بنجاح<br>
+   🎁 حصلت على نقاط ولاء لاستخدامها لاحقًا
+ </div>`;
 }
-
-// Scroll to bottom
-function scrollToBottom() {
-  const chatArea = document.getElementById('chatArea');
-  setTimeout(() => {
-    chatArea.scrollTop = chatArea.scrollHeight;
-  }, 100);
-}
-
-// Handle Enter key
-function handleKeyDown(event) {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    sendMessage();
-  }
-}
-
-// Send message
-function sendMessage() {
-  const input = document.getElementById('messageInput');
-  const text = input.value.trim();
-  
-  if (text) {
-    addUserMessage(text);
-    input.value = '';
-    
-    // Process based on current step
-    setTimeout(() => {
-      processUserMessage(text.toLowerCase());
-    }, 500);
-  }
-}
-
-// Process user message
-function processUserMessage(text) {
-  if (currentStep === 'welcome' && (text.includes('طلب') || text.includes('order') || text.includes('أريد') || text.includes('ابغى') || text.includes('ابدأ'))) {
-    showCatalog();
-  } else if (currentStep === 'menu' && text.includes('قائمة')) {
-    showMenu();
-  } else if (text.includes('مساعدة') || text.includes('help') || text.includes('مساعده')) {
-    showHelp();
-  } else if (text.includes('العنوان') || text.includes('عنوان') || text.includes('الموقع')) {
-    showAddress();
-  } else if (text.includes('هاتف') || text.includes('تليفون') || text.includes('رقم')) {
-    showPhone();
-  } else if (text.includes('شكر') || text.includes('thanks') || text.includes('thank')) {
-    addBotMessage("العفو! 😊 سعدنا بخدمتك. نتمنى لك يومًا سعيدًا!");
-  } else {
-    handleDefaultResponse();
-  }
-}
-
-// Show help
-function showHelp() {
-  addBotMessage("يمكنني مساعدتك في: 📝<br>• عرض القائمة (اكتب 'قائمة' أو 'عرض')<br>• تقديم طلب جديد (اكتب 'أريد طلب')<br>• معرفة العنوان والهاتف<br>• أي استفسار آخر");
-}
-
-// Show address
-function showAddress() {
-  addBotMessage(`📍 العنوان:<br>${restaurant.address}<br><br>⏰ أوقات العمل:<br>من 6 صباحًا إلى 12 منتصف الليل`);
-}
-
-// Show phone
-function showPhone() {
-  addBotMessage(`📞 للطلبات والاستفسارات:<br>${restaurant.phone}<br><br>📱 واتساب:<br>${restaurant.phone}`);
-}
-
-// Handle default response
-function handleDefaultResponse() {
-  const responses = [
-    "يمكنك كتابة 'أريد طلب' لبدء طلب جديد 🛒",
-    "للعودة للقائمة الرئيسية، اكتب 'قائمة' 📋",
-    "للمساعدة، اكتب 'مساعدة' أو 'help' ❓"
-  ];
-  addBotMessage(responses[Math.floor(Math.random() * responses.length)]);
-}
-
-// Go back
-function goBack() {
-  if (currentStep === 'ordering' && Object.keys(selectedItems).length > 0) {
-    showMenu();
-  } else if (currentStep === 'delivery') {
-    showMenu();
-  } else if (currentStep === 'location') {
-    showDeliveryOptions();
-  } else if (currentStep === 'payment') {
-    if (deliveryType === 'delivery') {
-      showLocationOptions();
-    } else {
-      showDeliveryOptions();
-    }
-  } else {
-    currentStep = 'welcome';
-    addBotMessage("كيف يمكنني مساعدتك؟ اكتب 'أريد طلب' لبدء طلب جديد.");
-  }
-}
-
-// Show catalog
-function showCatalog() {
-  currentStep = 'menu';
-  
-  const catalogHTML = `
-    <div class="catalog-card">
-      <div class="catalog-image">
-        <img src="${IMAGE_BASE_URL}restaurant-banner.jpg" alt="${restaurant.name}" onerror="this.src='https://via.placeholder.com/400x200/075e54/ffffff?text=${encodeURIComponent(restaurant.name)}'">
-      </div>
-      <div class="catalog-details">
-        <h3>${restaurant.name}</h3>
-        <p>${restaurant.description}<br>🍳 وجبات فطور لذيذة<br>🍗 وجبات سريعة طازجة</p>
-        <button class="catalog-btn" onclick="showMenu()">
-          <i class="fas fa-utensils"></i> عرض القائمة
-        </button>
-      </div>
-    </div>
-  `;
-  
-  addBotMessage(catalogHTML, getCurrentTime());
-}
-
-// Show menu
-function showMenu() {
-  currentStep = 'ordering';
-  
-  let menuHTML = '<div class="menu-card">';
-  
-  menuItems.forEach(item => {
-    const isSelected = selectedItems[item.id] || false;
-    menuHTML += `
-      <div class="menu-item" onclick="toggleItem(${item.id})">
-        <div class="menu-item-add ${isSelected ? 'selected' : ''}">
-          ${isSelected ? '×' : '+'}
-        </div>
-        <div class="menu-item-image">
-          <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/100/075e54/ffffff?text=${item.id}'">
-        </div>
-        <div class="menu-item-details">
-          <div class="menu-item-name">${item.name}</div>
-          <div class="menu-item-price">${item.price} ريال</div>
-        </div>
-      </div>
-    `;
-  });
-  
-  menuHTML += '</div>';
-  
-  addBotMessage(menuHTML, getCurrentTime());
-  
-  // Show cart if items are selected
-  updateCartDisplay();
-}
-
-// Toggle item selection
-function toggleItem(itemId) {
-  if (selectedItems[itemId]) {
-    delete selectedItems[itemId];
-    cart = cart.filter(id => id !== itemId);
-  } else {
-    selectedItems[itemId] = true;
-    cart.push(itemId);
-  }
-  
-  // Update the UI
-  const addButton = document.querySelector(`.menu-item[onclick="toggleItem(${itemId})"] .menu-item-add`);
-  if (addButton) {
-    addButton.classList.toggle('selected');
-    addButton.innerHTML = selectedItems[itemId] ? '×' : '+';
-  }
-  
-  updateCartDisplay();
-}
-
-// Update cart display
-function updateCartDisplay() {
-  // Remove existing cart if any
-  const existingCart = document.querySelector('.cart-summary');
-  if (existingCart) existingCart.remove();
-  
-  const itemCount = Object.keys(selectedItems).length;
-  
-  if (itemCount > 0) {
-    // Calculate total
-    let total = 0;
-    let itemsHTML = '';
-    
-    Object.keys(selectedItems).forEach(itemId => {
-      const item = menuItems.find(i => i.id == itemId);
-      if (item) {
-        total += item.price;
-        itemsHTML += `
-          <div class="cart-item">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">${item.price} ريال</div>
-          </div>
-        `;
-      }
-    });
-    
-    const cartHTML = `
-      <div class="cart-summary">
-        <h3><i class="fas fa-shopping-bag"></i> طلبك (${itemCount})</h3>
-        <div class="cart-items">
-          ${itemsHTML}
-        </div>
-        <div class="cart-total">
-          <div class="cart-total-label">المجموع</div>
-          <div class="cart-total-amount">${total} ريال</div>
-        </div>
-        <button class="checkout-btn" onclick="showDeliveryOptions()">
-          <i class="fas fa-lock"></i> تأكيد الطلب
-        </button>
-      </div>
-    `;
-    
-    const chatContent = document.getElementById('chatContent');
-    const cartDiv = document.createElement('div');
-    cartDiv.innerHTML = cartHTML;
-    chatContent.appendChild(cartDiv);
-    
-    scrollToBottom();
-  }
-}
-
-// Show delivery options
-function showDeliveryOptions() {
-  if (Object.keys(selectedItems).length === 0) {
-    addBotMessage("الرجاء إضافة منتجات إلى السلة أولاً 🛒");
-    return;
-  }
-  
-  currentStep = 'delivery';
-  
-  const deliveryHTML = `
-    <div class="delivery-card">
-      <div class="delivery-header">
-        <h3><i class="fas fa-truck"></i> طريقة الاستلام</h3>
-      </div>
-      <div class="delivery-option ${deliveryType === 'delivery' ? 'selected' : ''}" onclick="selectDelivery('delivery')">
-        <div class="delivery-icon">
-          <i class="fas fa-motorcycle"></i>
-        </div>
-        <div class="delivery-details">
-          <h4>توصيل إلى العنوان</h4>
-          <p>سيتم التوصيل خلال ${restaurant.deliveryTime}<br>رسوم التوصيل: ${restaurant.deliveryFee} ريال</p>
-        </div>
-      </div>
-      <div class="delivery-option ${deliveryType === 'pickup' ? 'selected' : ''}" onclick="selectDelivery('pickup')">
-        <div class="delivery-icon">
-          <i class="fas fa-store"></i>
-        </div>
-        <div class="delivery-details">
-          <h4>استلام من المطعم</h4>
-          <p>استلام خلال ${restaurant.pickupTime}<br>بدون رسوم إضافية</p>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  addBotMessage(deliveryHTML, getCurrentTime());
-  scrollToBottom();
-}
-
-// Select delivery option
-function selectDelivery(type) {
-  deliveryType = type;
-  
-  // Update UI
-  const deliveryOptions = document.querySelectorAll('.delivery-option');
-  deliveryOptions.forEach(option => {
-    option.classList.remove('selected');
-  });
-  
-  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}")]`);
-  if (selectedOption) {
-    selectedOption.classList.add('selected');
-  }
-  
-  // Show confirmation button
-  setTimeout(() => {
-    showDeliveryConfirmation();
-  }, 300);
-}
-
-// Show delivery confirmation
-function showDeliveryConfirmation() {
-  // Remove existing confirmation button
-  const existingBtn = document.querySelector('.checkout-btn[onclick="confirmDeliverySelection()"]');
-  if (existingBtn) existingBtn.remove();
-  
-  const confirmationBtn = document.createElement('button');
-  confirmationBtn.className = 'checkout-btn';
-  confirmationBtn.innerHTML = `<i class="fas fa-check-circle"></i> تأكيد طريقة الاستلام`;
-  confirmationBtn.onclick = confirmDeliverySelection;
-  
-  const chatContent = document.getElementById('chatContent');
-  chatContent.appendChild(confirmationBtn);
-  scrollToBottom();
-}
-
-// Confirm delivery selection
-function confirmDeliverySelection() {
-  if (!deliveryType) {
-    addBotMessage("الرجاء اختيار طريقة الاستلام أولاً");
-    return;
-  }
-  
-  if (deliveryType === 'delivery') {
-    showLocationOptions();
-  } else {
-    showPickupInfo();
-  }
-}
-
-// Show location options for delivery
-function showLocationOptions() {
-  currentStep = 'location';
-  
-  const locationHTML = `
-    <div class="location-card">
-      <div class="location-header">
-        <h3><i class="fas fa-map-marker-alt"></i> تحديد العنوان</h3>
-      </div>
-      <div class="location-options">
-        <div class="location-option" onclick="useCurrentLocation()">
-          <div class="location-icon">
-            <i class="fas fa-location-arrow"></i>
-          </div>
-          <div class="location-details">
-            <h4>استخدام الموقع الحالي</h4>
-            <p>سيتم تحديد موقعك تلقائيًا</p>
-          </div>
-        </div>
-        <div class="location-option" onclick="enterManualAddress()">
-          <div class="location-icon">
-            <i class="fas fa-edit"></i>
-          </div>
-          <div class="location-details">
-            <h4>إدخال العنوان يدويًا</h4>
-            <p>أدخل عنوانك التفصيلي</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  addBotMessage(locationHTML, getCurrentTime());
-  scrollToBottom();
-}
-
-// Use current location
-function useCurrentLocation() {
-  userAddress = "موقعك الحالي (تم تحديده تلقائيًا)";
-  addBotMessage("📍 تم تحديد موقعك الحالي بنجاح!", getCurrentTime());
-  showPaymentOptions();
-}
-
-// Enter manual address
-function enterManualAddress() {
-  addBotMessage("الرجاء كتابة عنوانك الكامل:", getCurrentTime());
-  currentStep = 'waiting_for_address';
-  
-  // Focus on input
-  setTimeout(() => {
-    const input = document.getElementById('messageInput');
-    input.focus();
-    input.placeholder = "اكتب العنوان هنا...";
-  }, 300);
-}
-
-// Handle address input
-function handleAddressInput(address) {
-  if (address.trim().length > 10) {
-    userAddress = address.trim();
-    addBotMessage(`✅ تم حفظ العنوان:<br>${userAddress}`, getCurrentTime());
-    showPaymentOptions();
-  } else {
-    addBotMessage("الرجاء إدخال عنوان صحيح ومفصل", getCurrentTime());
-  }
-}
-
-// Show pickup info
-function showPickupInfo() {
-  const pickupHTML = `
-    <div class="location-card">
-      <div class="location-header">
-        <h3><i class="fas fa-store"></i> استلام من المطعم</h3>
-      </div>
-      <div class="location-options">
-        <div class="location-option" style="cursor: default;">
-          <div class="location-icon">
-            <i class="fas fa-map-pin"></i>
-          </div>
-          <div class="location-details">
-            <h4>${restaurant.name}</h4>
-            <p>${restaurant.address}<br>⏰ الاستلام خلال: ${restaurant.pickupTime}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  addBotMessage(pickupHTML, getCurrentTime());
-  
-  // Add continue button
-  setTimeout(() => {
-    const continueBtn = document.createElement('button');
-    continueBtn.className = 'checkout-btn';
-    continueBtn.innerHTML = `<i class="fas fa-arrow-right"></i> المتابعة للدفع`;
-    continueBtn.onclick = showPaymentOptions;
-    
-    const chatContent = document.getElementById('chatContent');
-    chatContent.appendChild(continueBtn);
-    scrollToBottom();
-  }, 500);
-}
-
-// Show payment options
-function showPaymentOptions() {
-  currentStep = 'payment';
-  
-  // Calculate totals
-  let itemsTotal = 0;
-  Object.keys(selectedItems).forEach(itemId => {
-    const item = menuItems.find(i => i.id == itemId);
-    if (item) itemsTotal += item.price;
-  });
-  
-  const deliveryFee = deliveryType === 'delivery' ? restaurant.deliveryFee : 0;
-  const total = itemsTotal + deliveryFee;
-  
-  const paymentHTML = `
-    <div class="payment-card">
-      <div class="payment-header">
-        <h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني</h3>
-      </div>
-      <div style="padding: 15px;">
-        <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
-          <span style="color: #8696a0;">مجموع المنتجات:</span>
-          <span style="color: white; font-weight: 600;">${itemsTotal} ريال</span>
-        </div>
-        ${deliveryType === 'delivery' ? `
-        <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
-          <span style="color: #8696a0;">رسوم التوصيل:</span>
-          <span style="color: white; font-weight: 600;">${deliveryFee} ريال</span>
-        </div>
-        ` : ''}
-        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-          <span style="color: white; font-size: 17px; font-weight: 700;">الإجمالي:</span>
-          <span style="color: #00a884; font-size: 20px; font-weight: 700;">${total} ريال</span>
-        </div>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
-          <i class="fab fa-apple-pay"></i>
-        </div>
-        <div class="payment-name">Apple Pay</div>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <div class="payment-name">STC Pay</div>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
-          <i class="fab fa-cc-visa"></i>
-        </div>
-        <div class="payment-name">بطاقة إئتمان</div>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
-          <i class="fas fa-university"></i>
-        </div>
-        <div class="payment-name">بطاقة مدى</div>
-      </div>
-    </div>
-  `;
-  
-  addBotMessage(paymentHTML, getCurrentTime());
-  scrollToBottom();
-}
-
-// Complete payment
-function completePayment() {
-  currentStep = 'complete';
-  
-  // Calculate totals for confirmation
-  let itemsTotal = 0;
-  let itemsList = '';
-  let itemNames = [];
-  
-  Object.keys(selectedItems).forEach(itemId => {
-    const item = menuItems.find(i => i.id == itemId);
-    if (item) {
-      itemsTotal += item.price;
-      itemsList += `<p>• ${item.name} - ${item.price} ريال</p>`;
-      itemNames.push(item.name);
-    }
-  });
-  
-  const deliveryFee = deliveryType === 'delivery' ? restaurant.deliveryFee : 0;
-  const total = itemsTotal + deliveryFee;
-  const orderNumber = Math.floor(1000 + Math.random() * 9000);
-  const loyaltyPoints = Math.floor(total / 5);
-  
-  // Save order to history
-  orderHistory.push({
-    orderNumber,
-    items: itemNames,
-    total,
-    date: new Date().toLocaleString('ar-SA'),
-    status: 'جاري التجهيز'
-  });
-  
-  const confirmationHTML = `
-    <div class="confirmation-card">
-      <div class="confirmation-header">
-        <div class="confirmation-icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <div>
-          <h3>تم تأكيد طلبك! 🎉</h3>
-        </div>
-      </div>
-      <div class="confirmation-details">
-        <p><strong>رقم الطلب:</strong> #${orderNumber}</p>
-        <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
-        ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress || 'لم يتم تحديد العنوان'}</p>` : ''}
-        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? restaurant.deliveryTime : restaurant.pickupTime}</p>
-        <div style="margin: 12px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-          <p style="color: white; margin-bottom: 8px; font-weight: 600;">تفاصيل الطلب:</p>
-          ${itemsList}
-          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - ${deliveryFee} ريال</p>` : ''}
-          <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
-        </div>
-        <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
-      </div>
-      <div class="confirmation-points">
-        <h4><i class="fas fa-gift"></i> مكافآت الولاء</h4>
-        <p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p>
-        <p style="font-size: 13px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
-      </div>
-    </div>
-    <div style="text-align: center; color: #8696a0; font-size: 13px; padding: 15px;">
-      شكراً لاختياركم ${restaurant.name} 🍽️
-    </div>
-  `;
-  
-  addBotMessage(confirmationHTML, getCurrentTime());
-  
-  // Reset for new order
-  setTimeout(() => {
-    cart = [];
-    selectedItems = {};
-    deliveryType = '';
-    userAddress = '';
-    currentStep = 'welcome';
-    
-    // Reset input placeholder
-    document.getElementById('messageInput').placeholder = "اكتب رسالة...";
-    
-    addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
-  }, 3000);
-}
-
-// Initialize on load
-window.onload = function() {
-  initChat();
-  
-  // Set input placeholder based on step
-  const input = document.getElementById('messageInput');
-  input.addEventListener('focus', function() {
-    if (currentStep === 'waiting_for_address') {
-      this.placeholder = "اكتب العنوان هنا...";
-    }
-  });
-  
-  input.addEventListener('blur', function() {
-    if (currentStep === 'waiting_for_address' && this.value.trim().length > 10) {
-      handleAddressInput(this.value);
-      this.value = '';
-      this.placeholder = "اكتب رسالة...";
-      currentStep = 'delivery';
-    }
-  });
-  
-  // Auto-focus on input
-  setTimeout(() => {
-    input.focus();
-  }, 1000);
-};
-
-// Handle window resize
-window.addEventListener('resize', function() {
-  scrollToBottom();
-});
 </script>
+
 </body>
 </html>
