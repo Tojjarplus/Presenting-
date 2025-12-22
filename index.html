@@ -2,301 +2,119 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>WhatsApp Catalog Demo - مطعم لين</title>
+<title>WhatsApp Order Demo - مطعم لين</title>
 
 <style>
-body{
-  background:#0f172a;
-  font-family: Arial, sans-serif;
-}
-
-/* Phone frame */
-.phone{
-  width:375px;
-  height:720px;
-  margin:20px auto;
-  background:#000;
-  border-radius:40px;
-  padding:12px;
-  box-shadow:0 0 40px rgba(0,0,0,.7);
-}
-
-/* Screen */
-.screen{
-  background:#e5ddd5;
-  height:100%;
-  border-radius:30px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-}
-
-/* Header */
-.header{
-  background:#075e54;
-  color:#fff;
-  padding:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:bold;
-}
-
-.avatar{
-  width:36px;
-  height:36px;
-  background:#25d366;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-}
-
-/* Chat */
-.chat{
-  flex:1;
-  padding:10px;
-  overflow-y:auto;
-}
-
-/* User message */
-.msg{
-  background:#dcf8c6;
-  padding:8px 12px;
-  border-radius:8px;
-  margin-bottom:8px;
-  max-width:80%;
-  font-size:14px;
-}
-
-/* Catalog card */
-.catalog{
-  background:#fff;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 2px 6px rgba(0,0,0,.25);
-  margin-bottom:10px;
-}
-
-.catalog img{
-  width:100%;
-}
-
-.catalog-body{
-  padding:10px;
-}
-
-.catalog-title{
-  font-weight:bold;
-  font-size:15px;
-}
-
-.catalog-sub{
-  font-size:12px;
-  color:#666;
-  margin:4px 0;
-}
-
-.catalog-desc{
-  font-size:13px;
-}
-
-.catalog-btn{
-  color:#25d366;
-  text-align:center;
-  padding:10px;
-  border-top:1px solid #eee;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* Menu */
-.menu{
-  background:#fff;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:10px;
-}
-
-.menu-item{
-  display:flex;
-  align-items:center;
-  padding:10px;
-  border-bottom:1px solid #eee;
-}
-
-.menu-item:last-child{
-  border-bottom:none;
-}
-
-.menu-img{
-  width:60px;
-  height:60px;
-  border-radius:10px;
-  object-fit:cover;
-  margin-left:10px;
-}
-
-.menu-info{
-  flex:1;
-  text-align:right;
-}
-
-.menu-title{
-  font-weight:bold;
-  font-size:14px;
-}
-
-.menu-price{
-  font-size:13px;
-  margin-top:4px;
-}
-
-.menu-add{
-  width:26px;
-  height:26px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  cursor:pointer;
-}
-
-/* Input */
-.input{
-  background:#f0f0f0;
-  padding:8px;
-  display:flex;
-}
-
-.input input{
-  flex:1;
-  border:none;
-  border-radius:20px;
-  padding:8px 12px;
-  outline:none;
-}
-
-.input button{
-  margin-right:8px;
-  background:#25d366;
-  border:none;
-  border-radius:50%;
-  width:40px;
-  color:#fff;
-  cursor:pointer;
-}
+body{background:#0f172a;font-family:Arial}
+.phone{width:375px;height:720px;margin:20px auto;background:#000;border-radius:40px;padding:12px}
+.screen{background:#e5ddd5;height:100%;border-radius:30px;display:flex;flex-direction:column;overflow:hidden}
+.header{background:#075e54;color:#fff;padding:12px;font-weight:bold}
+.chat{flex:1;padding:10px;overflow-y:auto}
+.msg{background:#dcf8c6;padding:8px 12px;border-radius:8px;margin-bottom:6px;max-width:80%}
+.bot{background:#fff;padding:8px 12px;border-radius:8px;margin-bottom:6px}
+.catalog,.menu,.panel{background:#fff;border-radius:10px;margin-bottom:10px;overflow:hidden}
+.catalog img{width:100%}
+.btn{color:#25d366;text-align:center;padding:10px;font-weight:bold;cursor:pointer;border-top:1px solid #eee}
+.menu-item{display:flex;align-items:center;padding:10px;border-bottom:1px solid #eee}
+.menu-item:last-child{border:none}
+.menu-img{width:55px;height:55px;border-radius:10px;margin-left:10px}
+.menu-info{flex:1;text-align:right}
+.plus{border:1px solid #ccc;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.input{display:flex;padding:8px;background:#f0f0f0}
+.input input{flex:1;border:none;border-radius:20px;padding:8px}
+.input button{margin-right:8px;background:#25d366;border:none;color:#fff;border-radius:50%;width:40px}
+.option{padding:10px;border-bottom:1px solid #eee;cursor:pointer}
 </style>
 </head>
 
 <body>
 
 <div class="phone">
-  <div class="screen">
+<div class="screen">
 
-    <div class="header">
-      <div class="avatar">لين</div>
-      مطعم لين
-    </div>
+<div class="header">مطعم لين</div>
+<div class="chat" id="chat"></div>
 
-    <div class="chat" id="chat"></div>
+<div class="input">
+<button onclick="send()">➤</button>
+<input id="msg" value="ابغي اطلب" onkeydown="if(event.key==='Enter'){send()}">
+</div>
 
-    <div class="input">
-      <button onclick="send()">➤</button>
-      <input id="msg" placeholder="اكتب رسالة">
-    </div>
-
-  </div>
+</div>
 </div>
 
 <script>
-let catalogShown = false;
+let cart=[];
+let step=0;
 
 function send(){
-  const input = document.getElementById("msg");
-  const chat = document.getElementById("chat");
-  const text = input.value.trim();
+  const input=document.getElementById("msg");
+  const text=input.value.trim();
   if(!text) return;
 
-  // عرض رسالة المستخدم فقط
-  const m = document.createElement("div");
-  m.className = "msg";
-  m.innerText = text;
-  chat.appendChild(m);
-
-  const triggers = [
-    "hi","hello","مرحبا","السلام عليكم",
-    "ابغي اطلب","أبغى أطلب","ابي اطلب",
-    "ابي طلب","طلب","منيو","menu"
-  ];
-
-  if (!catalogShown && triggers.some(t => text.toLowerCase().includes(t))) {
-    setTimeout(showCatalog,300);
-    catalogShown = true;
-  }
-
+  chat.innerHTML+=`<div class="msg">${text}</div>`;
   input.value="";
-  chat.scrollTop=chat.scrollHeight;
+  showCatalog();
 }
 
 function showCatalog(){
-  const chat=document.getElementById("chat");
-
-  const c=document.createElement("div");
-  c.className="catalog";
-
-  c.innerHTML=`
+  chat.innerHTML+=`
+  <div class="catalog">
     <img src="images/catalog.jpg">
-    <div class="catalog-body">
-      <div class="catalog-title">مطعم لين</div>
-      <div class="catalog-sub">Catalog on WhatsApp</div>
-      <div class="catalog-desc">
-        تصفح المنيو واطلب مباشرة
-      </div>
+    <div style="padding:10px">
+      <b>مطعم لين</b><br>
+      تصفح المنيو واطلب مباشرة
     </div>
-    <div class="catalog-btn" onclick="showMenu()">
-      View catalogue
-    </div>
-  `;
-
-  chat.appendChild(c);
-  chat.scrollTop=chat.scrollHeight;
+    <div class="btn" onclick="showMenu()">View catalogue</div>
+  </div>`;
 }
 
 function showMenu(){
-  const chat=document.getElementById("chat");
-  const menu=document.createElement("div");
-  menu.className="menu";
-
-  menu.innerHTML=`
-    ${item("item1.png","ساندويتش فطور بالبيض والجبن",20)}
-    ${item("item2.png","مافن سجق بالبيض",22)}
-    ${item("item3.png","طبق فطور دجاج",25)}
-    ${item("item4.png","ساندويتش دجاج مقرمش",27)}
-    ${item("item5.png","برجر دجاج مقرمش",30)}
-    ${item("item6.png","برجر دجاج مشوي",32)}
-    ${item("item7.png","وجبة ناجتس الدجاج",35)}
-    ${item("item8.png","مافن دجاج بالبيض والجبن",24)}
-    ${item("item9.png","قطع دجاج مقلية",28)}
-    ${item("item10.png","راب دجاج",26)}
-  `;
-
-  chat.appendChild(menu);
-  chat.scrollTop=chat.scrollHeight;
+  let html='<div class="menu">';
+  for(let i=1;i<=10;i++){
+    html+=`
+    <div class="menu-item">
+      <div class="plus" onclick="addItem(${i})">+</div>
+      <div class="menu-info">صنف رقم ${i}<br>${20+i} ريال</div>
+      <img class="menu-img" src="images/item${i}.png">
+    </div>`;
+  }
+  html+='</div>';
+  chat.innerHTML+=html;
 }
 
-function item(img,name,price){
-  return `
-  <div class="menu-item">
-    <div class="menu-add">+</div>
-    <div class="menu-info">
-      <div class="menu-title">${name}</div>
-      <div class="menu-price">${price} ريال</div>
-    </div>
-    <img class="menu-img" src="images/${img}">
+function addItem(i){
+  cart.push(i);
+  if(document.getElementById("orderBtn")) return;
+  chat.innerHTML+=`
+    <div class="panel" id="orderBtn">
+      <div class="btn" onclick="shareLocation()">تنفيذ الطلب</div>
+    </div>`;
+}
+
+function shareLocation(){
+  chat.innerHTML+=`
+  <div class="panel">
+    <div class="btn" onclick="showPayment()">📍 مشاركة الموقع</div>
+  </div>`;
+}
+
+function showPayment(){
+  chat.innerHTML+=`
+  <div class="panel">
+    <div class="option" onclick="finish()">STC Pay</div>
+    <div class="option" onclick="finish()">مدى</div>
+    <div class="option" onclick="finish()">Visa</div>
+    <div class="option" onclick="finish()">Apple Pay</div>
+  </div>`;
+}
+
+function finish(){
+  chat.innerHTML+=`
+  <div class="bot">
+    ✅ تم الدفع بنجاح<br>
+    🎉 حصلت على نقاط ولاء<br>
+    🎁 يمكنك استبدالها في الطلب القادم
   </div>`;
 }
 </script>
