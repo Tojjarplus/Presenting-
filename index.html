@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>WhatsApp Order - جو كرسبي</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -10,28 +10,74 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Arabic', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 15px;
+  touch-action: manipulation;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    background: #0c2461;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+    padding-top: 10px;
+  }
 }
 
 .phone-container {
-  width: 380px;
-  height: 780px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 320px;
+  height: auto;
+  min-height: 700px;
+  max-height: 90vh;
   background: #000;
-  border-radius: 50px;
-  padding: 18px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+  border-radius: 40px;
+  padding: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
               inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .phone-container {
+    border-radius: 30px;
+    padding: 12px;
+    max-height: 85vh;
+    min-height: 650px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .phone-container {
+    border-radius: 25px;
+    padding: 10px;
+    max-height: 80vh;
+    min-height: 600px;
+  }
 }
 
 .phone-container::before {
@@ -40,54 +86,87 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px;
-  height: 30px;
+  width: 150px;
+  height: 25px;
   background: #000;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 15px 15px;
   z-index: 10;
+}
+
+@media (max-width: 480px) {
+  .phone-container::before {
+    width: 120px;
+    height: 20px;
+  }
 }
 
 .screen {
   width: 100%;
   height: 100%;
   background: #0d1418;
-  border-radius: 40px;
+  border-radius: 35px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
+@media (max-width: 480px) {
+  .screen {
+    border-radius: 25px;
+  }
+}
+
 /* WhatsApp Header */
 .whatsapp-header {
   background: #1f2c34;
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-header {
+    padding: 10px 12px;
+    min-height: 55px;
+  }
 }
 
 .back-btn {
   color: #8696a0;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .restaurant-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .restaurant-avatar {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #00a884;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .restaurant-avatar {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .restaurant-avatar img {
@@ -96,32 +175,57 @@ body {
   object-fit: cover;
 }
 
+.restaurant-details {
+  min-width: 0;
+}
+
 .restaurant-details h2 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .restaurant-details h2 {
+    font-size: 15px;
+  }
 }
 
 .restaurant-details p {
-  font-size: 13px;
+  font-size: 12px;
   color: #8696a0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-icons {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   color: #8696a0;
-  font-size: 20px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .header-icons {
+    gap: 12px;
+    font-size: 16px;
+  }
 }
 
 /* Chat Area */
 .chat-area {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 15px;
+  padding: 15px 12px;
   background: url('https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=2574&auto=format&fit=crop') no-repeat center center;
   background-size: cover;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 .chat-area::before {
@@ -138,12 +242,16 @@ body {
 .chat-content {
   position: relative;
   z-index: 2;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* Message Bubbles */
 .message {
-  margin-bottom: 15px;
   display: flex;
+  width: 100%;
 }
 
 .message.user {
@@ -155,13 +263,22 @@ body {
 }
 
 .bubble {
-  max-width: 75%;
-  padding: 12px 16px;
-  border-radius: 20px;
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 18px;
   position: relative;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  .bubble {
+    max-width: 90%;
+    padding: 8px 12px;
+    font-size: 13.5px;
+  }
 }
 
 .user .bubble {
@@ -179,10 +296,10 @@ body {
 }
 
 .time {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.6);
   text-align: left;
-  margin-top: 5px;
+  margin-top: 4px;
   direction: ltr;
 }
 
@@ -192,15 +309,34 @@ body {
   border-radius: 15px;
   overflow: hidden;
   width: 280px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 480px) {
+  .catalog-message {
+    width: 260px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .catalog-message {
+    width: 240px;
+  }
 }
 
 .catalog-image {
   height: 120px;
   overflow: hidden;
   position: relative;
+}
+
+@media (max-width: 480px) {
+  .catalog-image {
+    height: 110px;
+  }
 }
 
 .catalog-image img {
@@ -220,11 +356,23 @@ body {
   font-weight: 600;
 }
 
+@media (max-width: 480px) {
+  .catalog-details h3 {
+    font-size: 15px;
+  }
+}
+
 .catalog-details p {
   color: #8696a0;
   font-size: 13px;
   margin-bottom: 10px;
   line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .catalog-details p {
+    font-size: 12px;
+  }
 }
 
 .catalog-btn {
@@ -236,17 +384,27 @@ body {
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   width: 100%;
   border: none;
+  touch-action: manipulation;
 }
 
-.catalog-btn:hover {
+@media (max-width: 480px) {
+  .catalog-btn {
+    padding: 10px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+}
+
+.catalog-btn:active {
   background: #008f70;
+  transform: scale(0.98);
 }
 
 /* Menu Items */
@@ -254,33 +412,57 @@ body {
   background: #1f2c34;
   border-radius: 15px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+  .menu-card {
+    margin-bottom: 12px;
+    border-radius: 12px;
+  }
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 18px;
+  padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.3s ease;
+  gap: 12px;
+  touch-action: manipulation;
+}
+
+@media (max-width: 480px) {
+  .menu-item {
+    padding: 12px;
+    gap: 10px;
+  }
 }
 
 .menu-item:last-child {
   border-bottom: none;
 }
 
-.menu-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+.menu-item-image {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.menu-item-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-left: 15px;
-  flex-shrink: 0;
+@media (max-width: 480px) {
+  .menu-item-image {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .menu-item-image {
+    width: 55px;
+    height: 55px;
+  }
 }
 
 .menu-item-image img {
@@ -291,31 +473,40 @@ body {
 
 .menu-item-details {
   flex: 1;
+  min-width: 0;
 }
 
 .menu-item-name {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.menu-item-desc {
-  color: #8696a0;
-  font-size: 13px;
-  margin-bottom: 8px;
-  line-height: 1.4;
+@media (max-width: 480px) {
+  .menu-item-name {
+    font-size: 14px;
+  }
 }
 
 .menu-item-price {
   color: #00a884;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
 }
 
+@media (max-width: 480px) {
+  .menu-item-price {
+    font-size: 15px;
+  }
+}
+
 .menu-item-add {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   border: 2px solid #00a884;
@@ -323,10 +514,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+@media (max-width: 480px) {
+  .menu-item-add {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
 }
 
 .menu-item-add.selected {
@@ -335,38 +536,48 @@ body {
   transform: rotate(45deg);
 }
 
-.menu-item-add:hover {
-  transform: scale(1.1);
+.menu-item-add:active {
+  transform: scale(0.95);
 }
 
 /* Cart Summary */
 .cart-summary {
   background: #1f2c34;
   border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 168, 132, 0.3);
 }
 
+@media (max-width: 480px) {
+  .cart-summary {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+  }
+}
+
 .cart-summary h3 {
   color: white;
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 16px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .cart-items {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -376,31 +587,36 @@ body {
 
 .cart-item-name {
   color: #e9edef;
-  font-size: 15px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .cart-item-price {
   color: #00a884;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .cart-total {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 12px;
   border-top: 2px solid rgba(0, 168, 132, 0.5);
 }
 
 .cart-total-label {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .cart-total-amount {
   color: #00a884;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -408,25 +624,37 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 18px;
+  padding: 15px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 15px;
   box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
   border: none;
   width: 100%;
+  touch-action: manipulation;
+  min-height: 50px;
 }
 
-.checkout-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.4);
+@media (max-width: 480px) {
+  .checkout-btn {
+    padding: 14px;
+    font-size: 14px;
+    min-height: 48px;
+    border-radius: 10px;
+    margin-top: 12px;
+  }
+}
+
+.checkout-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 10px rgba(0, 168, 132, 0.4);
 }
 
 /* Delivery Options */
@@ -434,37 +662,38 @@ body {
   background: #1f2c34;
   border-radius: 15px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .delivery-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .delivery-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .delivery-option {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease;
+  touch-action: manipulation;
 }
 
 .delivery-option:last-child {
   border-bottom: none;
 }
 
-.delivery-option:hover {
-  background: rgba(255, 255, 255, 0.03);
+.delivery-option:active {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .delivery-option.selected {
@@ -473,32 +702,43 @@ body {
 }
 
 .delivery-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
-  font-size: 22px;
+  margin-left: 12px;
+  font-size: 20px;
   color: #00a884;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .delivery-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-left: 10px;
+  }
 }
 
 .delivery-details {
   flex: 1;
+  min-width: 0;
 }
 
 .delivery-details h4 {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .delivery-details p {
   color: #8696a0;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -507,24 +747,24 @@ body {
   background: #1f2c34;
   border-radius: 15px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .location-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .location-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .location-message {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 }
 
@@ -532,10 +772,10 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 18px;
+  padding: 15px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -545,59 +785,12 @@ body {
   box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
   border: none;
   width: 100%;
+  touch-action: manipulation;
 }
 
-.location-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.4);
-}
-
-.location-options {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.location-option {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.location-option:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.location-option-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(0, 168, 132, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 15px;
-  font-size: 20px;
-  color: #00a884;
-  flex-shrink: 0;
-}
-
-.location-option-details h4 {
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.location-option-details p {
-  color: #8696a0;
-  font-size: 13px;
-  line-height: 1.4;
+.location-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 10px rgba(0, 168, 132, 0.4);
 }
 
 /* Payment Options */
@@ -605,37 +798,38 @@ body {
   background: #1f2c34;
   border-radius: 15px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .payment-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .payment-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .payment-option {
   display: flex;
   align-items: center;
-  padding: 18px 20px;
+  padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease;
+  touch-action: manipulation;
 }
 
 .payment-option:last-child {
   border-bottom: none;
 }
 
-.payment-option:hover {
-  background: rgba(255, 255, 255, 0.03);
+.payment-option:active {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .payment-icon {
@@ -646,14 +840,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
-  font-size: 20px;
+  margin-left: 12px;
+  font-size: 18px;
   color: white;
+  flex-shrink: 0;
 }
 
 .payment-name {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   flex: 1;
 }
@@ -661,12 +856,21 @@ body {
 /* Input Area */
 .input-area {
   background: #1f2c34;
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 2;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .input-area {
+    padding: 10px 12px;
+    gap: 10px;
+    min-height: 60px;
+  }
 }
 
 .input-area input {
@@ -674,10 +878,21 @@ body {
   background: #2a3942;
   border: none;
   border-radius: 25px;
-  padding: 12px 20px;
+  padding: 10px 18px;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   outline: none;
+  font-family: inherit;
+  min-width: 0;
+  height: 44px;
+}
+
+@media (max-width: 480px) {
+  .input-area input {
+    padding: 8px 15px;
+    font-size: 13px;
+    height: 40px;
+  }
 }
 
 .input-area input::placeholder {
@@ -685,96 +900,333 @@ body {
 }
 
 .send-btn {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #00a884;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  flex-shrink: 0;
+  touch-action: manipulation;
 }
 
-.send-btn:hover {
+@media (max-width: 480px) {
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+.send-btn:active {
   background: #008f70;
-  transform: scale(1.05);
+  transform: scale(0.95);
 }
 
 /* Confirmation Message */
 .confirmation-card {
   background: rgba(0, 168, 132, 0.1);
   border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
   border: 2px solid #00a884;
   box-shadow: 0 5px 20px rgba(0, 168, 132, 0.2);
+}
+
+@media (max-width: 480px) {
+  .confirmation-card {
+    padding: 15px;
+    margin-bottom: 12px;
+  }
 }
 
 .confirmation-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
 .confirmation-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: #00a884;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   color: white;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .confirmation-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
 }
 
 .confirmation-header h3 {
   color: white;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .confirmation-header h3 {
+    font-size: 16px;
+  }
 }
 
 .confirmation-details {
   color: #e9edef;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .confirmation-details p {
-  margin-bottom: 10px;
-  font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .confirmation-points {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 12px;
+  margin-top: 15px;
   text-align: center;
   border: 1px solid rgba(0, 168, 132, 0.3);
 }
 
 .confirmation-points h4 {
   color: white;
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 15px;
+  margin-bottom: 6px;
   font-weight: 600;
 }
 
 .confirmation-points p {
   color: #00a884;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
+}
+
+/* Quick Message Button */
+.quick-message {
+  background: #005c4b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  margin-bottom: 10px;
+  align-self: flex-end;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  touch-action: manipulation;
+}
+
+.quick-message:active {
+  background: #00493a;
+  transform: scale(0.98);
+}
+
+/* Payment Page Modal */
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.payment-content {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  animation: slideUp 0.4s forwards 0.1s;
+}
+
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+.payment-header-bar {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.payment-header-bar h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.payment-header-bar p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.payment-details {
+  padding: 25px;
+}
+
+.amount-display {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  border: 1px solid #e9ecef;
+}
+
+.amount-label {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+.amount-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e3c72;
+}
+
+.currency {
+  font-size: 20px;
+  color: #495057;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-group input {
+  padding: 14px;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1e3c72;
+  box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.pay-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+}
+
+.pay-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 10px rgba(0, 168, 132, 0.4);
+}
+
+.cancel-btn {
+  flex: 1;
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+}
+
+.cancel-btn:active {
+  transform: translateY(2px);
+  background: #5a6268;
+}
+
+.security-notice {
+  text-align: center;
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.security-notice i {
+  color: #00a884;
+  margin-right: 5px;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -790,28 +1242,41 @@ body {
   background: #008f70;
 }
 
-/* Quick Message Button */
-.quick-message {
-  background: #005c4b;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 20px;
-  font-size: 14.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  margin-bottom: 10px;
-  align-self: flex-end;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* Prevent text selection */
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.quick-message:hover {
-  background: #00493a;
-  transform: translateY(-2px);
+/* Loading animation */
+.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.loading span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8696a0;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading span:nth-child(1) { animation-delay: -0.32s; }
+.loading span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
 }
 </style>
 </head>
-<body>
+<body class="noselect">
 
 <div class="phone-container">
   <div class="screen">
@@ -824,7 +1289,6 @@ body {
       
       <div class="restaurant-info">
         <div class="restaurant-avatar">
-          <!-- تغيير هنا: صورة الملف الشخصي -->
           <img src="images/profile.png" alt="جو كرسبي" onerror="this.src='images/item1.png'">
         </div>
         <div class="restaurant-details">
@@ -849,8 +1313,8 @@ body {
     
     <!-- Input Area -->
     <div class="input-area">
-      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 22px;"></i>
-      <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="if(event.key === 'Enter') sendMessage()">
+      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 20px;"></i>
+      <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="handleKeyDown(event)">
       <button class="send-btn" onclick="sendMessage()">
         <i class="fas fa-paper-plane"></i>
       </button>
@@ -859,12 +1323,64 @@ body {
   </div>
 </div>
 
+<!-- Payment Page Modal -->
+<div class="payment-modal" id="paymentModal" style="display: none;">
+  <div class="payment-content">
+    <div class="payment-header-bar">
+      <h2>تجار بلس - مطعم جو كرسبي</h2>
+      <p>دفع آمن وسريع</p>
+    </div>
+    
+    <div class="payment-details">
+      <div class="amount-display">
+        <div class="amount-label">المبلغ المطلوب دفعه</div>
+        <div class="amount-value">
+          <span id="paymentAmount">0</span>
+          <span class="currency">ريال</span>
+        </div>
+      </div>
+      
+      <form class="payment-form" id="paymentForm">
+        <div class="form-group">
+          <label for="cardNumber">رقم البطاقة</label>
+          <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" pattern="[0-9\s]{13,19}" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cardHolder">اسم حامل البطاقة</label>
+          <input type="text" id="cardHolder" placeholder="الاسم كما هو مكتوب على البطاقة" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiryDate">تاريخ الانتهاء</label>
+            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" pattern="\d{2}/\d{2}" required>
+          </div>
+          <div class="form-group">
+            <label for="cvv">رمز CVV</label>
+            <input type="password" id="cvv" placeholder="123" maxlength="3" inputmode="numeric" pattern="\d{3}" required>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" onclick="closePaymentModal()">إلغاء</button>
+          <button type="submit" class="pay-btn">تأكيد الدفع</button>
+        </div>
+      </form>
+      
+      <div class="security-notice">
+        <i class="fas fa-lock"></i> جميع عمليات الدفع مشفرة وآمنة 100%
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // Restaurant data
 const restaurant = {
   name: "جو كرسبي",
   description: "أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية",
-  logo: "images/profile.png", // تغيير هنا: صورة الملف الشخصي
+  logo: "images/profile.png",
   address: "حي العليا، شارع الملك فهد، الرياض",
   phone: "011 234 5678",
   rating: "4.8 ★ (950 تقييم)"
@@ -950,6 +1466,7 @@ let selectedItems = {};
 let deliveryType = '';
 let currentStep = 'welcome';
 let userAddress = '';
+let currentPaymentTotal = 0;
 
 // Initialize chat
 function initChat() {
@@ -1042,7 +1559,15 @@ function scrollToBottom() {
   }, 100);
 }
 
-// Send message from input
+// Handle Enter key
+function handleKeyDown(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    sendMessage();
+  }
+}
+
+// Send message
 function sendMessage() {
   const input = document.getElementById('messageInput');
   const text = input.value.trim();
@@ -1071,14 +1596,13 @@ function processUserMessage(text) {
   }
 }
 
-// Show catalog (smaller like real WhatsApp)
+// Show catalog
 function showCatalog() {
   currentStep = 'menu';
   
   const catalogHTML = `
     <div class="catalog-message">
       <div class="catalog-image">
-        <!-- الكتالوج يستخدم صورة مختلفة (item1) -->
         <img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'">
       </div>
       <div class="catalog-details">
@@ -1103,8 +1627,8 @@ function showMenu() {
   menuItems.forEach(item => {
     const isSelected = selectedItems[item.id] || false;
     menuHTML += `
-      <div class="menu-item">
-        <div class="menu-item-add ${isSelected ? 'selected' : ''}" onclick="toggleItem(${item.id})">
+      <div class="menu-item" onclick="toggleItem(${item.id})">
+        <div class="menu-item-add ${isSelected ? 'selected' : ''}">
           ${isSelected ? '×' : '+'}
         </div>
         <div class="menu-item-image">
@@ -1112,7 +1636,6 @@ function showMenu() {
         </div>
         <div class="menu-item-details">
           <div class="menu-item-name">${item.name}</div>
-          <div class="menu-item-desc">${item.description}</div>
           <div class="menu-item-price">${item.price} ريال</div>
         </div>
       </div>
@@ -1138,7 +1661,7 @@ function toggleItem(itemId) {
   }
   
   // Update the UI
-  const addButton = document.querySelector(`.menu-item-add[onclick="toggleItem(${itemId})"]`);
+  const addButton = document.querySelector(`.menu-item[onclick="toggleItem(${itemId})"] .menu-item-add`);
   if (addButton) {
     addButton.classList.toggle('selected');
     addButton.innerHTML = selectedItems[itemId] ? '×' : '+';
@@ -1149,14 +1672,12 @@ function toggleItem(itemId) {
 
 // Update cart display
 function updateCartDisplay() {
-  // Remove existing cart if any
   const existingCart = document.querySelector('.cart-summary');
   if (existingCart) existingCart.remove();
   
   const itemCount = Object.keys(selectedItems).length;
   
   if (itemCount > 0) {
-    // Calculate total
     let total = 0;
     let itemsHTML = '';
     
@@ -1175,16 +1696,16 @@ function updateCartDisplay() {
     
     const cartHTML = `
       <div class="cart-summary">
-        <h3><i class="fas fa-shopping-bag"></i> طلبك</h3>
+        <h3><i class="fas fa-shopping-bag"></i> طلبك (${itemCount})</h3>
         <div class="cart-items">
           ${itemsHTML}
         </div>
         <div class="cart-total">
-          <div class="cart-total-label">الإجمالي</div>
+          <div class="cart-total-label">المجموع</div>
           <div class="cart-total-amount">${total} ريال</div>
         </div>
         <button class="checkout-btn" onclick="showDeliveryOptions()">
-          <i class="fas fa-lock"></i> تأكيد الطلب والدفع
+          <i class="fas fa-lock"></i> تأكيد الطلب
         </button>
       </div>
     `;
@@ -1200,6 +1721,11 @@ function updateCartDisplay() {
 
 // Show delivery options
 function showDeliveryOptions() {
+  if (Object.keys(selectedItems).length === 0) {
+    addBotMessage("الرجاء إضافة منتجات إلى السلة أولاً 🛒");
+    return;
+  }
+  
   currentStep = 'delivery';
   
   const deliveryHTML = `
@@ -1213,8 +1739,7 @@ function showDeliveryOptions() {
         </div>
         <div class="delivery-details">
           <h4>توصيل إلى العنوان</h4>
-          <p>سيقوم سائقنا الخاص بتوصيل طلبك مع تجهيزات خاصة للحفاظ على جودة الطعام</p>
-          <p style="color: #00a884; margin-top: 5px;">+ 25 ريال (خدمة توصيل)</p>
+          <p>سيتم التوصيل خلال 30-45 دقيقة<br>رسوم التوصيل: 10 ريال</p>
         </div>
       </div>
       <div class="delivery-option ${deliveryType === 'pickup' ? 'selected' : ''}" onclick="selectDelivery('pickup')">
@@ -1223,8 +1748,7 @@ function showDeliveryOptions() {
         </div>
         <div class="delivery-details">
           <h4>استلام من المطعم</h4>
-          <p>يمكنك استلام الطلب من فرعنا في حي العليا مع خدمة الاستقبال المميزة</p>
-          <p style="color: #00a884; margin-top: 5px;">بدون رسوم إضافية</p>
+          <p>استلام خلال 15-20 دقيقة<br>بدون رسوم إضافية</p>
         </div>
       </div>
     </div>
@@ -1238,18 +1762,16 @@ function showDeliveryOptions() {
 function selectDelivery(type) {
   deliveryType = type;
   
-  // Update UI
   const deliveryOptions = document.querySelectorAll('.delivery-option');
   deliveryOptions.forEach(option => {
     option.classList.remove('selected');
   });
   
-  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}')"]`);
+  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}")]`);
   if (selectedOption) {
     selectedOption.classList.add('selected');
   }
   
-  // Show confirmation button
   setTimeout(() => {
     const confirmationBtn = document.createElement('button');
     confirmationBtn.className = 'checkout-btn';
@@ -1276,7 +1798,7 @@ function confirmDeliverySelection() {
   }
 }
 
-// Show location sharing for delivery
+// Show location sharing
 function showLocationSharing() {
   currentStep = 'location';
   
@@ -1293,26 +1815,6 @@ function showLocationSharing() {
           <i class="fas fa-location-arrow"></i> مشاركة الموقع الحالي
         </button>
       </div>
-      <div class="location-options">
-        <div class="location-option" onclick="enterManualAddress()">
-          <div class="location-option-icon">
-            <i class="fas fa-edit"></i>
-          </div>
-          <div class="location-option-details">
-            <h4>إدخال العنوان يدويًا</h4>
-            <p>أدخل عنوانك التفصيلي</p>
-          </div>
-        </div>
-        <div class="location-option" onclick="useSavedAddress()">
-          <div class="location-option-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="location-option-details">
-            <h4>استخدام عنوان محفوظ</h4>
-            <p>اختر من العناوين السابقة</p>
-          </div>
-        </div>
-      </div>
     </div>
   `;
   
@@ -1320,48 +1822,11 @@ function showLocationSharing() {
   scrollToBottom();
 }
 
-// Share current location
+// Share location
 function shareLocation() {
   userAddress = "الموقع الحالي (تم مشاركته)";
   addBotMessage("📍 تم مشاركة موقعك بنجاح!", getCurrentTime());
-  setTimeout(() => {
-    showPaymentOptions();
-  }, 1000);
-}
-
-// Enter manual address
-function enterManualAddress() {
-  addBotMessage("الرجاء كتابة عنوانك الكامل:", getCurrentTime());
-  currentStep = 'waiting_for_address';
-  
-  // Focus on input
-  setTimeout(() => {
-    const input = document.getElementById('messageInput');
-    input.focus();
-    input.placeholder = "اكتب العنوان هنا...";
-  }, 300);
-}
-
-// Handle manual address input
-function handleManualAddress() {
-  const input = document.getElementById('messageInput');
-  const address = input.value.trim();
-  
-  if (address && address.length > 5) {
-    userAddress = address;
-    addBotMessage(`✅ تم حفظ العنوان:<br>${userAddress}`, getCurrentTime());
-    currentStep = 'location';
-    showPaymentOptions();
-  }
-}
-
-// Use saved address
-function useSavedAddress() {
-  userAddress = "العنوان المنزلي المحفوظ";
-  addBotMessage(`✅ تم اختيار العنوان المحفوظ: ${userAddress}`, getCurrentTime());
-  setTimeout(() => {
-    showPaymentOptions();
-  }, 1000);
+  showPaymentOptions();
 }
 
 // Show pickup info
@@ -1399,57 +1864,47 @@ function showPaymentOptions() {
     if (item) itemsTotal += item.price;
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 10 : 0;
   const total = itemsTotal + deliveryFee;
   
   const paymentHTML = `
     <div class="payment-card">
       <div class="payment-header">
-        <h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني الآمن</h3>
+        <h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني</h3>
       </div>
-      <div class="confirmation-details" style="padding: 20px;">
-        <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
-          <span style="color: #8696a0;">إجمالي الطلب:</span>
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
+          <span style="color: #8696a0;">مجموع المنتجات:</span>
           <span style="color: white; font-weight: 600;">${itemsTotal} ريال</span>
         </div>
         ${deliveryType === 'delivery' ? `
-        <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+        <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
           <span style="color: #8696a0;">رسوم التوصيل:</span>
           <span style="color: white; font-weight: 600;">${deliveryFee} ريال</span>
         </div>
         ` : ''}
-        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-          <span style="color: white; font-size: 18px; font-weight: 700;">الإجمالي النهائي:</span>
-          <span style="color: #00a884; font-size: 22px; font-weight: 700;">${total} ريال</span>
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+          <span style="color: white; font-size: 17px; font-weight: 700;">الإجمالي:</span>
+          <span style="color: #00a884; font-size: 20px; font-weight: 700;">${total} ريال</span>
         </div>
       </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
-          <i class="fab fa-apple-pay"></i>
-        </div>
-        <div class="payment-name">Apple Pay</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <div class="payment-name">STC Pay</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
-          <i class="fas fa-credit-card"></i>
-        </div>
-        <div class="payment-name">Visa / Mastercard</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
+      <div class="payment-option" onclick="showPaymentPage(${total})">
         <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
           <i class="fas fa-university"></i>
         </div>
         <div class="payment-name">بطاقة مدى</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+      </div>
+      <div class="payment-option" onclick="showPaymentPage(${total})">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="payment-name">STC Pay</div>
+      </div>
+      <div class="payment-option" onclick="showPaymentPage(${total})">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
+          <i class="fab fa-cc-visa"></i>
+        </div>
+        <div class="payment-name">بطاقة إئتمان</div>
       </div>
     </div>
   `;
@@ -1458,11 +1913,97 @@ function showPaymentOptions() {
   scrollToBottom();
 }
 
+// Show payment page
+function showPaymentPage(total) {
+  currentPaymentTotal = total;
+  document.getElementById('paymentAmount').textContent = total;
+  document.getElementById('paymentModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Format card number input
+  const cardNumberInput = document.getElementById('cardNumber');
+  cardNumberInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    let matches = value.match(/\d{4,16}/g);
+    let match = matches && matches[0] || '';
+    let parts = [];
+    
+    for (let i=0, len=match.length; i<len; i+=4) {
+      parts.push(match.substring(i, i+4));
+    }
+    
+    if (parts.length) {
+      e.target.value = parts.join(' ');
+    } else {
+      e.target.value = value;
+    }
+  });
+  
+  // Format expiry date input
+  const expiryDateInput = document.getElementById('expiryDate');
+  expiryDateInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+      e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+  });
+}
+
+// Close payment modal
+function closePaymentModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  document.getElementById('paymentForm').reset();
+}
+
+// Handle payment form submission
+document.getElementById('paymentForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Simple validation
+  const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+  const cardHolder = document.getElementById('cardHolder').value.trim();
+  const expiryDate = document.getElementById('expiryDate').value;
+  const cvv = document.getElementById('cvv').value;
+  
+  if (cardNumber.length < 16) {
+    alert('الرجاء إدخال رقم بطاقة صحيح (16 رقم)');
+    return;
+  }
+  
+  if (!cardHolder) {
+    alert('الرجاء إدخال اسم حامل البطاقة');
+    return;
+  }
+  
+  if (!expiryDate.match(/^\d{2}\/\d{2}$/)) {
+    alert('الرجاء إدخال تاريخ انتهاء صحيح (MM/YY)');
+    return;
+  }
+  
+  if (cvv.length !== 3) {
+    alert('الرجاء إدخال رمز CVV صحيح (3 أرقام)');
+    return;
+  }
+  
+  // Simulate payment processing
+  const payBtn = document.querySelector('.pay-btn');
+  const originalText = payBtn.textContent;
+  payBtn.innerHTML = '<span class="loading"><span></span><span></span><span></span></span>';
+  payBtn.disabled = true;
+  
+  setTimeout(() => {
+    closePaymentModal();
+    completePayment();
+    payBtn.textContent = originalText;
+    payBtn.disabled = false;
+  }, 2000);
+});
+
 // Complete payment
 function completePayment() {
   currentStep = 'complete';
   
-  // Calculate totals for confirmation
   let itemsTotal = 0;
   let itemsList = '';
   
@@ -1474,7 +2015,7 @@ function completePayment() {
     }
   });
   
-  const deliveryFee = deliveryType === 'delivery' ? 25 : 0;
+  const deliveryFee = deliveryType === 'delivery' ? 10 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
   
@@ -1492,11 +2033,11 @@ function completePayment() {
         <p><strong>رقم الطلب:</strong> #${Math.floor(1000 + Math.random() * 9000)}</p>
         <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
         ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
-        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
-          <p style="color: white; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
+        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '20 دقيقة'}</p>
+        <div style="margin: 12px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+          <p style="color: white; margin-bottom: 8px; font-weight: 600;">تفاصيل الطلب:</p>
           ${itemsList}
-          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 25 ريال</p>` : ''}
+          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 10 ريال</p>` : ''}
           <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
         </div>
         <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
@@ -1504,10 +2045,10 @@ function completePayment() {
       <div class="confirmation-points">
         <h4><i class="fas fa-gift"></i> مكافآت الولاء</h4>
         <p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p>
-        <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
+        <p style="font-size: 13px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 20px;">
+    <div style="text-align: center; color: #8696a0; font-size: 13px; padding: 15px;">
       شكراً لاختياركم جو كرسبي. نتمنى لكم وجبة شهية! 🍽️✨
     </div>
   `;
@@ -1536,16 +2077,39 @@ window.onload = function() {
     document.getElementById('messageInput').value = "ابغي اطلب";
   }, 1000);
   
-  // Listen for manual address input
-  document.getElementById('messageInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && currentStep === 'waiting_for_address') {
-      e.preventDefault();
-      handleManualAddress();
-      this.value = '';
-      this.placeholder = "اكتب رسالة...";
+  // Auto-focus on input
+  setTimeout(() => {
+    document.getElementById('messageInput').focus();
+  }, 1500);
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    scrollToBottom();
+  });
+  
+  // Close payment modal on outside click
+  document.getElementById('paymentModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closePaymentModal();
     }
   });
 };
+
+// Prevent zoom on mobile
+document.addEventListener('touchstart', function(event) {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+  const now = (new Date()).getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+  }
+  lastTouchEnd = now;
+}, false);
 </script>
 </body>
 </html>
