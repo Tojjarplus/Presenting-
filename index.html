@@ -839,7 +839,6 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  align-self: flex-end;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
 }
@@ -847,6 +846,34 @@ body {
 .quick-message:hover {
   background: #00493a;
   transform: translateY(-2px);
+}
+
+/* Digital Menu Button */
+.digital-menu-btn {
+  background: #1a237e;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
+}
+
+.digital-menu-btn:hover {
+  background: #0d1b5c;
+  transform: translateY(-2px);
+}
+
+/* Quick Buttons Container */
+.quick-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
@@ -918,6 +945,12 @@ body {
     height: 32px;
     font-size: 16px;
   }
+  
+  .quick-message,
+  .digital-menu-btn {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -942,6 +975,10 @@ body {
   .menu-item-image {
     width: 50px;
     height: 50px;
+  }
+  
+  .quick-buttons-container {
+    gap: 8px;
   }
 }
 
@@ -977,6 +1014,18 @@ body {
     width: 40px;
     height: 40px;
     font-size: 16px;
+  }
+  
+  .quick-buttons-container {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+  
+  .quick-message,
+  .digital-menu-btn {
+    width: 100%;
+    max-width: 200px;
   }
 }
 </style>
@@ -1248,6 +1297,12 @@ function goToStcPay() {
   window.location.href = `./stcpay.html?orderId=${orderId}&total=${total}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}`;
 }
 
+// NEW: Open digital menu function
+function openDigitalMenu() {
+  // Open digital menu in new tab
+  window.open('digitalmenu.html', '_blank');
+}
+
 // Initialize chat
 function initChat() {
   // Check if we're returning from a successful payment
@@ -1256,8 +1311,19 @@ function initChat() {
     addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
     addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
     
-    // Add quick order button
+    // Add quick order buttons
     setTimeout(() => {
+      // Create container for quick buttons
+      const quickButtonsContainer = document.createElement('div');
+      quickButtonsContainer.className = 'quick-buttons-container';
+      
+      // 1. Digital menu button
+      const digitalMenuBtn = document.createElement('button');
+      digitalMenuBtn.className = 'digital-menu-btn';
+      digitalMenuBtn.innerHTML = '📋 عرض منيو رقمي';
+      digitalMenuBtn.onclick = openDigitalMenu;
+      
+      // 2. Quick order button
       const quickBtn = document.createElement('button');
       quickBtn.className = 'quick-message';
       quickBtn.textContent = 'ابغي اطلب';
@@ -1266,10 +1332,15 @@ function initChat() {
         setTimeout(() => showCatalog(), 500);
       };
       
+      // Add buttons to container
+      quickButtonsContainer.appendChild(digitalMenuBtn);
+      quickButtonsContainer.appendChild(quickBtn);
+      
+      // Add container to chat
       const messageDiv = document.createElement('div');
       messageDiv.className = 'message user';
       messageDiv.style.justifyContent = 'flex-end';
-      messageDiv.appendChild(quickBtn);
+      messageDiv.appendChild(quickButtonsContainer);
       
       document.getElementById('chatContent').appendChild(messageDiv);
       scrollToBottom();
