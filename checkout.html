@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Checkout</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f8;
+}
+
+.checkout-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* LEFT SIDE */
+.checkout-left {
+  width: 45%;
+  background: #f1f2f4;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.total-label {
+  color: #555;
+  font-size: 14px;
+}
+
+.total-amount {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.footer-left {
+  font-size: 13px;
+  color: #777;
+}
+
+/* RIGHT SIDE */
+.checkout-right {
+  width: 55%;
+  background: #fff;
+  padding: 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.lang {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.section {
+  margin-top: 25px;
+}
+
+.section label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.card-box {
+  border: 2px solid #4f6cff;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4f6cff;
+  font-weight: 500;
+}
+
+.pay-btn {
+  margin-top: 40px;
+  width: 100%;
+  padding: 16px;
+  background: #4f6cff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+}
+
+.pay-btn:disabled {
+  background: #b7c3ff;
+  cursor: not-allowed;
+}
+
+.secure {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+/* SUCCESS SCREEN */
+.success-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+}
+
+.success-box {
+  max-width: 400px;
+}
+
+.success-icon {
+  font-size: 70px;
+  color: #2ecc71;
+}
+
+.success-box h2 {
+  margin-top: 20px;
+}
+
+.success-box p {
+  color: #555;
+}
+
+.txn {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="checkout-wrapper" id="checkoutPage">
+
+  <!-- LEFT -->
+  <div class="checkout-left">
+    <div>
+      <div class="brand-name">تجار بلس – مطعم جو كرسبي</div>
+      <div class="total-label">Total Amount</div>
+      <div class="total-amount">﷼ 10.00</div>
+    </div>
+    <div class="footer-left">Powered by paymob</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="checkout-right">
+    <div class="header">
+      <h2>Checkout</h2>
+      <div class="lang">EN</div>
+    </div>
+
+    <div class="section">
+      <label>Contact information</label>
+      <div class="row">
+        <input class="input" type="email" placeholder="mail@example.com">
+        <input class="input" type="text" placeholder="+966 10 000 0000">
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Payment method</label>
+      <div class="card-box">💳 Card</div>
+    </div>
+
+    <div class="section">
+      <label>Card Information</label>
+      <input class="input" type="text" placeholder="1234 1234 1234 1234">
+      <div class="row" style="margin-top:10px;">
+        <input class="input" type="text" placeholder="MM/YY">
+        <input class="input" type="text" placeholder="CVV">
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Cardholder Name</label>
+      <input class="input" type="text" placeholder="ex. Abdullah Adel">
+    </div>
+
+    <button id="payBtn" class="pay-btn" onclick="processPayment()">Pay ﷼ 10.00</button>
+    <div class="secure">🔒 Secure payment</div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="success-box">
+    <div class="success-icon">✔</div>
+    <h2>Payment Successful</h2>
+    <p>Your payment has been completed successfully.</p>
+    <div class="txn">Transaction ID: #TXN<?=Math.floor(Math.random()*1000000)?></div>
+  </div>
+</div>
+
+<script>
+function processPayment() {
+  const btn = document.getElementById("payBtn");
+  btn.innerText = "Processing payment...";
+  btn.disabled = true;
+
+  setTimeout(() => {
+    document.getElementById("checkoutPage").style.display = "none";
+    document.getElementById("successScreen").style.display = "flex";
+  }, 2500);
+}
+</script>
+
+</body>
+</html>
