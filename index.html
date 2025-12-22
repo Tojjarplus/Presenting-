@@ -1392,6 +1392,28 @@ function showCatalog() {
   `;
   
   addBotMessage(catalogHTML, getCurrentTime());
+  
+  // ADD DIGITAL MENU BUTTON BELOW CATALOG
+  setTimeout(() => {
+    const digitalMenuBtn = document.createElement('button');
+    digitalMenuBtn.className = 'catalog-btn';
+    digitalMenuBtn.style.marginTop = '10px';
+    digitalMenuBtn.style.background = 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)';
+    digitalMenuBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> عرض المنيو الرقمي';
+    digitalMenuBtn.onclick = function() {
+      window.open('digitalmenu.html', '_blank');
+    };
+    
+    const chatContent = document.getElementById('chatContent');
+    const lastMessage = chatContent.lastElementChild;
+    if (lastMessage && lastMessage.querySelector('.catalog-message')) {
+      const catalogDetails = lastMessage.querySelector('.catalog-details');
+      if (catalogDetails) {
+        catalogDetails.appendChild(digitalMenuBtn);
+      }
+    }
+    scrollToBottom();
+  }, 100);
 }
 
 // Show menu
