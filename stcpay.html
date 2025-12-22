@@ -73,6 +73,37 @@ body{
   text-align:left;
 }
 
+/* ===== Order Summary ===== */
+.order-summary {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.order-summary h4 {
+  margin: 0 0 12px 0;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.order-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.order-detail.total {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid #e2e8f0;
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 18px;
+}
+
 /* ===== Form ===== */
 .label{
   font-size:14px;
@@ -129,6 +160,17 @@ button.active{
   font-size:22px;
   margin-bottom:10px;
 }
+
+/* ===== Redirect Message ===== */
+.redirect-message {
+  margin-top: 20px;
+  padding: 12px;
+  background: #edf2f7;
+  border-radius: 8px;
+  color: #4a5568;
+  font-size: 13px;
+  text-align: center;
+}
 </style>
 </head>
 
@@ -145,6 +187,14 @@ button.active{
     <div class="merchant">
       تجار بلس<br>
       مطعم جو كرسبي
+    </div>
+  </div>
+
+  <!-- Order Summary -->
+  <div id="orderSummary" class="order-summary">
+    <h4>ملخص الطلب</h4>
+    <div id="orderDetails">
+      <!-- Order details will be populated by JavaScript -->
     </div>
   </div>
 
@@ -185,11 +235,57 @@ button.active{
     <p style="font-size:13px;color:#6b7280;">
       تجار بلس – مطعم جو كرسبي
     </p>
+    <div class="redirect-message">
+      جاري العودة إلى WhatsApp مع ملخص الطلب...
+    </div>
   </div>
 
 </div>
 
 <script>
+// Get order details from URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const orderId = urlParams.get('orderId') || '1234';
+const total = urlParams.get('total') || '0';
+const items = urlParams.get('items') || '0';
+const delivery = urlParams.get('delivery') || 'pickup';
+
+// Display order summary
+function displayOrderSummary() {
+  const orderDetails = document.getElementById('orderDetails');
+  const deliveryFee = delivery === 'delivery' ? 25 : 0;
+  const subtotal = total - deliveryFee;
+  
+  orderDetails.innerHTML = `
+    <div class="order-detail">
+      <span>عدد الأصناف:</span>
+      <span>${items}</span>
+    </div>
+    <div class="order-detail">
+      <span>المجموع الفرعي:</span>
+      <span>${subtotal} ريال</span>
+    </div>
+    ${delivery === 'delivery' ? `
+    <div class="order-detail">
+      <span>رسوم التوصيل:</span>
+      <span>25 ريال</span>
+    </div>
+    ` : ''}
+    <div class="order-detail total">
+      <span>الإجمالي:</span>
+      <span>${total} ريال</span>
+    </div>
+  `;
+}
+
+// Auto-redirect back to WhatsApp after payment success
+function redirectToWhatsApp() {
+  setTimeout(() => {
+    // Redirect back to WhatsApp with success parameters
+    window.location.href = `./index.html?payment=success&orderId=${orderId}&source=stcpay`;
+  }, 3000); // 3 seconds delay to show success message
+}
+
 function checkPhone(){
   const phone=document.getElementById("phone").value;
   const btn=document.getElementById("sendBtn");
@@ -228,7 +324,15 @@ function checkOtp(){
 function confirmOtp(){
   document.getElementById("otpStep").classList.add("hidden");
   document.getElementById("success").classList.remove("hidden");
+  
+  // Auto-redirect to WhatsApp after payment success
+  redirectToWhatsApp();
 }
+
+// Initialize page
+window.onload = function() {
+  displayOrderSummary();
+};
 </script>
 
 </body>
