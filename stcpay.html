@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STC Pay</title>
+
+<style>
+:root{
+  --stc-green: linear-gradient(135deg,#1fd18b,#7ae582);
+  --border:#e5e7eb;
+  --text:#374151;
+}
+
+body{
+  margin:0;
+  background:#f3f4f6;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+}
+
+/* ===== Main Card ===== */
+.container{
+  max-width:420px;
+  margin:40px auto;
+  background:#fff;
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.1);
+
+  /* 🔴 الحل النهائي لمشكلة الزوايا */
+  overflow:hidden;
+}
+
+/* ===== Header ===== */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:-26px;
+  margin-bottom:24px;
+  padding:26px;
+  border-bottom:1px solid #f1f1f1;
+  background:#fff;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:var(--stc-green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:700;
+}
+
+.brand h2{
+  margin:0;
+  font-size:18px;
+}
+
+.merchant{
+  font-size:13px;
+  color:#555;
+  line-height:1.4;
+  text-align:left;
+}
+
+/* ===== Form ===== */
+.label{
+  font-size:14px;
+  margin-bottom:6px;
+  color:var(--text);
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#1fd18b;
+}
+
+/* ===== Buttons ===== */
+button{
+  width:100%;
+  margin-top:22px;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:600;
+  color:#fff;
+  background:#d1d5db;
+  cursor:not-allowed;
+  transition:.3s;
+}
+
+button.active{
+  background:var(--stc-green);
+  cursor:pointer;
+}
+
+/* ===== Utility ===== */
+.hidden{display:none;}
+.center{text-align:center;}
+
+.status{
+  margin-top:25px;
+  color:var(--text);
+  font-size:15px;
+}
+
+/* ===== Success ===== */
+.success h3{
+  color:#1fd18b;
+  font-size:22px;
+  margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <div class="logo">STC</div>
+      <h2>STC Pay</h2>
+    </div>
+    <div class="merchant">
+      تجار بلس<br>
+      مطعم جو كرسبي
+    </div>
+  </div>
+
+  <!-- STEP 1: Phone -->
+  <div id="step1">
+    <div class="label">رقم الجوال</div>
+    <input
+      type="tel"
+      id="phone"
+      placeholder="05XXXXXXXX"
+      oninput="checkPhone()"
+    >
+    <button id="sendBtn" onclick="sendToStc()">تم الإرسال إلى STC Pay</button>
+  </div>
+
+  <!-- STEP 2: Sending -->
+  <div id="sending" class="hidden center">
+    <div class="status">جاري التحقق من العملية…</div>
+  </div>
+
+  <!-- STEP 3: OTP -->
+  <div id="otpStep" class="hidden">
+    <div class="label">رمز التحقق (4 أرقام)</div>
+    <input
+      type="text"
+      id="otp"
+      maxlength="4"
+      placeholder="••••"
+      oninput="checkOtp()"
+    >
+    <button id="otpBtn" onclick="confirmOtp()">تأكيد</button>
+  </div>
+
+  <!-- STEP 4: Success -->
+  <div id="success" class="hidden center success">
+    <h3>✅ تم الدفع بنجاح</h3>
+    <p>شكراً لاستخدامك STC Pay</p>
+    <p style="font-size:13px;color:#6b7280;">
+      تجار بلس – مطعم جو كرسبي
+    </p>
+  </div>
+
+</div>
+
+<script>
+function checkPhone(){
+  const phone=document.getElementById("phone").value;
+  const btn=document.getElementById("sendBtn");
+  if(phone.length>=9){
+    btn.classList.add("active");
+    btn.disabled=false;
+  }else{
+    btn.classList.remove("active");
+    btn.disabled=true;
+  }
+}
+
+function sendToStc(){
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("sending").classList.remove("hidden");
+
+  // انتقال تلقائي إلى OTP بعد ثانيتين
+  setTimeout(()=>{
+    document.getElementById("sending").classList.add("hidden");
+    document.getElementById("otpStep").classList.remove("hidden");
+  },2000);
+}
+
+function checkOtp(){
+  const otp=document.getElementById("otp").value;
+  const btn=document.getElementById("otpBtn");
+  if(otp.length===4){
+    btn.classList.add("active");
+    btn.disabled=false;
+  }else{
+    btn.classList.remove("active");
+    btn.disabled=true;
+  }
+}
+
+function confirmOtp(){
+  document.getElementById("otpStep").classList.add("hidden");
+  document.getElementById("success").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
