@@ -6,7 +6,7 @@
 <title>WhatsApp Order - جو كرسبي</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* [ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME - NO CHANGES] */
+/* GLOBAL IMPROVEMENTS */
 * {
   margin: 0;
   padding: 0;
@@ -23,8 +23,10 @@ body {
   padding: 20px;
 }
 
+/* RESPONSIVE PHONE CONTAINER */
 .phone-container {
-  width: 380px;
+  width: 100%;
+  max-width: 380px;
   height: 780px;
   background: #000;
   border-radius: 50px;
@@ -59,36 +61,41 @@ body {
   position: relative;
 }
 
-/* WhatsApp Header */
+/* WhatsApp Header - IMPROVED ALIGNMENT */
 .whatsapp-header {
   background: #1f2c34;
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .back-btn {
   color: #8696a0;
   font-size: 20px;
   cursor: pointer;
+  min-width: 24px;
 }
 
 .restaurant-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex: 1;
+  min-width: 0; /* Allow text truncation */
 }
 
 .restaurant-avatar {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #00a884;
+  flex-shrink: 0;
 }
 
 .restaurant-avatar img {
@@ -97,29 +104,42 @@ body {
   object-fit: cover;
 }
 
+.restaurant-details {
+  flex: 1;
+  min-width: 0; /* Allow text truncation */
+}
+
 .restaurant-details h2 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .restaurant-details p {
-  font-size: 13px;
+  font-size: 12px;
   color: #8696a0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-icons {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   color: #8696a0;
-  font-size: 20px;
+  font-size: 18px;
+  margin-right: 5px;
+  flex-shrink: 0;
 }
 
-/* Chat Area */
+/* Chat Area - IMPROVED LAYOUT */
 .chat-area {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 15px;
+  padding: 15px 10px;
   background: url('https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=2574&auto=format&fit=crop') no-repeat center center;
   background-size: cover;
   position: relative;
@@ -139,30 +159,30 @@ body {
 .chat-content {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Consistent gap between messages */
 }
 
-/* Message Bubbles */
+/* Message Bubbles - TIGHTENED SPACING */
 .message {
-  margin-bottom: 15px;
   display: flex;
+  max-width: 85%;
+  align-self: flex-start;
 }
 
 .message.user {
-  justify-content: flex-end;
-}
-
-.message.bot {
-  justify-content: flex-start;
+  align-self: flex-end;
 }
 
 .bubble {
-  max-width: 75%;
-  padding: 12px 16px;
-  border-radius: 20px;
+  padding: 10px 14px;
+  border-radius: 18px;
   position: relative;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
+  max-width: 100%;
 }
 
 .user .bubble {
@@ -183,23 +203,23 @@ body {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.6);
   text-align: left;
-  margin-top: 5px;
+  margin-top: 4px;
   direction: ltr;
 }
 
-/* WhatsApp Catalog (Smaller like real WhatsApp) */
+/* WhatsApp Catalog */
 .catalog-message {
   background: #1f2c34;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  width: 280px;
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: 280px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .catalog-image {
-  height: 120px;
+  height: 100px;
   overflow: hidden;
   position: relative;
 }
@@ -216,26 +236,26 @@ body {
 
 .catalog-details h3 {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   margin-bottom: 4px;
   font-weight: 600;
 }
 
 .catalog-details p {
   color: #8696a0;
-  font-size: 13px;
+  font-size: 12px;
   margin-bottom: 10px;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .catalog-btn {
   background: #00a884;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 9px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -250,21 +270,22 @@ body {
   background: #008f70;
 }
 
-/* Menu Items */
+/* Menu Items - REDUCED SPACING */
 .menu-card {
   background: #1f2c34;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 0;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 18px;
+  padding: 12px 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: background 0.3s ease;
+  gap: 12px; /* Reduced gap */
 }
 
 .menu-item:last-child {
@@ -276,11 +297,10 @@ body {
 }
 
 .menu-item-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
   overflow: hidden;
-  margin-left: 15px;
   flex-shrink: 0;
 }
 
@@ -292,31 +312,37 @@ body {
 
 .menu-item-details {
   flex: 1;
+  min-width: 0; /* Prevent overflow */
 }
 
 .menu-item-name {
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  line-height: 1.2;
 }
 
 .menu-item-desc {
   color: #8696a0;
-  font-size: 13px;
-  margin-bottom: 8px;
-  line-height: 1.4;
+  font-size: 12px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .menu-item-price {
   color: #00a884;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
 }
 
 .menu-item-add {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   border: 2px solid #00a884;
@@ -324,10 +350,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .menu-item-add.selected {
@@ -340,34 +367,34 @@ body {
   transform: scale(1.1);
 }
 
-/* Cart Summary */
+/* Cart Summary - IMPROVED LAYOUT */
 .cart-summary {
   background: #1f2c34;
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 168, 132, 0.3);
+  width: 100%;
 }
 
 .cart-summary h3 {
   color: white;
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 16px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .cart-items {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -377,31 +404,35 @@ body {
 
 .cart-item-name {
   color: #e9edef;
-  font-size: 15px;
+  font-size: 14px;
+  flex: 1;
+  padding-left: 5px;
 }
 
 .cart-item-price {
   color: #00a884;
   font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .cart-total {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 12px;
   border-top: 2px solid rgba(0, 168, 132, 0.5);
 }
 
 .cart-total-label {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .cart-total-amount {
   color: #00a884;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
 }
 
@@ -409,17 +440,17 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 18px;
-  border-radius: 12px;
+  padding: 15px;
+  border-radius: 10px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 15px;
   box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
   border: none;
   width: 100%;
@@ -430,34 +461,35 @@ body {
   box-shadow: 0 8px 20px rgba(0, 168, 132, 0.4);
 }
 
-/* Delivery Options */
+/* Delivery Options - IMPROVED */
 .delivery-card {
   background: #1f2c34;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .delivery-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .delivery-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .delivery-option {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition: background 0.3s ease;
+  gap: 12px;
 }
 
 .delivery-option:last-child {
@@ -474,58 +506,59 @@ body {
 }
 
 .delivery-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
-  font-size: 22px;
+  font-size: 20px;
   color: #00a884;
+  flex-shrink: 0;
 }
 
 .delivery-details {
   flex: 1;
+  min-width: 0;
 }
 
 .delivery-details h4 {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .delivery-details p {
   color: #8696a0;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.3;
 }
 
-/* Location Sharing Card */
+/* Location Sharing Card - REMOVED MANUAL ADDRESS OPTION */
 .location-card {
   background: #1f2c34;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .location-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .location-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .location-message {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 }
 
@@ -533,16 +566,16 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 18px;
-  border-radius: 12px;
+  padding: 15px;
+  border-radius: 10px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
   border: none;
   width: 100%;
@@ -554,20 +587,22 @@ body {
 }
 
 .location-options {
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
+/* REMOVED: .location-option for manual address entry */
 .location-option {
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  gap: 12px;
 }
 
 .location-option:hover {
@@ -575,60 +610,60 @@ body {
 }
 
 .location-option-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
-  font-size: 20px;
+  font-size: 18px;
   color: #00a884;
   flex-shrink: 0;
 }
 
 .location-option-details h4 {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .location-option-details p {
   color: #8696a0;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 /* Payment Options */
 .payment-card {
   background: #1f2c34;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .payment-header {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .payment-header h3 {
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .payment-option {
   display: flex;
   align-items: center;
-  padding: 18px 20px;
+  padding: 14px 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition: background 0.3s ease;
+  gap: 12px;
 }
 
 .payment-option:last-child {
@@ -647,14 +682,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
+  flex-shrink: 0;
 }
 
 .payment-name {
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   flex: 1;
 }
@@ -662,12 +697,13 @@ body {
 /* Input Area */
 .input-area {
   background: #1f2c34;
-  padding: 15px 20px;
+  padding: 12px 15px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .input-area input {
@@ -675,9 +711,9 @@ body {
   background: #2a3942;
   border: none;
   border-radius: 25px;
-  padding: 12px 20px;
+  padding: 10px 16px;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   outline: none;
 }
 
@@ -686,18 +722,19 @@ body {
 }
 
 .send-btn {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #00a884;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  flex-shrink: 0;
 }
 
 .send-btn:hover {
@@ -708,74 +745,75 @@ body {
 /* Confirmation Message */
 .confirmation-card {
   background: rgba(0, 168, 132, 0.1);
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 20px;
   border: 2px solid #00a884;
   box-shadow: 0 5px 20px rgba(0, 168, 132, 0.2);
+  width: 100%;
 }
 
 .confirmation-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
 .confirmation-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: #00a884;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   color: white;
+  flex-shrink: 0;
 }
 
 .confirmation-header h3 {
   color: white;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .confirmation-details {
   color: #e9edef;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .confirmation-details p {
-  margin-bottom: 10px;
-  font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .confirmation-points {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 12px;
+  margin-top: 15px;
   text-align: center;
   border: 1px solid rgba(0, 168, 132, 0.3);
 }
 
 .confirmation-points h4 {
   color: white;
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 14px;
+  margin-bottom: 6px;
   font-weight: 600;
 }
 
 .confirmation-points p {
   color: #00a884;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -795,20 +833,151 @@ body {
 .quick-message {
   background: #005c4b;
   color: white;
-  padding: 12px 20px;
-  border-radius: 20px;
-  font-size: 14.5px;
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  margin-bottom: 10px;
   align-self: flex-end;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
 }
 
 .quick-message:hover {
   background: #00493a;
   transform: translateY(-2px);
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .phone-container {
+    height: 700px;
+    border-radius: 40px;
+    padding: 12px;
+  }
+  
+  .screen {
+    border-radius: 30px;
+  }
+  
+  .whatsapp-header {
+    padding: 10px 12px;
+  }
+  
+  .restaurant-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .restaurant-details h2 {
+    font-size: 15px;
+  }
+  
+  .restaurant-details p {
+    font-size: 11px;
+  }
+  
+  .header-icons {
+    gap: 12px;
+    font-size: 16px;
+  }
+  
+  .chat-area {
+    padding: 12px 8px;
+  }
+  
+  .menu-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .menu-item-image {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .menu-item-name {
+    font-size: 13px;
+  }
+  
+  .menu-item-desc {
+    font-size: 11px;
+  }
+  
+  .menu-item-price {
+    font-size: 14px;
+  }
+  
+  .menu-item-add {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .phone-container {
+    height: 650px;
+    border-radius: 35px;
+  }
+  
+  .screen {
+    border-radius: 25px;
+  }
+  
+  .bubble {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  
+  .menu-item {
+    padding: 8px 10px;
+  }
+  
+  .menu-item-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 320px) {
+  .phone-container {
+    height: 600px;
+  }
+  
+  .whatsapp-header {
+    padding: 8px 10px;
+  }
+  
+  .restaurant-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .chat-area {
+    padding: 10px 6px;
+  }
+  
+  .input-area {
+    padding: 10px 12px;
+  }
+  
+  .input-area input {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
 }
 </style>
 </head>
@@ -849,7 +1018,7 @@ body {
     
     <!-- Input Area -->
     <div class="input-area">
-      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 22px;"></i>
+      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 20px;"></i>
       <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="if(event.key === 'Enter') sendMessage()">
       <button class="send-btn" onclick="sendMessage()">
         <i class="fas fa-paper-plane"></i>
@@ -1407,7 +1576,7 @@ function confirmDeliverySelection() {
   }
 }
 
-// Show location sharing for delivery
+// Show location sharing for delivery - REMOVED MANUAL ADDRESS OPTION
 function showLocationSharing() {
   currentStep = 'location';
   
@@ -1417,7 +1586,7 @@ function showLocationSharing() {
         <h3><i class="fas fa-map-marker-alt"></i> مشاركة الموقع</h3>
       </div>
       <div class="location-message">
-        <p style="color: #e9edef; margin-bottom: 20px; font-size: 15px;">
+        <p style="color: #e9edef; margin-bottom: 20px; font-size: 14px;">
           لمتابعة طلب التوصيل، نحتاج لمشاركة موقعك
         </p>
         <button class="location-btn" onclick="shareLocation()">
@@ -1425,15 +1594,6 @@ function showLocationSharing() {
         </button>
       </div>
       <div class="location-options">
-        <div class="location-option" onclick="enterManualAddress()">
-          <div class="location-option-icon">
-            <i class="fas fa-edit"></i>
-          </div>
-          <div class="location-option-details">
-            <h4>إدخال العنوان يدويًا</h4>
-            <p>أدخل عنوانك التفصيلي</p>
-          </div>
-        </div>
         <div class="location-option" onclick="useSavedAddress()">
           <div class="location-option-icon">
             <i class="fas fa-home"></i>
@@ -1460,30 +1620,12 @@ function shareLocation() {
   }, 1000);
 }
 
-// Enter manual address
-function enterManualAddress() {
-  addBotMessage("الرجاء كتابة عنوانك الكامل:", getCurrentTime());
-  currentStep = 'waiting_for_address';
-  
-  // Focus on input
-  setTimeout(() => {
-    const input = document.getElementById('messageInput');
-    input.focus();
-    input.placeholder = "اكتب العنوان هنا...";
-  }, 300);
-}
+// REMOVED: enterManualAddress() function
 
-// Handle manual address input
+// Handle manual address input - REMOVED
 function handleManualAddress() {
-  const input = document.getElementById('messageInput');
-  const address = input.value.trim();
-  
-  if (address && address.length > 5) {
-    userAddress = address;
-    addBotMessage(`✅ تم حفظ العنوان:<br>${userAddress}`, getCurrentTime());
-    currentStep = 'location';
-    showPaymentOptions();
-  }
+  // This function is no longer needed since manual address entry is removed
+  return false;
 }
 
 // Use saved address
@@ -1503,7 +1645,7 @@ function showPickupInfo() {
         <h3><i class="fas fa-store"></i> استلام من المطعم</h3>
       </div>
       <div class="location-message">
-        <p style="color: #e9edef; margin-bottom: 20px; font-size: 15px; text-align: center;">
+        <p style="color: #e9edef; margin-bottom: 20px; font-size: 14px; text-align: center;">
           📍 ${restaurant.address}<br>
           ⏰ الوقت المتوقع للاستلام: 15-20 دقيقة<br>
           📞 ${restaurant.phone}
@@ -1538,20 +1680,20 @@ function showPaymentOptions() {
       <div class="payment-header">
         <h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني الآمن</h3>
       </div>
-      <div class="confirmation-details" style="padding: 20px;">
-        <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+      <div class="confirmation-details" style="padding: 15px;">
+        <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
           <span style="color: #8696a0;">إجمالي الطلب:</span>
           <span style="color: white; font-weight: 600;">${itemsTotal} ريال</span>
         </div>
         ${deliveryType === 'delivery' ? `
-        <div style="margin-bottom: 15px; display: flex; justify-content: space-between;">
+        <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
           <span style="color: #8696a0;">رسوم التوصيل:</span>
           <span style="color: white; font-weight: 600;">${deliveryFee} ريال</span>
         </div>
         ` : ''}
-        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-          <span style="color: white; font-size: 18px; font-weight: 700;">الإجمالي النهائي:</span>
-          <span style="color: #00a884; font-size: 22px; font-weight: 700;">${total} ريال</span>
+        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+          <span style="color: white; font-size: 16px; font-weight: 700;">الإجمالي النهائي:</span>
+          <span style="color: #00a884; font-size: 19px; font-weight: 700;">${total} ريال</span>
         </div>
       </div>
       <div class="payment-option" onclick="completePayment()">
@@ -1640,7 +1782,7 @@ function completePayment() {
         <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 20px;">
+    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 15px;">
       شكراً لاختياركم جو كرسبي. نتمنى لكم وجبة شهية! 🍽️✨
     </div>
   `;
@@ -1669,15 +1811,8 @@ window.onload = function() {
     document.getElementById('messageInput').value = "ابغي اطلب";
   }, 1000);
   
-  // Listen for manual address input
-  document.getElementById('messageInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && currentStep === 'waiting_for_address') {
-      e.preventDefault();
-      handleManualAddress();
-      this.value = '';
-      this.placeholder = "اكتب رسالة...";
-    }
-  });
+  // Listen for manual address input - REMOVED
+  // No longer needed since manual address entry is removed
 };
 </script>
 </body>
