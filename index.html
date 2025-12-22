@@ -950,6 +950,11 @@ let deliveryType = '';
 let currentStep = 'welcome';
 let userAddress = '';
 
+// ADDED: Checkout redirect function
+function goToCheckout() {
+  window.location.href = "./checkout.html";
+}
+
 // Initialize chat
 function initChat() {
   addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
@@ -1435,14 +1440,14 @@ function showPaymentOptions() {
         <div class="payment-name">STC Pay</div>
         <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
       </div>
-      <div class="payment-option" onclick="completePayment()">
+      <div class="payment-option" onclick="goToCheckout()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
           <i class="fas fa-credit-card"></i>
         </div>
         <div class="payment-name">Visa / Mastercard</div>
         <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
       </div>
-      <div class="payment-option" onclick="completePayment()">
+      <div class="payment-option" onclick="goToCheckout()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
           <i class="fas fa-university"></i>
         </div>
