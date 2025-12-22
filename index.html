@@ -2,149 +2,36 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp Order - مطعم لين</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>WhatsApp Catalog Demo - مطعم لين</title>
 
 <style>
-body{
-  background:#0c2461;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-}
-.phone{
-  width:380px;
-  height:780px;
-  background:#000;
-  border-radius:45px;
-  padding:18px;
-}
-.screen{
-  background:#0d1418;
-  border-radius:35px;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-.header{
-  background:#1f2c34;
-  color:#fff;
-  padding:15px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.header img{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-}
-.chat{
-  flex:1;
-  padding:15px;
-  overflow-y:auto;
-}
-.msg-user{
-  background:#005c4b;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:18px;
-  margin-bottom:10px;
-  max-width:80%;
-  margin-right:auto;
-}
-.msg-bot{
-  background:#1f2c34;
-  color:#e9edef;
-  padding:10px 14px;
-  border-radius:18px;
-  margin-bottom:10px;
-  max-width:90%;
-}
-.catalog, .card{
-  background:#1f2c34;
-  border-radius:15px;
-  overflow:hidden;
-  margin-bottom:15px;
-}
-.catalog img{
-  width:100%;
-}
-.catalog-body{
-  padding:15px;
-}
-.btn{
-  background:#00a884;
-  color:#fff;
-  text-align:center;
-  padding:14px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.menu-item{
-  display:flex;
-  align-items:center;
-  padding:15px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
+body{background:#0f172a;font-family:Arial}
+.phone{width:375px;height:720px;margin:20px auto;background:#000;border-radius:40px;padding:12px}
+.screen{background:#e5ddd5;height:100%;border-radius:30px;display:flex;flex-direction:column;overflow:hidden}
+.header{background:#075e54;color:#fff;padding:12px;font-weight:bold}
+.chat{flex:1;padding:10px;overflow-y:auto}
+.msg{background:#dcf8c6;padding:8px 12px;border-radius:8px;margin-bottom:8px;max-width:80%}
+
+.catalog{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.25);margin-bottom:10px}
+.catalog img{width:100%}
+.catalog-body{padding:10px}
+.catalog-btn{color:#25d366;text-align:center;padding:10px;border-top:1px solid #eee;font-weight:bold;cursor:pointer}
+
+.menu{background:#fff;border-radius:10px;overflow:hidden;margin-bottom:10px}
+.menu-item{display:flex;align-items:center;padding:10px;border-bottom:1px solid #eee}
 .menu-item:last-child{border:none}
-.menu-item img{
-  width:65px;
-  height:65px;
-  border-radius:10px;
-  margin-left:12px;
-}
-.menu-info{
-  flex:1;
-}
-.price{
-  color:#00a884;
-  font-weight:bold;
-}
-.add{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  border:2px solid #00a884;
-  color:#00a884;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
-.add.active{
-  background:#00a884;
-  color:#fff;
-}
-.input{
-  background:#1f2c34;
-  padding:12px;
-  display:flex;
-  gap:10px;
-}
-.input input{
-  flex:1;
-  background:#2a3942;
-  border:none;
-  border-radius:25px;
-  padding:12px;
-  color:#fff;
-}
-.send{
-  background:#00a884;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  cursor:pointer;
-}
+.menu-img{width:60px;height:60px;border-radius:10px;margin-left:10px}
+.menu-info{flex:1;text-align:right}
+.plus{border:1px solid #ccc;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+.panel{background:#fff;border-radius:10px;margin-bottom:10px}
+.option{padding:12px;border-bottom:1px solid #eee;cursor:pointer;text-align:center}
+.option:last-child{border:none}
+.option.green{color:#25d366;font-weight:bold}
+
+.input{display:flex;padding:8px;background:#f0f0f0}
+.input input{flex:1;border:none;border-radius:20px;padding:8px}
+.input button{margin-right:8px;background:#25d366;border:none;color:#fff;border-radius:50%;width:40px}
 </style>
 </head>
 
@@ -153,18 +40,11 @@ body{
 <div class="phone">
 <div class="screen">
 
-<div class="header">
-  <img src="images/catalog.jpg">
-  <div>
-    <strong>مطعم لين</strong><br>
-    <small style="color:#aaa">متصل الآن</small>
-  </div>
-</div>
-
+<div class="header">مطعم لين</div>
 <div class="chat" id="chat"></div>
 
 <div class="input">
-  <div class="send" onclick="send()">➤</div>
+  <button onclick="send()">➤</button>
   <input id="msg" value="ابغي اطلب" onkeydown="if(event.key==='Enter')send()">
 </div>
 
@@ -172,87 +52,78 @@ body{
 </div>
 
 <script>
-const menu=[
- {id:1,name:"ساندويتش فطور بالبيض والجبن",price:20,img:"item1.png"},
- {id:2,name:"مافن سجق بالبيض",price:22,img:"item2.png"},
- {id:3,name:"طبق فطور دجاج",price:25,img:"item3.png"},
- {id:4,name:"ساندويتش دجاج مقرمش",price:27,img:"item4.png"},
- {id:5,name:"برجر دجاج مقرمش",price:30,img:"item5.png"},
- {id:6,name:"برجر دجاج مشوي",price:32,img:"item6.png"},
- {id:7,name:"وجبة ناجتس الدجاج",price:35,img:"item7.png"},
- {id:8,name:"مافن دجاج بالبيض",price:24,img:"item8.png"},
- {id:9,name:"قطع دجاج مقلية",price:28,img:"item9.png"},
- {id:10,name:"راب دجاج",price:26,img:"item10.png"}
-];
-
-let cart=[];
-let catalogShown=false;
+let cartSelected=false;
+const chat=document.getElementById("chat");
 
 function send(){
- const chat=document.getElementById("chat");
- chat.innerHTML+=`<div class="msg-user">ابغي اطلب</div>`;
- if(!catalogShown){
-   showCatalog();
-   catalogShown=true;
- }
+  chat.innerHTML+=`<div class="msg">ابغي اطلب</div>`;
+  showCatalog();
 }
 
 function showCatalog(){
- chat.innerHTML+=`
- <div class="catalog">
-   <img src="images/catalog.jpg">
-   <div class="catalog-body">
-     <b>مطعم لين</b><br>
-     تصفح المنيو واطلب مباشرة
-   </div>
-   <div class="btn" onclick="showMenu()">عرض المنيو</div>
- </div>`;
+  chat.innerHTML+=`
+  <div class="catalog">
+    <img src="images/catalog.jpg">
+    <div class="catalog-body">
+      <b>مطعم لين</b><br>
+      تصفح المنيو واطلب مباشرة
+    </div>
+    <div class="catalog-btn" onclick="showMenu()">View catalogue</div>
+  </div>`;
 }
 
 function showMenu(){
- let html='<div class="card">';
- menu.forEach(m=>{
-   html+=`
-   <div class="menu-item">
-     <div class="add" onclick="addItem(this,${m.price})">+</div>
-     <div class="menu-info">
-       ${m.name}<br>
-       <span class="price">${m.price} ريال</span>
-     </div>
-     <img src="images/${m.img}">
-   </div>`;
- });
- html+='</div>';
- chat.innerHTML+=html;
+  let html='<div class="menu">';
+  const names=[
+    "ساندويتش فطور بالبيض والجبن",
+    "مافن سجق بالبيض",
+    "طبق فطور دجاج",
+    "ساندويتش دجاج مقرمش",
+    "برجر دجاج مقرمش",
+    "برجر دجاج مشوي",
+    "وجبة ناجتس الدجاج",
+    "مافن دجاج بالبيض",
+    "قطع دجاج مقلية",
+    "راب دجاج"
+  ];
+  const prices=[20,22,25,27,30,32,35,24,28,26];
+
+  for(let i=1;i<=10;i++){
+    html+=`
+    <div class="menu-item">
+      <div class="plus" onclick="selectItem()">+</div>
+      <div class="menu-info">
+        ${names[i-1]}<br>${prices[i-1]} ريال
+      </div>
+      <img class="menu-img" src="images/item${i}.png">
+    </div>`;
+  }
+  html+='</div>';
+  chat.innerHTML+=html;
 }
 
-function addItem(btn,price){
- btn.classList.toggle("active");
- if(btn.classList.contains("active")){
-   cart.push(price);
- }else{
-   cart.pop();
- }
- if(cart.length===1){
-   chat.innerHTML+=`
-   <div class="card">
-     <div class="btn" onclick="checkout()">تنفيذ الطلب</div>
-   </div>`;
- }
+function selectItem(){
+  if(cartSelected) return;
+  cartSelected=true;
+  chat.innerHTML+=`
+  <div class="panel">
+    <div class="option" onclick="delivery()">🚚 توصيل</div>
+    <div class="option" onclick="pickup()">🏃 استلام من الفرع</div>
+  </div>`;
 }
 
-function checkout(){
- chat.innerHTML+=`
- <div class="card">
-   <div class="btn">📍 مشاركة الموقع</div>
-   <div class="btn">STC Pay</div>
-   <div class="btn">مدى</div>
-   <div class="btn">Visa / Apple Pay</div>
- </div>
- <div class="msg-bot">
-   ✅ تم الدفع بنجاح<br>
-   🎁 حصلت على نقاط ولاء لاستخدامها لاحقًا
- </div>`;
+function delivery(){
+  chat.innerHTML+=`
+  <div class="panel">
+    <div class="option green">📍 مشاركة الموقع</div>
+  </div>`;
+}
+
+function pickup(){
+  chat.innerHTML+=`
+  <div class="panel">
+    <div class="option green">✅ تم اختيار الاستلام من الفرع</div>
+  </div>`;
 }
 </script>
 
