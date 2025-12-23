@@ -1,3 +1,5 @@
+[file name]: index.html
+[file content begin]
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -1121,6 +1123,91 @@ let deliveryType = '';
 let currentStep = 'welcome';
 let userAddress = '';
 
+// NEW: Check for digital menu order on page load
+function checkForDigitalMenuOrder() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const cartDataParam = urlParams.get('cartData');
+  
+  if (cartDataParam) {
+    try {
+      const cartData = JSON.parse(decodeURIComponent(cartDataParam));
+      if (cartData && cartData.items && cartData.items.length > 0) {
+        // Process the digital menu order
+        processDigitalMenuOrder(cartData);
+        
+        // Clear the URL parameter for clean history
+        window.history.replaceState({}, document.title, window.location.pathname);
+        
+        return true;
+      }
+    } catch (error) {
+      console.error('Error parsing cart data:', error);
+    }
+  }
+  return false;
+}
+
+// NEW: Process digital menu order
+function processDigitalMenuOrder(cartData) {
+  // Clear existing cart
+  cart = [];
+  selectedItems = {};
+  
+  // Add items from digital menu to cart
+  cartData.items.forEach(itemData => {
+    // Find the corresponding menu item
+    const menuItem = menuItems.find(item => item.id === itemData.itemId);
+    if (menuItem) {
+      // Add to selected items
+      selectedItems[menuItem.id] = true;
+      cart.push(menuItem.id);
+      
+      // Show order summary
+      const orderSummaryHTML = `
+        <div class="cart-summary">
+          <h3><i class="fas fa-shopping-bag"></i> طلبك من المنيو الرقمي</h3>
+          <div class="cart-items">
+            <div class="cart-item">
+              <div class="cart-item-name">${menuItem.name} × ${itemData.quantity}</div>
+              <div class="cart-item-price">${menuItem.price * itemData.quantity} ريال</div>
+            </div>
+            ${itemData.addons && itemData.addons.length > 0 ? 
+              itemData.addons.map(addon => `
+                <div class="cart-item">
+                  <div class="cart-item-name" style="font-size: 12px; padding-left: 15px;">+ ${addon.name} × ${addon.quantity}</div>
+                  <div class="cart-item-price" style="font-size: 12px;">${addon.price * addon.quantity} ريال</div>
+                </div>
+              `).join('') : ''
+            }
+          </div>
+          <div class="cart-total">
+            <div class="cart-total-label">الإجمالي</div>
+            <div class="cart-total-amount">${cartData.total} ريال</div>
+          </div>
+          <button class="checkout-btn" onclick="showDeliveryOptions()">
+            <i class="fas fa-lock"></i> تأكيد الطلب والدفع
+          </button>
+        </div>
+      `;
+      
+      // Add order summary message
+      addBotMessage(orderSummaryHTML, getCurrentTime());
+      
+      // Show confirmation message
+      addBotMessage(`✅ تم استلام طلبك من المنيو الرقمي. إجمالي الطلب: ${cartData.total} ريال`, getCurrentTime());
+    }
+  });
+  
+  // Set current step to ordering
+  currentStep = 'ordering';
+  
+  // Auto-scroll to bottom
+  scrollToBottom();
+  
+  // Return true to indicate order was processed
+  return true;
+}
+
 // NEW: Check for payment success on page load
 function checkPaymentSuccess() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -1252,30 +1339,37 @@ function goToStcPay() {
 // Initialize chat
 function initChat() {
   // Check if we're returning from a successful payment
-  if (!checkPaymentSuccess()) {
-    // Only show welcome messages if not returning from payment
-    addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
-    addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
-    
-    // Add quick order button
-    setTimeout(() => {
-      const quickBtn = document.createElement('button');
-      quickBtn.className = 'quick-message';
-      quickBtn.textContent = 'ابغي اطلب';
-      quickBtn.onclick = function() {
-        addUserMessage('ابغي اطلب');
-        setTimeout(() => showCatalog(), 500);
-      };
-      
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message user';
-      messageDiv.style.justifyContent = 'flex-end';
-      messageDiv.appendChild(quickBtn);
-      
-      document.getElementById('chatContent').appendChild(messageDiv);
-      scrollToBottom();
-    }, 1000);
+  if (checkPaymentSuccess()) {
+    return;
   }
+  
+  // Check if we're receiving an order from digital menu
+  if (checkForDigitalMenuOrder()) {
+    return;
+  }
+  
+  // Only show welcome messages if not returning from payment or digital menu
+  addBotMessage("مرحباً بكم في جو كرسبي! 🍗✨", "10:30");
+  addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
+  
+  // Add quick order button
+  setTimeout(() => {
+    const quickBtn = document.createElement('button');
+    quickBtn.className = 'quick-message';
+    quickBtn.textContent = 'ابغي اطلب';
+    quickBtn.onclick = function() {
+      addUserMessage('ابغي اطلب');
+      setTimeout(() => showCatalog(), 500);
+    };
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message user';
+    messageDiv.style.justifyContent = 'flex-end';
+    messageDiv.appendChild(quickBtn);
+    
+    document.getElementById('chatContent').appendChild(messageDiv);
+    scrollToBottom();
+  }, 1000);
 }
 
 // Go back function
@@ -1828,3 +1922,4 @@ window.onload = function() {
 </script>
 </body>
 </html>
+[file content end]
