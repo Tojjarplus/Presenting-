@@ -15,173 +15,395 @@ body {
   margin: 0;
   background: radial-gradient(circle at top, #122b3f, #060b12);
   color: #ffffff;
+  padding: 20px 10px;
+  min-height: 100vh;
 }
 
-/* Phone preview container */
-.phone {
-  max-width: 420px;
-  margin: auto;
-  min-height: 100vh;
-  padding: 18px 14px 30px;
+/* Main container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 /* Header */
 .header {
   text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 18px;
-  letter-spacing: 0.4px;
+  margin-bottom: 30px;
+  padding-top: 10px;
 }
 
-/* Horizontal menu */
-.menu {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.5px;
 }
 
-.menu::-webkit-scrollbar {
-  height: 6px;
+.header p {
+  color: #a0aec0;
+  font-size: 15px;
+  margin: 0;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
-.menu::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.2);
-  border-radius: 10px;
+
+/* Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+  margin-bottom: 30px;
 }
 
 /* Card */
 .card {
-  min-width: 270px;
   background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.10),
-    rgba(255,255,255,0.03)
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
   );
   border-radius: 20px;
-  padding: 14px;
-  scroll-snap-align: start;
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.45);
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(45, 212, 191, 0.3);
 }
 
 /* Image */
-.card img {
+.card-img {
   width: 100%;
-  height: 170px;
-  object-fit: contain;
+  height: 180px;
+  object-fit: cover;
   border-radius: 14px;
-  background: rgba(0,0,0,0.35);
-  margin-bottom: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
 }
 
-/* Text */
-.card h4 {
-  margin: 4px 0 6px;
-  font-size: 15px;
+.card:hover .card-img {
+  transform: scale(1.03);
+}
+
+/* Card Content */
+.card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .card p {
-  margin: 0;
-  font-size: 13px;
+  margin: 0 0 15px;
+  font-size: 14px;
   color: #cfd8e3;
-  line-height: 1.4;
+  line-height: 1.5;
+  flex-grow: 1;
 }
 
 /* Price */
 .price {
-  margin-top: 10px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: #2dd4bf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
 }
+
+.price span {
+  background: rgba(45, 212, 191, 0.1);
+  padding: 6px 14px;
+  border-radius: 12px;
+}
+
+/* Order button */
+.order-btn {
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(45, 212, 191, 0.4);
+}
+
+/* Badge for popular items */
+.popular-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 18px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+  }
+  
+  .header p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  body {
+    padding: 15px 5px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/* Animation for card appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Stagger animation for cards */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+.card:nth-child(8) { animation-delay: 0.8s; }
+.card:nth-child(9) { animation-delay: 0.9s; }
+.card:nth-child(10) { animation-delay: 1s; }
 </style>
 </head>
 
 <body>
 
-<div class="phone">
+<div class="container">
 
   <div class="header">
-    🍗 المنيو الرقمي
+    <h1>🍗 المنيو الرقمي</h1>
+    <p>استمتع بتشكيلتنا المميزة من الوجبات اللذيذة. جميع الأصناف معروضة أمامك مباشرة</p>
   </div>
 
-  <div class="menu">
+  <div class="menu-grid">
 
     <div class="card">
-      <img src="images/item1.png">
-      <h4>وجبة شخصين</h4>
-      <p>وجبة خاصة لشخصين</p>
-      <div class="price">85 ريال</div>
+      <div class="popular-badge">الأكثر طلباً</div>
+      <img class="card-img" src="images/item1.png" alt="وجبة شخصين">
+      <div class="card-content">
+        <h3>وجبة شخصين</h3>
+        <p>وجبة خاصة لشخصين مع تشكيلة متنوعة من المقبلات والمشروبات</p>
+        <div class="price">
+          <span>85 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item2.png">
-      <h4>وجبة جو دجاج</h4>
-      <p>وجبة دجاج ومقرمش</p>
-      <div class="price">65 ريال</div>
+      <img class="card-img" src="images/item2.png" alt="وجبة جو دجاج">
+      <div class="card-content">
+        <h3>وجبة جو دجاج</h3>
+        <p>وجبة دجاج ومقرمشات لذيذة مع صلصة خاصة</p>
+        <div class="price">
+          <span>65 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item3.png">
-      <h4>وجبة بينوي</h4>
-      <p>وجبة بينوي اللذيذة والمتنوعة</p>
-      <div class="price">75 ريال</div>
+      <img class="card-img" src="images/item3.png" alt="وجبة بينوي">
+      <div class="card-content">
+        <h3>وجبة بينوي</h3>
+        <p>وجبة بينوي اللذيذة والمتنوعة مع تشكيلة من المقبلات</p>
+        <div class="price">
+          <span>75 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item4.png">
-      <h4>وجبة الاحتفال</h4>
-      <p>وجبة احتفالية كبيرة لـ 2–3 أشخاص</p>
-      <div class="price">120 ريال</div>
+      <div class="popular-badge">عرض خاص</div>
+      <img class="card-img" src="images/item4.png" alt="وجبة الاحتفال">
+      <div class="card-content">
+        <h3>وجبة الاحتفال</h3>
+        <p>وجبة احتفالية كبيرة لـ 2–3 أشخاص مع تشكيلة مميزة</p>
+        <div class="price">
+          <span>120 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item5.png">
-      <h4>وجبة جو ديل رويال</h4>
-      <p>وجبة جو رويال مزدوجة وفاخرة</p>
-      <div class="price">110 ريال</div>
+      <img class="card-img" src="images/item5.png" alt="وجبة جو ديل رويال">
+      <div class="card-content">
+        <h3>وجبة جو ديل رويال</h3>
+        <p>وجبة جو رويال مزدوجة وفاخرة مع إضافات خاصة</p>
+        <div class="price">
+          <span>110 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item6.png">
-      <h4>الوجبة القيمة</h4>
-      <p>وجبة اقتصادية مع إضافات مميزة</p>
-      <div class="price">55 ريال</div>
+      <img class="card-img" src="images/item6.png" alt="الوجبة القيمة">
+      <div class="card-content">
+        <h3>الوجبة القيمة</h3>
+        <p>وجبة اقتصادية مع إضافات مميزة تناسب الجميع</p>
+        <div class="price">
+          <span>55 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item7.png">
-      <h4>رويال ميل</h4>
-      <p>الوجبة الملكية مع جميع الإضافات</p>
-      <div class="price">95 ريال</div>
+      <img class="card-img" src="images/item7.png" alt="رويال ميل">
+      <div class="card-content">
+        <h3>رويال ميل</h3>
+        <p>الوجبة الملكية مع جميع الإضافات والصلصات الخاصة</p>
+        <div class="price">
+          <span>95 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item8.png">
-      <h4>وليمة أرز الدجاج الذهبي</h4>
-      <p>وليمة دجاج مع أرز ذهبي مميز</p>
-      <div class="price">130 ريال</div>
+      <div class="popular-badge">وجبة جديدة</div>
+      <img class="card-img" src="images/item8.png" alt="وليمة أرز الدجاج الذهبي">
+      <div class="card-content">
+        <h3>وليمة أرز الدجاج الذهبي</h3>
+        <p>وليمة دجاج مع أرز ذهبي مميز وتوابل خاصة</p>
+        <div class="price">
+          <span>130 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item9.png">
-      <h4>وجبة السعادة</h4>
-      <p>وجبة السعادة مع تشكيلة مميزة</p>
-      <div class="price">70 ريال</div>
+      <img class="card-img" src="images/item9.png" alt="وجبة السعادة">
+      <div class="card-content">
+        <h3>وجبة السعادة</h3>
+        <p>وجبة السعادة مع تشكيلة مميزة من الأطباق اللذيذة</p>
+        <div class="price">
+          <span>70 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <img src="images/item10.png">
-      <h4>باكيت تندر مع الجرافي</h4>
-      <p>باكيت تندر دجاج مع صوص الجرافي</p>
-      <div class="price">80 ريال</div>
+      <img class="card-img" src="images/item10.png" alt="باكيت تندر مع الجرافي">
+      <div class="card-content">
+        <h3>باكيت تندر مع الجرافي</h3>
+        <p>باكيت تندر دجاج مع صوص الجرافي اللذيذ</p>
+        <div class="price">
+          <span>80 ريال</span>
+          <button class="order-btn">اطلب الآن</button>
+        </div>
+      </div>
     </div>
 
+  </div>
+
+  <div class="footer">
+    <p>© 2023 المنيو الرقمي. جميع الأسعار تشمل الضريبة. | للطلب: 9200XXXXX</p>
   </div>
 
 </div>
+
+<script>
+// Add interactivity to order buttons
+document.querySelectorAll('.order-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const card = this.closest('.card');
+    const itemName = card.querySelector('h3').textContent;
+    const itemPrice = card.querySelector('.price span').textContent;
+    
+    // Animation feedback
+    this.textContent = 'تم الإضافة ✓';
+    this.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+      this.textContent = 'اطلب الآن';
+      this.style.background = 'linear-gradient(90deg, #2dd4bf, #3b82f6)';
+    }, 2000);
+    
+    // Show confirmation message (in a real app, this would add to cart)
+    console.log(`تم طلب: ${itemName} - ${itemPrice}`);
+  });
+});
+</script>
 
 </body>
 </html>
