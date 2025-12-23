@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,8 +13,9 @@
   box-sizing: border-box;
 }
 
+/* CHANGED: Light background color */
 body {
-  background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -32,7 +32,7 @@ body {
   background: #000;
   border-radius: 50px;
   padding: 18px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
               inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
@@ -54,7 +54,8 @@ body {
 .screen {
   width: 100%;
   height: 100%;
-  background: #0d1418;
+  /* CHANGED: Light WhatsApp background */
+  background: #f0f2f5;
   border-radius: 40px;
   overflow: hidden;
   display: flex;
@@ -64,19 +65,20 @@ body {
 
 /* WhatsApp Header - IMPROVED ALIGNMENT */
 .whatsapp-header {
-  background: #1f2c34;
+  /* CHANGED: Lighter header background */
+  background: #00a884;
   padding: 12px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 2;
   flex-shrink: 0;
 }
 
 .back-btn {
-  color: #8696a0;
+  color: #ffffff;
   font-size: 20px;
   cursor: pointer;
   min-width: 24px;
@@ -95,7 +97,7 @@ body {
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #00a884;
+  border: 2px solid #ffffff;
   flex-shrink: 0;
 }
 
@@ -121,7 +123,7 @@ body {
 
 .restaurant-details p {
   font-size: 12px;
-  color: #8696a0;
+  color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -130,7 +132,7 @@ body {
 .header-icons {
   display: flex;
   gap: 15px;
-  color: #8696a0;
+  color: #ffffff;
   font-size: 18px;
   margin-right: 5px;
   flex-shrink: 0;
@@ -141,8 +143,8 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 15px 10px;
-  background: url('https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=2574&auto=format&fit=crop') no-repeat center center;
-  background-size: cover;
+  /* CHANGED: Light chat background */
+  background: #efeae2 url('https://web.whatsapp.com/img/bg-chat-tile-light_686b98c9fdffef3f63127759e2057750.png') repeat;
   position: relative;
 }
 
@@ -153,7 +155,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(13, 20, 24, 0.95);
+  /* CHANGED: Light overlay */
+  background: rgba(239, 234, 226, 0.95);
   z-index: 1;
 }
 
@@ -184,25 +187,26 @@ body {
   line-height: 1.4;
   word-wrap: break-word;
   max-width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .user .bubble {
-  background: #005c4b;
+  /* CHANGED: Slightly darker green for better contrast */
+  background: #128c7e;
   color: white;
   border-bottom-right-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .bot .bubble {
-  background: #1f2c34;
-  color: #e9edef;
+  /* CHANGED: White background for bot messages */
+  background: #ffffff;
+  color: #303030;
   border-bottom-left-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .time {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.5);
   text-align: left;
   margin-top: 4px;
   direction: ltr;
@@ -210,13 +214,13 @@ body {
 
 /* WhatsApp Catalog */
 .catalog-message {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
   max-width: 280px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .catalog-image {
@@ -236,14 +240,14 @@ body {
 }
 
 .catalog-details h3 {
-  color: white;
+  color: #303030;
   font-size: 15px;
   margin-bottom: 4px;
   font-weight: 600;
 }
 
 .catalog-details p {
-  color: #8696a0;
+  color: #666666;
   font-size: 12px;
   margin-bottom: 10px;
   line-height: 1.3;
@@ -273,10 +277,10 @@ body {
 
 /* Menu Items - REDUCED SPACING */
 .menu-card {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 0;
 }
 
@@ -284,7 +288,7 @@ body {
   display: flex;
   align-items: center;
   padding: 12px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: background 0.3s ease;
   gap: 12px; /* Reduced gap */
 }
@@ -294,7 +298,7 @@ body {
 }
 
 .menu-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 168, 132, 0.05);
 }
 
 .menu-item-image {
@@ -317,7 +321,7 @@ body {
 }
 
 .menu-item-name {
-  color: white;
+  color: #303030;
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
@@ -325,7 +329,7 @@ body {
 }
 
 .menu-item-desc {
-  color: #8696a0;
+  color: #666666;
   font-size: 12px;
   margin-bottom: 6px;
   line-height: 1.3;
@@ -370,16 +374,16 @@ body {
 
 /* Cart Summary - IMPROVED LAYOUT */
 .cart-summary {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   padding: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 168, 132, 0.3);
   width: 100%;
 }
 
 .cart-summary h3 {
-  color: white;
+  color: #303030;
   font-size: 16px;
   margin-bottom: 12px;
   display: flex;
@@ -396,7 +400,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .cart-item:last-child {
@@ -404,7 +408,7 @@ body {
 }
 
 .cart-item-name {
-  color: #e9edef;
+  color: #303030;
   font-size: 14px;
   flex: 1;
   padding-left: 5px;
@@ -422,11 +426,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-top: 12px;
-  border-top: 2px solid rgba(0, 168, 132, 0.5);
+  border-top: 2px solid rgba(0, 168, 132, 0.3);
 }
 
 .cart-total-label {
-  color: white;
+  color: #303030;
   font-size: 16px;
   font-weight: 600;
 }
@@ -452,33 +456,33 @@ body {
   justify-content: center;
   gap: 8px;
   margin-top: 15px;
-  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.2);
   border: none;
   width: 100%;
 }
 
 .checkout-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.3);
 }
 
 /* Delivery Options - IMPROVED */
 .delivery-card {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
 .delivery-header {
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .delivery-header h3 {
-  color: white;
+  color: #303030;
   font-size: 16px;
   font-weight: 600;
 }
@@ -487,7 +491,7 @@ body {
   display: flex;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: background 0.3s ease;
   gap: 12px;
@@ -498,7 +502,7 @@ body {
 }
 
 .delivery-option:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 168, 132, 0.05);
 }
 
 .delivery-option.selected {
@@ -525,35 +529,35 @@ body {
 }
 
 .delivery-details h4 {
-  color: white;
+  color: #303030;
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 .delivery-details p {
-  color: #8696a0;
+  color: #666666;
   font-size: 12px;
   line-height: 1.3;
 }
 
-/* Location Sharing Card - REMOVED MANUAL ADDRESS OPTION */
+/* Location Sharing Card */
 .location-card {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
 .location-header {
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .location-header h3 {
-  color: white;
+  color: #303030;
   font-size: 16px;
   font-weight: 600;
 }
@@ -577,14 +581,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.2);
   border: none;
   width: 100%;
 }
 
 .location-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.3);
 }
 
 .location-options {
@@ -594,12 +598,11 @@ body {
   gap: 12px;
 }
 
-/* REMOVED: .location-option for manual address entry */
 .location-option {
   display: flex;
   align-items: center;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.02);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -607,7 +610,7 @@ body {
 }
 
 .location-option:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 168, 132, 0.05);
 }
 
 .location-option-icon {
@@ -624,35 +627,35 @@ body {
 }
 
 .location-option-details h4 {
-  color: white;
+  color: #303030;
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
 .location-option-details p {
-  color: #8696a0;
+  color: #666666;
   font-size: 12px;
   line-height: 1.3;
 }
 
 /* Payment Options */
 .payment-card {
-  background: #1f2c34;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
 .payment-header {
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .payment-header h3 {
-  color: white;
+  color: #303030;
   font-size: 16px;
   font-weight: 600;
 }
@@ -661,7 +664,7 @@ body {
   display: flex;
   align-items: center;
   padding: 14px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: background 0.3s ease;
   gap: 12px;
@@ -672,24 +675,24 @@ body {
 }
 
 .payment-option:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 168, 132, 0.05);
 }
 
 .payment-icon {
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: white;
+  color: #303030;
   flex-shrink: 0;
 }
 
 .payment-name {
-  color: white;
+  color: #303030;
   font-size: 15px;
   font-weight: 500;
   flex: 1;
@@ -697,29 +700,29 @@ body {
 
 /* Input Area */
 .input-area {
-  background: #1f2c34;
+  background: #ffffff;
   padding: 12px 15px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 2;
   flex-shrink: 0;
 }
 
 .input-area input {
   flex: 1;
-  background: #2a3942;
+  background: #f0f2f5;
   border: none;
   border-radius: 25px;
   padding: 10px 16px;
-  color: white;
+  color: #303030;
   font-size: 14px;
   outline: none;
 }
 
 .input-area input::placeholder {
-  color: #8696a0;
+  color: #666666;
 }
 
 .send-btn {
@@ -749,7 +752,7 @@ body {
   border-radius: 12px;
   padding: 20px;
   border: 2px solid #00a884;
-  box-shadow: 0 5px 20px rgba(0, 168, 132, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 168, 132, 0.1);
   width: 100%;
 }
 
@@ -774,13 +777,13 @@ body {
 }
 
 .confirmation-header h3 {
-  color: white;
+  color: #303030;
   font-size: 18px;
   font-weight: 700;
 }
 
 .confirmation-details {
-  color: #e9edef;
+  color: #303030;
   line-height: 1.5;
   margin-bottom: 15px;
   font-size: 14px;
@@ -791,16 +794,16 @@ body {
 }
 
 .confirmation-points {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.02);
   border-radius: 10px;
   padding: 12px;
   margin-top: 15px;
   text-align: center;
-  border: 1px solid rgba(0, 168, 132, 0.3);
+  border: 1px solid rgba(0, 168, 132, 0.2);
 }
 
 .confirmation-points h4 {
-  color: white;
+  color: #303030;
   font-size: 14px;
   margin-bottom: 6px;
   font-weight: 600;
@@ -818,7 +821,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -832,7 +835,7 @@ body {
 
 /* Quick Message Button */
 .quick-message {
-  background: #005c4b;
+  background: #128c7e;
   color: white;
   padding: 10px 16px;
   border-radius: 18px;
@@ -841,12 +844,12 @@ body {
   transition: all 0.3s ease;
   border: none;
   align-self: flex-end;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 5px;
 }
 
 .quick-message:hover {
-  background: #00493a;
+  background: #0d7a6d;
   transform: translateY(-2px);
 }
 
@@ -995,12 +998,12 @@ body {
       
       <div class="restaurant-info">
         <div class="restaurant-avatar">
-          <!-- CHANGED: profile.png for the restaurant avatar -->
           <img src="images/profile.png" alt="جو كرسبي" onerror="this.src='images/profile.png'">
         </div>
         <div class="restaurant-details">
           <h2>جو كرسبي</h2>
-          <p>متصل الآن • توصيل سريع</p>
+          <!-- CHANGED: Removed "التوصيل السريع" -->
+          <p>متصل الآن</p>
         </div>
       </div>
       
@@ -1020,7 +1023,7 @@ body {
     
     <!-- Input Area -->
     <div class="input-area">
-      <i class="fas fa-paperclip" style="color: #8696a0; font-size: 20px;"></i>
+      <i class="fas fa-paperclip" style="color: #666666; font-size: 20px;"></i>
       <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="if(event.key === 'Enter') sendMessage()">
       <button class="send-btn" onclick="sendMessage()">
         <i class="fas fa-paper-plane"></i>
@@ -1035,7 +1038,7 @@ body {
 const restaurant = {
   name: "جو كرسبي",
   description: "أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية",
-  logo: "images/profile.png", // CHANGED: Updated to profile.png
+  logo: "images/profile.png",
   address: "حي العليا، شارع الملك فهد، الرياض",
   phone: "011 234 5678",
   rating: "4.8 ★ (950 تقييم)"
@@ -1268,8 +1271,8 @@ function showPaymentSuccessConfirmation(orderId, source) {
         <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
         ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
         <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
-          <p style="color: white; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
+        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.02); border-radius: 10px;">
+          <p style="color: #303030; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
           ${itemsList}
           ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}
           <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
@@ -1282,7 +1285,7 @@ function showPaymentSuccessConfirmation(orderId, source) {
         <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 20px;">
+    <div style="text-align: center; color: #666666; font-size: 14px; padding: 20px;">
       شكراً لاختياركم جو كرسبي. نتمنى لكم وجبة شهية! 🍽️✨
     </div>
   `;
@@ -1473,7 +1476,6 @@ function showCatalog() {
   const catalogHTML = `
     <div class="catalog-message">
       <div class="catalog-image">
-        <!-- CHANGED: item1.png for the catalog image (different from profile) -->
         <img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'">
       </div>
       <div class="catalog-details">
@@ -1680,7 +1682,7 @@ function confirmDeliverySelection() {
   }
 }
 
-// Show location sharing for delivery - REMOVED MANUAL ADDRESS OPTION
+// Show location sharing for delivery
 function showLocationSharing() {
   currentStep = 'location';
   
@@ -1690,7 +1692,7 @@ function showLocationSharing() {
         <h3><i class="fas fa-map-marker-alt"></i> مشاركة الموقع</h3>
       </div>
       <div class="location-message">
-        <p style="color: #e9edef; margin-bottom: 20px; font-size: 14px;">
+        <p style="color: #303030; margin-bottom: 20px; font-size: 14px;">
           لمتابعة طلب التوصيل، نحتاج لمشاركة موقعك
         </p>
         <button class="location-btn" onclick="shareLocation()">
@@ -1724,11 +1726,8 @@ function shareLocation() {
   }, 1000);
 }
 
-// REMOVED: enterManualAddress() function
-
-// Handle manual address input - REMOVED
+// Handle manual address input
 function handleManualAddress() {
-  // This function is no longer needed since manual address entry is removed
   return false;
 }
 
@@ -1749,7 +1748,7 @@ function showPickupInfo() {
         <h3><i class="fas fa-store"></i> استلام من المطعم</h3>
       </div>
       <div class="location-message">
-        <p style="color: #e9edef; margin-bottom: 20px; font-size: 14px; text-align: center;">
+        <p style="color: #303030; margin-bottom: 20px; font-size: 14px; text-align: center;">
           📍 ${restaurant.address}<br>
           ⏰ الوقت المتوقع للاستلام: 15-20 دقيقة<br>
           📞 ${restaurant.phone}
@@ -1786,17 +1785,17 @@ function showPaymentOptions() {
       </div>
       <div class="confirmation-details" style="padding: 15px;">
         <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
-          <span style="color: #8696a0;">إجمالي الطلب:</span>
-          <span style="color: white; font-weight: 600;">${itemsTotal} ريال</span>
+          <span style="color: #666666;">إجمالي الطلب:</span>
+          <span style="color: #303030; font-weight: 600;">${itemsTotal} ريال</span>
         </div>
         ${deliveryType === 'delivery' ? `
         <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
-          <span style="color: #8696a0;">رسوم التوصيل:</span>
-          <span style="color: white; font-weight: 600;">${deliveryFee} ريال</span>
+          <span style="color: #666666;">رسوم التوصيل:</span>
+          <span style="color: #303030; font-weight: 600;">${deliveryFee} ريال</span>
         </div>
         ` : ''}
-        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-          <span style="color: white; font-size: 16px; font-weight: 700;">الإجمالي النهائي:</span>
+        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between;">
+          <span style="color: #303030; font-size: 16px; font-weight: 700;">الإجمالي النهائي:</span>
           <span style="color: #00a884; font-size: 19px; font-weight: 700;">${total} ريال</span>
         </div>
       </div>
@@ -1805,28 +1804,28 @@ function showPaymentOptions() {
           <i class="fab fa-apple-pay"></i>
         </div>
         <div class="payment-name">Apple Pay</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+        <i class="fas fa-chevron-left" style="color: #666666;"></i>
       </div>
       <div class="payment-option" onclick="goToStcPay()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
           <i class="fas fa-mobile-alt"></i>
         </div>
         <div class="payment-name">STC Pay</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+        <i class="fas fa-chevron-left" style="color: #666666;"></i>
       </div>
       <div class="payment-option" onclick="goToCheckout()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
           <i class="fas fa-credit-card"></i>
         </div>
         <div class="payment-name">Visa / Mastercard</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+        <i class="fas fa-chevron-left" style="color: #666666;"></i>
       </div>
       <div class="payment-option" onclick="goToCheckout()">
         <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
           <i class="fas fa-university"></i>
         </div>
         <div class="payment-name">بطاقة مدى</div>
-        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+        <i class="fas fa-chevron-left" style="color: #666666;"></i>
       </div>
     </div>
   `;
@@ -1872,8 +1871,8 @@ function completePayment() {
         <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
         ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
         <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
-          <p style="color: white; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
+        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.02); border-radius: 10px;">
+          <p style="color: #303030; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
           ${itemsList}
           ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}
           <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
@@ -1886,7 +1885,7 @@ function completePayment() {
         <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #8696a0; font-size: 14px; padding: 15px;">
+    <div style="text-align: center; color: #666666; font-size: 14px; padding: 15px;">
       شكراً لاختياركم جو كرسبي. نتمنى لكم وجبة شهية! 🍽️✨
     </div>
   `;
@@ -1914,13 +1913,7 @@ window.onload = function() {
   setTimeout(() => {
     document.getElementById('messageInput').value = "ابغي اطلب";
   }, 1000);
-  
-  // Listen for manual address input - REMOVED
-  // No longer needed since manual address entry is removed
 };
 </script>
 </body>
 </html>
-
-
-
