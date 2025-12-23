@@ -444,11 +444,61 @@ body {
   flex-shrink: 0;
 }
 
-/* Location */
-.location-container {
-  margin: 15px 0;
+/* Delivery Options - New from index.html */
+.delivery-option {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  margin-bottom: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 10px;
 }
 
+.delivery-option:hover {
+  border-color: rgba(45, 212, 191, 0.5);
+  background: rgba(45, 212, 191, 0.05);
+}
+
+.delivery-option.selected {
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.delivery-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(45, 212, 191, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #2dd4bf;
+  flex-shrink: 0;
+}
+
+.delivery-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.delivery-details h4 {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.delivery-details p {
+  color: #8696a0;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+/* Location Sharing - New from index.html */
 .location-button {
   width: 100%;
   padding: 14px;
@@ -472,62 +522,43 @@ body {
   border-color: #2dd4bf;
 }
 
-.location-button:active {
-  transform: scale(0.98);
-}
-
-/* Payment Methods */
-.payment-methods {
-  margin: 15px 0;
-}
-
+/* Payment Options - New from index.html */
 .payment-option {
   display: flex;
   align-items: center;
-  padding: 12px;
-  margin-bottom: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  padding: 14px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  transition: all 0.3s ease;
-  gap: 10px;
+  transition: background 0.3s ease;
+  gap: 12px;
+}
+
+.payment-option:last-child {
+  border-bottom: none;
 }
 
 .payment-option:hover {
-  border-color: rgba(45, 212, 191, 0.5);
-  background: rgba(45, 212, 191, 0.05);
-}
-
-.payment-option.selected {
-  border-color: #2dd4bf;
-  background: rgba(45, 212, 191, 0.1);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .payment-icon {
-  width: 36px;
-  height: 36px;
-  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
+  color: white;
   flex-shrink: 0;
 }
 
-.payment-text {
-  flex-grow: 1;
-  min-width: 0;
-}
-
 .payment-name {
+  color: white;
+  font-size: 15px;
   font-weight: 500;
-  margin-bottom: 4px;
-  font-size: clamp(14px, 3.5vw, 16px);
-}
-
-.payment-desc {
-  font-size: clamp(11px, 3vw, 12px);
-  color: #a0aec0;
+  flex: 1;
 }
 
 /* Submit Button */
@@ -604,58 +635,48 @@ body {
   justify-content: center;
 }
 
-/* Payment iframe container */
-.payment-iframe-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 2000;
-  display: none;
-  flex-direction: column;
+/* Order Summary */
+.order-summary {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid rgba(45, 212, 191, 0.2);
 }
 
-.payment-header {
-  background: #122b3f;
-  padding: 12px 15px;
+.order-summary h4 {
+  color: #2dd4bf;
+  margin: 0 0 10px 0;
+  font-size: clamp(16px, 4vw, 18px);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.3);
+  padding-bottom: 8px;
+}
+
+.order-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  flex-shrink: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.payment-header h3 {
+.order-item:last-child {
+  border-bottom: none;
+}
+
+/* Autoredirect notification */
+.autoredirect-notice {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 168, 132, 0.1);
+  border-radius: 10px;
+  margin: 15px 0;
+  border: 1px solid rgba(0, 168, 132, 0.3);
+}
+
+.autoredirect-notice p {
+  color: #00a884;
+  font-size: 14px;
   margin: 0;
-  font-size: clamp(16px, 4vw, 18px);
-}
-
-.close-payment-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.3s;
-  flex-shrink: 0;
-}
-
-.close-payment-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.payment-iframe {
-  flex: 1;
-  width: 100%;
-  border: none;
 }
 
 /* Responsive Media Queries */
@@ -803,7 +824,7 @@ body {
   
   /* زيادة حجم عناصر اللمس على الأجهزة الصغيرة */
   @media (max-width: 600px) {
-    .add-btn, .qty-btn, .close-btn, .close-payment-btn {
+    .add-btn, .qty-btn, .close-btn {
       min-width: 44px;
       min-height: 44px;
     }
@@ -844,8 +865,7 @@ body {
 @media print {
   .floating-cart-btn,
   .cart-container,
-  .modal,
-  .payment-iframe-container {
+  .modal {
     display: none !important;
   }
   
@@ -958,7 +978,7 @@ body {
     </div>
     <div class="cart-actions">
       <button class="clear-btn" onclick="clearCart()">تفريغ السلة</button>
-      <button class="checkout-btn" onclick="openCheckout()">إتمام الطلب</button>
+      <button class="checkout-btn" onclick="openDigitalCheckout()">إتمام الطلب</button>
     </div>
   </div>
 </div>
@@ -977,79 +997,115 @@ body {
   </div>
 </div>
 
-<!-- Checkout Modal (Simplified) -->
-<div class="modal" id="checkoutModal">
+<!-- New: Digital Menu Checkout Modal - Auto-redirect to WhatsApp -->
+<div class="modal" id="digitalCheckoutModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>إتمام الطلب</h3>
-      <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
+      <h3>ملخص الطلب</h3>
+      <button class="close-btn" onclick="closeModal('digitalCheckoutModal')">×</button>
     </div>
     
-    <div id="checkoutForm">
+    <!-- Order Summary -->
+    <div class="order-summary" id="orderSummary">
+      <!-- سيتم ملؤها بالجافاسكريبت -->
+    </div>
+    
+    <!-- Delivery Options - Same as index.html -->
+    <div style="margin: 20px 0;">
+      <h4 style="color: white; margin-bottom: 15px; font-size: 18px;">طريقة الاستلام</h4>
+      
+      <div class="delivery-option selected" onclick="selectDelivery('delivery')" id="deliveryOption">
+        <div class="delivery-icon">
+          <i class="fas fa-motorcycle"></i>
+        </div>
+        <div class="delivery-details">
+          <h4>توصيل إلى المنزل</h4>
+          <p>سيقوم سائقنا الخاص بتوصيل طلبك مع تجهيزات خاصة للحفاظ على جودة الطعام</p>
+          <p style="color: #2dd4bf; margin-top: 5px;">+ 16 ريال (رسوم توصيل)</p>
+        </div>
+      </div>
+      
+      <div class="delivery-option" onclick="selectDelivery('pickup')" id="pickupOption">
+        <div class="delivery-icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <div class="delivery-details">
+          <h4>استلام من المطعم</h4>
+          <p>يمكنك استلام الطلب من فرعنا في حي العليا مع خدمة الاستقبال المميزة</p>
+          <p style="color: #2dd4bf; margin-top: 5px;">بدون رسوم إضافية</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Location Sharing (shown only for delivery) - Same as index.html -->
+    <div id="locationSection" style="display: none; margin: 20px 0;">
+      <h4 style="color: white; margin-bottom: 15px; font-size: 18px;">تحديد العنوان</h4>
       <div class="location-container">
-        <label>الموقع</label>
-        <p style="font-size: 14px; color: #a0aec0; margin-bottom: 10px;">سيتم استخدام موقعك الحالي لتحديد أقرب فرع للتوصيل</p>
-        <button class="location-button" onclick="getUserLocation()">
-          <span>📍</span>
-          استخدام موقعي الحالي
+        <p style="font-size: 14px; color: #a0aec0; margin-bottom: 10px;">لمتابعة طلب التوصيل، نحتاج لمشاركة موقعك</p>
+        <button class="location-button" onclick="shareLocation()">
+          <i class="fas fa-location-arrow"></i> مشاركة الموقع الحالي
         </button>
-        <p id="locationStatus" style="font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;"></p>
       </div>
-      
-      <div class="payment-methods">
-        <h4>طريقة الدفع</h4>
-        
-        <div class="payment-option selected" onclick="selectPayment('stcpay')">
-          <div class="payment-icon">📱</div>
-          <div class="payment-text">
-            <div class="payment-name">STC Pay</div>
-            <div class="payment-desc">الدفع عبر تطبيق STC Pay</div>
+      <div style="margin-top: 10px;">
+        <div class="location-option" onclick="useSavedAddress()">
+          <div class="location-option-icon">
+            <i class="fas fa-home"></i>
           </div>
-        </div>
-        
-        <div class="payment-option" onclick="selectPayment('mada')">
-          <div class="payment-icon">💳</div>
-          <div class="payment-text">
-            <div class="payment-name">مدى</div>
-            <div class="payment-desc">بطاقة مدى البنكية</div>
-          </div>
-        </div>
-        
-        <div class="payment-option" onclick="selectPayment('visa')">
-          <div class="payment-icon">💳</div>
-          <div class="payment-text">
-            <div class="payment-name">فيزا / ماستركارد</div>
-            <div class="payment-desc">البطاقات الإئتمانية الدولية</div>
-          </div>
-        </div>
-        
-        <div class="payment-option" onclick="selectPayment('applepay')">
-          <div class="payment-icon">🍎</div>
-          <div class="payment-text">
-            <div class="payment-name">Apple Pay</div>
-            <div class="payment-desc">الدفع عبر Apple Pay</div>
+          <div class="location-option-details">
+            <h4>استخدام عنوان محفوظ</h4>
+            <p>اختر من العناوين السابقة</p>
           </div>
         </div>
       </div>
+      <p id="locationStatus" style="font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;"></p>
+    </div>
+    
+    <!-- Payment Options - Same as index.html -->
+    <div style="margin: 20px 0;">
+      <h4 style="color: white; margin-bottom: 15px; font-size: 18px;">طريقة الدفع</h4>
       
-      <div class="cart-total" style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
-        <span>المجموع النهائي:</span>
-        <span id="checkoutTotal">0 ريال</span>
+      <div class="payment-option" onclick="goToStcPay()">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="payment-name">STC Pay</div>
+        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
       </div>
       
-      <button class="submit-btn" onclick="processPayment()">متابعة للدفع</button>
+      <div class="payment-option" onclick="goToCheckout()">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
+          <i class="fas fa-credit-card"></i>
+        </div>
+        <div class="payment-name">Visa / Mastercard</div>
+        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+      </div>
+      
+      <div class="payment-option" onclick="goToCheckout()">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="payment-name">بطاقة مدى</div>
+        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+      </div>
+      
+      <div class="payment-option" onclick="completePayment()">
+        <div class="payment-icon" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
+          <i class="fab fa-apple-pay"></i>
+        </div>
+        <div class="payment-name">Apple Pay</div>
+        <i class="fas fa-chevron-left" style="color: #8696a0;"></i>
+      </div>
+    </div>
+    
+    <!-- Auto-redirect notification -->
+    <div class="autoredirect-notice">
+      <p><i class="fas fa-info-circle"></i> سيتم توجيك تلقائياً إلى واتساب لإتمام الدفع</p>
     </div>
   </div>
 </div>
 
-<!-- Payment iframe container -->
-<div class="payment-iframe-container" id="paymentContainer">
-  <div class="payment-header">
-    <h3 id="paymentTitle">دفع عبر STC Pay</h3>
-    <button class="close-payment-btn" onclick="closePayment()">×</button>
-  </div>
-  <iframe class="payment-iframe" id="paymentFrame" allow="payment"></iframe>
-</div>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script>
 // Menu data
@@ -1129,7 +1185,7 @@ const menuItems = [
   {
     id: 10,
     name: "باكيت تندر مع الجرافي",
-    description: "باكيت تندر دجاج مع صوص الجرافي اللذيذ",
+    description: "باكيت تندر دجاج مع صوص الجرافي الخاص",
     price: 80,
     image: "images/item10.png",
     popular: false
@@ -1148,11 +1204,23 @@ const addons = [
   { id: 8, name: "قهوة عربية", price: 12 }
 ];
 
-// Shopping cart
+// Shopping cart - Same structure as index.html
 let cart = [];
+let selectedItems = {}; // Same as index.html
 let currentItemId = null;
-let selectedPayment = 'stcpay';
-let userLocation = null;
+let deliveryType = 'delivery'; // Same as index.html
+let userAddress = ''; // Same as index.html
+let hasLocation = false;
+
+// Restaurant data - Same as index.html
+const restaurant = {
+  name: "جو كرسبي",
+  description: "أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية",
+  logo: "images/profile.png",
+  address: "حي العليا، شارع الملك فهد، الرياض",
+  phone: "011 234 5678",
+  rating: "4.8 ★ (950 تقييم)"
+};
 
 // Initialize menu
 function initializeMenu() {
@@ -1234,16 +1302,11 @@ function addToCartWithAddons() {
     }
   });
   
-  // Add to cart
-  cart.push({
-    id: Date.now(),
-    itemId: item.id,
-    name: item.name,
-    basePrice: item.price,
-    addons: selectedAddons,
-    quantity: 1
-  });
+  // Add to cart - Same structure as index.html
+  selectedItems[item.id] = true;
+  cart.push(item.id);
   
+  // Update the UI
   updateCart();
   closeModal('addonsModal');
   
@@ -1259,7 +1322,7 @@ function addToCartWithAddons() {
   }
 }
 
-// Update cart display
+// Update cart display - Modified for index.html structure
 function updateCart() {
   const cartItems = document.getElementById('cartItems');
   const cartCount = document.querySelector('.cart-count');
@@ -1272,54 +1335,35 @@ function updateCart() {
     return;
   }
   
-  // Calculate total
+  // Calculate total - Same as index.html
   let total = 0;
-  cartItems.innerHTML = '';
+  let itemsHTML = '';
   
-  cart.forEach((item, index) => {
-    const itemTotal = item.basePrice + item.addons.reduce((sum, addon) => sum + (addon.price * addon.quantity), 0);
-    total += itemTotal * item.quantity;
-    
-    const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-    cartItem.innerHTML = `
-      <div class="cart-item-name">
-        <strong>${item.name}</strong>
-        ${item.addons.length > 0 ? 
-          `<div style="font-size: 12px; color: #a0aec0; margin-top: 5px;">
-            ${item.addons.map(a => `${a.name} (×${a.quantity})`).join('، ')}
-          </div>` : ''
-        }
-      </div>
-      <div class="cart-item-price">${itemTotal} ريال</div>
-      <div class="cart-item-qty">
-        <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
-        <span>${item.quantity}</span>
-        <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
-        <button class="qty-btn" onclick="removeFromCart(${index})" style="background: rgba(239,68,68,0.2); color: #ef4444; margin-right: 10px;">×</button>
-      </div>
-    `;
-    cartItems.appendChild(cartItem);
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      total += item.price;
+      itemsHTML += `
+        <div class="cart-item">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price} ريال</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="removeFromCart('${itemId}')" style="background: rgba(239,68,68,0.2); color: #ef4444;">×</button>
+          </div>
+        </div>
+      `;
+    }
   });
   
-  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartItems.innerHTML = itemsHTML;
+  cartCount.textContent = cart.length;
   cartTotal.textContent = `${total} ريال`;
 }
 
-// Update item quantity
-function updateQuantity(index, newQuantity) {
-  if (newQuantity < 1) {
-    removeFromCart(index);
-    return;
-  }
-  
-  cart[index].quantity = newQuantity;
-  updateCart();
-}
-
 // Remove item from cart
-function removeFromCart(index) {
-  cart.splice(index, 1);
+function removeFromCart(itemId) {
+  cart = cart.filter(id => id !== itemId);
+  delete selectedItems[itemId];
   updateCart();
 }
 
@@ -1329,6 +1373,7 @@ function clearCart() {
   
   if (confirm('هل تريد تفريغ السلة؟')) {
     cart = [];
+    selectedItems = {};
     updateCart();
     toggleCart();
   }
@@ -1345,157 +1390,304 @@ function closeModal(modalId) {
   document.getElementById(modalId).style.display = 'none';
 }
 
-// Open checkout
-function openCheckout() {
+// Open digital checkout - Shows same steps as index.html
+function openDigitalCheckout() {
   if (cart.length === 0) {
     alert('السلة فارغة. أضف عناصر إلى السلة أولاً.');
     return;
   }
   
-  // Calculate total
-  const total = cart.reduce((sum, item) => {
-    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
-    return sum + (itemTotal * item.quantity);
-  }, 0);
+  // Update order summary
+  updateOrderSummary();
   
-  document.getElementById('checkoutTotal').textContent = `${total} ريال`;
-  document.getElementById('checkoutForm').style.display = 'block';
+  // Show location section if delivery is selected
+  updateLocationSection();
   
-  // Reset location status
-  document.getElementById('locationStatus').textContent = 'انقر على الزر أعلاه لتحديد موقعك';
-  document.getElementById('locationStatus').style.color = '#a0aec0';
-  userLocation = null;
+  // Show the modal
+  document.getElementById('digitalCheckoutModal').style.display = 'flex';
   
-  document.getElementById('checkoutModal').style.display = 'flex';
+  // Close cart if open
   toggleCart();
 }
 
-// Get user location
-function getUserLocation() {
-  const locationStatus = document.getElementById('locationStatus');
-  locationStatus.textContent = 'جاري الحصول على الموقع...';
-  locationStatus.style.color = '#f59e0b';
+// Update order summary
+function updateOrderSummary() {
+  const orderSummary = document.getElementById('orderSummary');
   
-  if (!navigator.geolocation) {
-    locationStatus.textContent = 'المتصفح لا يدعم تحديد الموقع. سيتم التواصل معك لتأكيد العنوان.';
-    locationStatus.style.color = '#ef4444';
-    return;
-  }
+  let itemsHTML = '';
+  let itemsTotal = 0;
+  let deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      userLocation = { lat, lng };
-      
-      // Format location for display
-      locationStatus.textContent = `✓ تم تحديد موقعك بنجاح`;
-      locationStatus.style.color = '#10b981';
-    },
-    (error) => {
-      let errorMessage = 'تعذر الحصول على الموقع. ';
-      errorMessage += 'سيتم التواصل معك لتأكيد العنوان.';
-      
-      locationStatus.textContent = errorMessage;
-      locationStatus.style.color = '#ef4444';
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      itemsTotal += item.price;
+      itemsHTML += `
+        <div class="order-item">
+          <div>${item.name}</div>
+          <div>${item.price} ريال</div>
+        </div>
+      `;
     }
-  );
+  });
+  
+  const total = itemsTotal + deliveryFee;
+  
+  orderSummary.innerHTML = `
+    <h4>تفاصيل الطلب</h4>
+    ${itemsHTML}
+    <div class="order-item">
+      <div>مجموع الوجبات</div>
+      <div>${itemsTotal} ريال</div>
+    </div>
+    ${deliveryType === 'delivery' ? `
+      <div class="order-item">
+        <div>رسوم التوصيل</div>
+        <div>${deliveryFee} ريال</div>
+      </div>
+    ` : ''}
+    <div class="order-item" style="border-top: 2px solid rgba(45, 212, 191, 0.5); padding-top: 12px; font-size: 18px;">
+      <div><strong>الإجمالي النهائي</strong></div>
+      <div style="color: #2dd4bf; font-weight: 700;">${total} ريال</div>
+    </div>
+  `;
 }
 
-// Select payment method
-function selectPayment(method) {
-  selectedPayment = method;
+// Select delivery option - Same as index.html
+function selectDelivery(type) {
+  deliveryType = type;
   
-  document.querySelectorAll('.payment-option').forEach(option => {
+  // Update UI
+  document.querySelectorAll('.delivery-option').forEach(option => {
     option.classList.remove('selected');
   });
   
-  const clickedOption = event.target.closest('.payment-option');
-  if (clickedOption) {
-    clickedOption.classList.add('selected');
+  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}')"]`);
+  if (selectedOption) {
+    selectedOption.classList.add('selected');
+  }
+  
+  // Update order summary
+  updateOrderSummary();
+  
+  // Show/hide location section
+  updateLocationSection();
+}
+
+// Update location section visibility
+function updateLocationSection() {
+  const locationSection = document.getElementById('locationSection');
+  
+  if (deliveryType === 'delivery') {
+    locationSection.style.display = 'block';
+    // Reset location status
+    document.getElementById('locationStatus').textContent = 'انقر على الزر أعلاه لتحديد موقعك';
+    document.getElementById('locationStatus').style.color = '#a0aec0';
+    userAddress = '';
+    hasLocation = false;
+  } else {
+    locationSection.style.display = 'none';
+    hasLocation = true; // For pickup, no location needed
   }
 }
 
-// Process payment - opens appropriate payment page
-function processPayment() {
-  const total = cart.reduce((sum, item) => {
-    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
-    return sum + (itemTotal * item.quantity);
-  }, 0);
+// Share current location - Same as index.html
+function shareLocation() {
+  userAddress = "الموقع الحالي (تم مشاركته)";
+  hasLocation = true;
+  document.getElementById('locationStatus').textContent = "📍 تم مشاركة موقعك بنجاح!";
+  document.getElementById('locationStatus').style.color = '#10b981';
   
-  const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  // Auto-redirect after 1 second
+  setTimeout(() => {
+    autoRedirectToPayment();
+  }, 1000);
+}
+
+// Use saved address - Same as index.html
+function useSavedAddress() {
+  userAddress = "العنوان المنزلي المحفوظ";
+  hasLocation = true;
+  document.getElementById('locationStatus').textContent = `✅ تم اختيار العنوان المحفوظ: ${userAddress}`;
+  document.getElementById('locationStatus').style.color = '#10b981';
   
-  // Prepare query parameters
-  const params = new URLSearchParams({
-    orderId: 'ORD' + Date.now(),
-    total: total,
-    items: itemsCount,
-    delivery: 'pickup'
+  // Auto-redirect after 1 second
+  setTimeout(() => {
+    autoRedirectToPayment();
+  }, 1000);
+}
+
+// Auto-redirect to payment - New function
+function autoRedirectToPayment() {
+  if (deliveryType === 'delivery' && !hasLocation) {
+    return; // Don't redirect if no location for delivery
+  }
+  
+  // Automatically redirect based on selected option (default to STC Pay)
+  goToStcPay();
+}
+
+// Complete payment (for Apple Pay) - Same as index.html
+function completePayment() {
+  // Calculate totals for confirmation
+  let itemsTotal = 0;
+  let itemsList = '';
+  
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      itemsTotal += item.price;
+      itemsList += `• ${item.name} - ${item.price} ريال\n`;
+    }
   });
   
-  let paymentFile = '';
-  let paymentTitle = '';
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
+  const total = itemsTotal + deliveryFee;
+  const loyaltyPoints = Math.floor(total / 10);
+  const orderId = Math.floor(1000 + Math.random() * 9000);
   
-  // Determine which payment page to open
-  switch(selectedPayment) {
-    case 'stcpay':
-      paymentFile = 'stcpay.html';
-      paymentTitle = 'دفع عبر STC Pay';
-      break;
-    case 'mada':
-    case 'visa':
-    case 'applepay':
-      paymentFile = 'checkout.html';
-      paymentTitle = 'الدفع الإلكتروني';
-      break;
-    default:
-      paymentFile = 'checkout.html';
-      paymentTitle = 'الدفع الإلكتروني';
+  // Create WhatsApp message for Apple Pay
+  let whatsappMessage = `*ملخص الطلب من جو كرسبي*%0A%0A`;
+  whatsappMessage += `*تفاصيل الطلب:*%0A${itemsList.replace(/\n/g, '%0A')}%0A`;
+  whatsappMessage += `*مجموع الوجبات:* ${itemsTotal} ريال%0A`;
+  
+  if (deliveryType === 'delivery') {
+    whatsappMessage += `*رسوم التوصيل:* ${deliveryFee} ريال%0A`;
   }
   
-  // Set iframe source
-  const paymentUrl = `${paymentFile}?${params.toString()}`;
-  document.getElementById('paymentFrame').src = paymentUrl;
-  document.getElementById('paymentTitle').textContent = paymentTitle;
+  whatsappMessage += `%0A*الإجمالي النهائي:* ${total} ريال%0A%0A`;
+  whatsappMessage += `*طريقة الاستلام:* ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}%0A`;
+  whatsappMessage += `*العنوان:* ${userAddress || 'غير محدد'}%0A`;
+  whatsappMessage += `*طريقة الدفع:* Apple Pay%0A%0A`;
+  whatsappMessage += `يرجى تأكيد الطلب...`;
   
-  // Show payment container
-  document.getElementById('paymentContainer').style.display = 'flex';
+  // Open WhatsApp
+  const phoneNumber = "966112345678";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
   
-  // Close checkout modal
-  closeModal('checkoutModal');
+  // Close modal
+  closeModal('digitalCheckoutModal');
+  
+  // Open WhatsApp in new tab
+  window.open(whatsappUrl, '_blank');
+  
+  // Clear cart after redirect
+  setTimeout(() => {
+    cart = [];
+    selectedItems = {};
+    updateCart();
+  }, 1000);
 }
 
-// Close payment iframe
-function closePayment() {
-  document.getElementById('paymentContainer').style.display = 'none';
-  document.getElementById('paymentFrame').src = '';
+// NEW: Redirect to checkout - SAME AS index.html
+function goToCheckout() {
+  // Calculate order total
+  let itemsTotal = 0;
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) itemsTotal += item.price;
+  });
   
-  // Check if payment was successful (in a real app, you would check with your backend)
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('payment') === 'success') {
-    // Clear cart after successful payment
-    cart = [];
-    updateCart();
-    alert('تم الدفع بنجاح! شكراً لطلبك.');
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
+  const total = itemsTotal + deliveryFee;
+  const orderId = Math.floor(1000 + Math.random() * 9000);
+  
+  // Create WhatsApp message
+  let whatsappMessage = `*ملخص الطلب من جو كرسبي*%0A%0A`;
+  whatsappMessage += `*رقم الطلب:* #${orderId}%0A`;
+  whatsappMessage += `*تفاصيل الطلب:*%0A`;
+  
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      whatsappMessage += `• ${item.name} - ${item.price} ريال%0A`;
+    }
+  });
+  
+  whatsappMessage += `%0A*مجموع الوجبات:* ${itemsTotal} ريال%0A`;
+  
+  if (deliveryType === 'delivery') {
+    whatsappMessage += `*رسوم التوصيل:* ${deliveryFee} ريال%0A`;
   }
+  
+  whatsappMessage += `%0A*الإجمالي النهائي:* ${total} ريال%0A%0A`;
+  whatsappMessage += `*طريقة الاستلام:* ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}%0A`;
+  whatsappMessage += `*العنوان:* ${userAddress || 'غير محدد'}%0A`;
+  whatsappMessage += `*طريقة الدفع:* بطاقة بنكية%0A%0A`;
+  whatsappMessage += `يرجى تأكيد الطلب والدفع...`;
+  
+  // Open WhatsApp
+  const phoneNumber = "966112345678";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+  
+  // Close modal
+  closeModal('digitalCheckoutModal');
+  
+  // Open WhatsApp in new tab
+  window.open(whatsappUrl, '_blank');
+  
+  // Clear cart after redirect
+  setTimeout(() => {
+    cart = [];
+    selectedItems = {};
+    updateCart();
+  }, 1000);
 }
 
-// Listen for messages from payment iframe
-window.addEventListener('message', function(event) {
-  // Check if message is from payment page
-  if (event.data && event.data.type === 'paymentSuccess') {
-    // Clear cart and show success message
-    cart = [];
-    updateCart();
-    closePayment();
-    alert('تم الدفع بنجاح! شكراً لطلبك.');
+// NEW: Redirect to STC Pay - SAME AS index.html
+function goToStcPay() {
+  // Calculate order total
+  let itemsTotal = 0;
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) itemsTotal += item.price;
+  });
+  
+  const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
+  const total = itemsTotal + deliveryFee;
+  const orderId = Math.floor(1000 + Math.random() * 9000);
+  
+  // Create WhatsApp message
+  let whatsappMessage = `*ملخص الطلب من جو كرسبي*%0A%0A`;
+  whatsappMessage += `*رقم الطلب:* #${orderId}%0A`;
+  whatsappMessage += `*تفاصيل الطلب:*%0A`;
+  
+  cart.forEach(itemId => {
+    const item = menuItems.find(i => i.id == itemId);
+    if (item) {
+      whatsappMessage += `• ${item.name} - ${item.price} ريال%0A`;
+    }
+  });
+  
+  whatsappMessage += `%0A*مجموع الوجبات:* ${itemsTotal} ريال%0A`;
+  
+  if (deliveryType === 'delivery') {
+    whatsappMessage += `*رسوم التوصيل:* ${deliveryFee} ريال%0A`;
   }
-});
+  
+  whatsappMessage += `%0A*الإجمالي النهائي:* ${total} ريال%0A%0A`;
+  whatsappMessage += `*طريقة الاستلام:* ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}%0A`;
+  whatsappMessage += `*العنوان:* ${userAddress || 'غير محدد'}%0A`;
+  whatsappMessage += `*طريقة الدفع:* STC Pay%0A%0A`;
+  whatsappMessage += `يرجى تأكيد الطلب والدفع عبر STC Pay...`;
+  
+  // Open WhatsApp
+  const phoneNumber = "966112345678";
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+  
+  // Close modal
+  closeModal('digitalCheckoutModal');
+  
+  // Open WhatsApp in new tab
+  window.open(whatsappUrl, '_blank');
+  
+  // Clear cart after redirect
+  setTimeout(() => {
+    cart = [];
+    selectedItems = {};
+    updateCart();
+  }, 1000);
+}
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -1510,22 +1702,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Close payment container when clicking outside
-  const paymentContainer = document.getElementById('paymentContainer');
-  if (paymentContainer) {
-    paymentContainer.addEventListener('click', (e) => {
-      if (e.target === paymentContainer) {
-        closePayment();
-      }
-    });
-  }
-  
   // Handle window resize for better mobile experience
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      // Recalculate cart height on resize
       const cartItems = document.getElementById('cartItems');
       if (cartItems) {
         cartItems.style.maxHeight = window.innerHeight * 0.45 + 'px';
