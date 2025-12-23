@@ -994,7 +994,8 @@ body {
       
       <div class="restaurant-info">
         <div class="restaurant-avatar">
-          <img src="images/item1.png" alt="جو كرسبي" onerror="this.src='images/item1.png'">
+          <!-- CHANGED: profile.png for the restaurant avatar -->
+          <img src="images/profile.png" alt="جو كرسبي" onerror="this.src='images/profile.png'">
         </div>
         <div class="restaurant-details">
           <h2>جو كرسبي</h2>
@@ -1033,7 +1034,7 @@ body {
 const restaurant = {
   name: "جو كرسبي",
   description: "أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية",
-  logo: "images/item1.png",
+  logo: "images/profile.png", // CHANGED: Updated to profile.png
   address: "حي العليا، شارع الملك فهد، الرياض",
   phone: "011 234 5678",
   rating: "4.8 ★ (950 تقييم)"
@@ -1379,6 +1380,7 @@ function showCatalog() {
   const catalogHTML = `
     <div class="catalog-message">
       <div class="catalog-image">
+        <!-- CHANGED: item1.png for the catalog image (different from profile) -->
         <img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'">
       </div>
       <div class="catalog-details">
