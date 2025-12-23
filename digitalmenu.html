@@ -401,31 +401,30 @@ body {
   margin: 20px 0;
 }
 
-.location-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.location-btn {
-  flex: 1;
-  padding: 12px;
+.location-button {
+  width: 100%;
+  padding: 14px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(45, 212, 191, 0.3);
+  background: rgba(45, 212, 191, 0.1);
   color: white;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.location-btn:hover {
-  background: rgba(45, 212, 191, 0.1);
-  border-color: rgba(45, 212, 191, 0.5);
-}
-
-.location-btn.active {
+.location-button:hover {
   background: rgba(45, 212, 191, 0.2);
   border-color: #2dd4bf;
+}
+
+.location-button:active {
+  transform: scale(0.98);
 }
 
 /* Payment Methods */
@@ -478,32 +477,7 @@ body {
   color: #a0aec0;
 }
 
-/* Form */
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  font-size: 16px;
-}
-
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
+/* Submit Button */
 .submit-btn {
   width: 100%;
   padding: 16px;
@@ -574,6 +548,58 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Payment iframe container */
+.payment-iframe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+}
+
+.payment-header {
+  background: #122b3f;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.payment-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.close-payment-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.close-payment-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.payment-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
 }
 
 /* Responsive */
@@ -694,7 +720,7 @@ body {
   </div>
 </div>
 
-<!-- Checkout Modal -->
+<!-- Checkout Modal (Simplified) -->
 <div class="modal" id="checkoutModal">
   <div class="modal-content">
     <div class="modal-header">
@@ -703,28 +729,14 @@ body {
     </div>
     
     <div id="checkoutForm">
-      <div class="form-group">
-        <label for="customerName">الاسم الكامل</label>
-        <input type="text" id="customerName" placeholder="أدخل اسمك الكامل" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="customerPhone">رقم الهاتف</label>
-        <input type="tel" id="customerPhone" placeholder="05XXXXXXXX" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="customerAddress">العنوان</label>
-        <textarea id="customerAddress" placeholder="أدخل العنوان التفصيلي"></textarea>
-      </div>
-      
       <div class="location-container">
         <label>الموقع</label>
-        <div class="location-buttons">
-          <button class="location-btn active" onclick="selectLocation('manual')">إدخال يدوي</button>
-          <button class="location-btn" onclick="getUserLocation()">استخدام موقعي الحالي</button>
-        </div>
-        <p id="locationStatus" style="font-size: 14px; color: #a0aec0; margin-top: 10px;"></p>
+        <p style="font-size: 14px; color: #a0aec0; margin-bottom: 10px;">سيتم استخدام موقعك الحالي لتحديد أقرب فرع للتوصيل</p>
+        <button class="location-button" onclick="getUserLocation()">
+          <span>📍</span>
+          استخدام موقعي الحالي
+        </button>
+        <p id="locationStatus" style="font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;"></p>
       </div>
       
       <div class="payment-methods">
@@ -761,19 +773,6 @@ body {
             <div class="payment-desc">الدفع عبر Apple Pay</div>
           </div>
         </div>
-        
-        <div class="payment-option" onclick="selectPayment('cash')">
-          <div class="payment-icon">💵</div>
-          <div class="payment-text">
-            <div class="payment-name">الدفع عند الاستلام</div>
-            <div class="payment-desc">الدفع نقداً عند التوصيل</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="orderNotes">ملاحظات إضافية (اختياري)</label>
-        <textarea id="orderNotes" placeholder="ملاحظات خاصة للطلب"></textarea>
       </div>
       
       <div class="cart-total" style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
@@ -781,17 +780,18 @@ body {
         <span id="checkoutTotal">0 ريال</span>
       </div>
       
-      <button class="submit-btn" onclick="submitOrder()">تأكيد الطلب</button>
-    </div>
-    
-    <div id="successMessage" class="success-message" style="display: none;">
-      <div class="success-icon">✓</div>
-      <h3>تم تأكيد طلبك بنجاح!</h3>
-      <p>رقم طلبك: <strong id="orderNumber">#12345</strong></p>
-      <p>سيتم التواصل معك قريباً لتأكيد التفاصيل.</p>
-      <button class="submit-btn" onclick="closeModal('checkoutModal')" style="margin-top: 30px;">إغلاق</button>
+      <button class="submit-btn" onclick="processPayment()">متابعة للدفع</button>
     </div>
   </div>
+</div>
+
+<!-- Payment iframe container -->
+<div class="payment-iframe-container" id="paymentContainer">
+  <div class="payment-header">
+    <h3 id="paymentTitle">دفع عبر STC Pay</h3>
+    <button class="close-payment-btn" onclick="closePayment()">×</button>
+  </div>
+  <iframe class="payment-iframe" id="paymentFrame" allow="payment"></iframe>
 </div>
 
 <script>
@@ -895,6 +895,7 @@ const addons = [
 let cart = [];
 let currentItemId = null;
 let selectedPayment = 'stcpay';
+let userLocation = null;
 
 // Initialize menu
 function initializeMenu() {
@@ -1098,5 +1099,162 @@ function openCheckout() {
     return sum + (itemTotal * item.quantity);
   }, 0);
   
-  document.getElementById('checkoutTotal').textContent =
+  document.getElementById('checkoutTotal').textContent = `${total} ريال`;
+  document.getElementById('checkoutForm').style.display = 'block';
+  
+  // Reset location status
+  document.getElementById('locationStatus').textContent = 'انقر على الزر أعلاه لتحديد موقعك';
+  document.getElementById('locationStatus').style.color = '#a0aec0';
+  userLocation = null;
+  
+  document.getElementById('checkoutModal').style.display = 'flex';
+  toggleCart();
+}
 
+// Get user location
+function getUserLocation() {
+  const locationStatus = document.getElementById('locationStatus');
+  locationStatus.textContent = 'جاري الحصول على الموقع...';
+  locationStatus.style.color = '#f59e0b';
+  
+  if (!navigator.geolocation) {
+    locationStatus.textContent = 'المتصفح لا يدعم تحديد الموقع. سيتم التواصل معك لتأكيد العنوان.';
+    locationStatus.style.color = '#ef4444';
+    return;
+  }
+  
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      userLocation = { lat, lng };
+      
+      // Format location for display
+      locationStatus.textContent = `✓ تم تحديد موقعك بنجاح`;
+      locationStatus.style.color = '#10b981';
+    },
+    (error) => {
+      let errorMessage = 'تعذر الحصول على الموقع. ';
+      errorMessage += 'سيتم التواصل معك لتأكيد العنوان.';
+      
+      locationStatus.textContent = errorMessage;
+      locationStatus.style.color = '#ef4444';
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    }
+  );
+}
+
+// Select payment method
+function selectPayment(method) {
+  selectedPayment = method;
+  
+  document.querySelectorAll('.payment-option').forEach(option => {
+    option.classList.remove('selected');
+  });
+  event.target.closest('.payment-option').classList.add('selected');
+}
+
+// Process payment - opens appropriate payment page
+function processPayment() {
+  const total = cart.reduce((sum, item) => {
+    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
+    return sum + (itemTotal * item.quantity);
+  }, 0);
+  
+  const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  
+  // Prepare query parameters
+  const params = new URLSearchParams({
+    orderId: 'ORD' + Date.now(),
+    total: total,
+    items: itemsCount,
+    delivery: 'pickup'
+  });
+  
+  let paymentFile = '';
+  let paymentTitle = '';
+  
+  // Determine which payment page to open
+  switch(selectedPayment) {
+    case 'stcpay':
+      paymentFile = 'stcpay.html';
+      paymentTitle = 'دفع عبر STC Pay';
+      break;
+    case 'mada':
+    case 'visa':
+    case 'applepay':
+      paymentFile = 'checkout.html';
+      paymentTitle = 'الدفع الإلكتروني';
+      break;
+    default:
+      paymentFile = 'checkout.html';
+      paymentTitle = 'الدفع الإلكتروني';
+  }
+  
+  // Set iframe source
+  const paymentUrl = `${paymentFile}?${params.toString()}`;
+  document.getElementById('paymentFrame').src = paymentUrl;
+  document.getElementById('paymentTitle').textContent = paymentTitle;
+  
+  // Show payment container
+  document.getElementById('paymentContainer').style.display = 'flex';
+  
+  // Close checkout modal
+  closeModal('checkoutModal');
+}
+
+// Close payment iframe
+function closePayment() {
+  document.getElementById('paymentContainer').style.display = 'none';
+  document.getElementById('paymentFrame').src = '';
+  
+  // Check if payment was successful (in a real app, you would check with your backend)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('payment') === 'success') {
+    // Clear cart after successful payment
+    cart = [];
+    updateCart();
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
+  }
+}
+
+// Listen for messages from payment iframe
+window.addEventListener('message', function(event) {
+  // Check if message is from payment page
+  if (event.data && event.data.type === 'paymentSuccess') {
+    // Clear cart and show success message
+    cart = [];
+    updateCart();
+    closePayment();
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
+  }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initializeMenu();
+  
+  // Close modals when clicking outside
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+  
+  // Close payment container when clicking outside
+  document.getElementById('paymentContainer').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('paymentContainer')) {
+      closePayment();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
