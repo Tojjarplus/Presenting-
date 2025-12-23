@@ -15,15 +15,14 @@ body {
   margin: 0;
   background: radial-gradient(circle at top, #122b3f, #060b12);
   color: #ffffff;
-  padding: 20px 10px;
   min-height: 100vh;
 }
 
 /* Main container */
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 20px;
 }
 
 /* Header */
@@ -34,7 +33,7 @@ body {
 }
 
 .header h1 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
   margin: 0 0 8px;
   background: linear-gradient(90deg, #2dd4bf, #3b82f6);
@@ -56,8 +55,8 @@ body {
 /* Menu Grid */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
   margin-bottom: 30px;
 }
 
@@ -69,7 +68,7 @@ body {
     rgba(255, 255, 255, 0.02)
   );
   border-radius: 20px;
-  padding: 18px;
+  padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
@@ -140,22 +139,30 @@ body {
   border-radius: 12px;
 }
 
-/* Order button */
-.order-btn {
+/* Add button */
+.add-btn {
   background: linear-gradient(90deg, #2dd4bf, #3b82f6);
   color: white;
   border: none;
-  padding: 8px 18px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.order-btn:hover {
-  transform: scale(1.05);
+.add-btn:hover {
+  transform: scale(1.1);
   box-shadow: 0 5px 15px rgba(45, 212, 191, 0.4);
+}
+
+.add-btn.added {
+  background: linear-gradient(90deg, #10b981, #059669);
 }
 
 /* Badge for popular items */
@@ -172,50 +179,441 @@ body {
   z-index: 2;
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
+/* Cart and Checkout */
+.cart-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 100;
+  display: none;
+}
+
+.cart-box {
+  background: rgba(18, 43, 63, 0.95);
+  border-radius: 16px;
+  padding: 15px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cart-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.cart-items {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-name {
+  flex-grow: 1;
+  margin: 0 15px;
+}
+
+.cart-item-price {
+  color: #2dd4bf;
+  font-weight: 600;
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 15px;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.checkout-btn, .clear-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn {
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  color: white;
+}
+
+.checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(45, 212, 191, 0.4);
+}
+
+.clear-btn {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.clear-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #122b3f, #0a1622);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
   color: #a0aec0;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Add-ons */
+.addons-container {
+  margin: 20px 0;
+}
+
+.addon-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.addon-item:last-child {
+  border-bottom: none;
+}
+
+.addon-info {
+  flex-grow: 1;
+}
+
+.addon-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.addon-price {
+  color: #2dd4bf;
   font-size: 14px;
 }
 
-/* Responsive adjustments */
+.addon-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+/* Location */
+.location-container {
+  margin: 20px 0;
+}
+
+.location-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.location-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location-btn:hover {
+  background: rgba(45, 212, 191, 0.1);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.location-btn.active {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin: 20px 0;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+  border-color: rgba(45, 212, 191, 0.5);
+  background: rgba(45, 212, 191, 0.05);
+}
+
+.payment-option.selected {
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.payment-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.payment-text {
+  flex-grow: 1;
+}
+
+.payment-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.payment-desc {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(45, 212, 191, 0.3);
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  color: #10b981;
+}
+
+/* Floating Cart Button */
+.floating-cart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-cart-btn:hover {
+  transform: scale(1.1);
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .menu-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
   }
   
   .header h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
   
-  .header p {
-    font-size: 14px;
+  .cart-container {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .floating-cart-btn {
+    right: 10px;
+    bottom: 10px;
   }
 }
 
 @media (max-width: 600px) {
   .menu-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  body {
-    padding: 15px 5px;
   }
   
   .container {
-    padding: 0 10px;
+    padding: 15px;
+  }
+  
+  .modal-content {
+    padding: 20px;
   }
 }
 
-/* Animation for card appearance */
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -245,165 +643,459 @@ body {
 
   <div class="header">
     <h1>🍗 المنيو الرقمي</h1>
-    <p>استمتع بتشكيلتنا المميزة من الوجبات اللذيذة. جميع الأصناف معروضة أمامك مباشرة</p>
+    <p>استمتع بتشكيلتنا المميزة من الوجبات اللذيذة. أضف إلى السلة واطلب الآن</p>
   </div>
 
   <div class="menu-grid">
-
-    <div class="card">
-      <div class="popular-badge">الأكثر طلباً</div>
-      <img class="card-img" src="images/item1.png" alt="وجبة شخصين">
-      <div class="card-content">
-        <h3>وجبة شخصين</h3>
-        <p>وجبة خاصة لشخصين مع تشكيلة متنوعة من المقبلات والمشروبات</p>
-        <div class="price">
-          <span>85 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item2.png" alt="وجبة جو دجاج">
-      <div class="card-content">
-        <h3>وجبة جو دجاج</h3>
-        <p>وجبة دجاج ومقرمشات لذيذة مع صلصة خاصة</p>
-        <div class="price">
-          <span>65 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item3.png" alt="وجبة بينوي">
-      <div class="card-content">
-        <h3>وجبة بينوي</h3>
-        <p>وجبة بينوي اللذيذة والمتنوعة مع تشكيلة من المقبلات</p>
-        <div class="price">
-          <span>75 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="popular-badge">عرض خاص</div>
-      <img class="card-img" src="images/item4.png" alt="وجبة الاحتفال">
-      <div class="card-content">
-        <h3>وجبة الاحتفال</h3>
-        <p>وجبة احتفالية كبيرة لـ 2–3 أشخاص مع تشكيلة مميزة</p>
-        <div class="price">
-          <span>120 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item5.png" alt="وجبة جو ديل رويال">
-      <div class="card-content">
-        <h3>وجبة جو ديل رويال</h3>
-        <p>وجبة جو رويال مزدوجة وفاخرة مع إضافات خاصة</p>
-        <div class="price">
-          <span>110 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item6.png" alt="الوجبة القيمة">
-      <div class="card-content">
-        <h3>الوجبة القيمة</h3>
-        <p>وجبة اقتصادية مع إضافات مميزة تناسب الجميع</p>
-        <div class="price">
-          <span>55 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item7.png" alt="رويال ميل">
-      <div class="card-content">
-        <h3>رويال ميل</h3>
-        <p>الوجبة الملكية مع جميع الإضافات والصلصات الخاصة</p>
-        <div class="price">
-          <span>95 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="popular-badge">وجبة جديدة</div>
-      <img class="card-img" src="images/item8.png" alt="وليمة أرز الدجاج الذهبي">
-      <div class="card-content">
-        <h3>وليمة أرز الدجاج الذهبي</h3>
-        <p>وليمة دجاج مع أرز ذهبي مميز وتوابل خاصة</p>
-        <div class="price">
-          <span>130 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item9.png" alt="وجبة السعادة">
-      <div class="card-content">
-        <h3>وجبة السعادة</h3>
-        <p>وجبة السعادة مع تشكيلة مميزة من الأطباق اللذيذة</p>
-        <div class="price">
-          <span>70 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img" src="images/item10.png" alt="باكيت تندر مع الجرافي">
-      <div class="card-content">
-        <h3>باكيت تندر مع الجرافي</h3>
-        <p>باكيت تندر دجاج مع صوص الجرافي اللذيذ</p>
-        <div class="price">
-          <span>80 ريال</span>
-          <button class="order-btn">اطلب الآن</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    <p>© 2023 المنيو الرقمي. جميع الأسعار تشمل الضريبة. | للطلب: 9200XXXXX</p>
+    <!-- Items will be generated by JavaScript -->
   </div>
 
 </div>
 
-<script>
-// Add interactivity to order buttons
-document.querySelectorAll('.order-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    const card = this.closest('.card');
-    const itemName = card.querySelector('h3').textContent;
-    const itemPrice = card.querySelector('.price span').textContent;
-    
-    // Animation feedback
-    this.textContent = 'تم الإضافة ✓';
-    this.style.background = 'linear-gradient(90deg, #10b981, #059669)';
-    
-    // Reset button after 2 seconds
-    setTimeout(() => {
-      this.textContent = 'اطلب الآن';
-      this.style.background = 'linear-gradient(90deg, #2dd4bf, #3b82f6)';
-    }, 2000);
-    
-    // Show confirmation message (in a real app, this would add to cart)
-    console.log(`تم طلب: ${itemName} - ${itemPrice}`);
-  });
-});
-</script>
+<!-- Floating Cart Button -->
+<button class="floating-cart-btn" onclick="toggleCart()">
+  🛒
+  <span class="cart-count">0</span>
+</button>
 
-</body>
-</html>
+<!-- Cart Container -->
+<div class="cart-container" id="cartContainer">
+  <div class="cart-box">
+    <div class="cart-header">
+      <h3>سلة الطلبات</h3>
+      <button class="close-btn" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be added here -->
+      <p style="text-align: center; color: #a0aec0; padding: 20px;">السلة فارغة</p>
+    </div>
+    <div class="cart-total">
+      <span>المجموع:</span>
+      <span id="cartTotal">0 ريال</span>
+    </div>
+    <div class="cart-actions">
+      <button class="clear-btn" onclick="clearCart()">تفريغ السلة</button>
+      <button class="checkout-btn" onclick="openCheckout()">إتمام الطلب</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add-ons Modal -->
+<div class="modal" id="addonsModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="addonsTitle">إضافات الوجبة</h3>
+      <button class="close-btn" onclick="closeModal('addonsModal')">×</button>
+    </div>
+    <div class="addons-container" id="addonsList">
+      <!-- Add-ons will be added here -->
+    </div>
+    <button class="submit-btn" onclick="addToCartWithAddons()">إضافة إلى السلة</button>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>إتمام الطلب</h3>
+      <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
+    </div>
+    
+    <div id="checkoutForm">
+      <div class="form-group">
+        <label for="customerName">الاسم الكامل</label>
+        <input type="text" id="customerName" placeholder="أدخل اسمك الكامل" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="customerPhone">رقم الهاتف</label>
+        <input type="tel" id="customerPhone" placeholder="05XXXXXXXX" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="customerAddress">العنوان</label>
+        <textarea id="customerAddress" placeholder="أدخل العنوان التفصيلي"></textarea>
+      </div>
+      
+      <div class="location-container">
+        <label>الموقع</label>
+        <div class="location-buttons">
+          <button class="location-btn active" onclick="selectLocation('manual')">إدخال يدوي</button>
+          <button class="location-btn" onclick="getUserLocation()">استخدام موقعي الحالي</button>
+        </div>
+        <p id="locationStatus" style="font-size: 14px; color: #a0aec0; margin-top: 10px;"></p>
+      </div>
+      
+      <div class="payment-methods">
+        <h4>طريقة الدفع</h4>
+        
+        <div class="payment-option selected" onclick="selectPayment('stcpay')">
+          <div class="payment-icon">📱</div>
+          <div class="payment-text">
+            <div class="payment-name">STC Pay</div>
+            <div class="payment-desc">الدفع عبر تطبيق STC Pay</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('mada')">
+          <div class="payment-icon">💳</div>
+          <div class="payment-text">
+            <div class="payment-name">مدى</div>
+            <div class="payment-desc">بطاقة مدى البنكية</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('visa')">
+          <div class="payment-icon">💳</div>
+          <div class="payment-text">
+            <div class="payment-name">فيزا / ماستركارد</div>
+            <div class="payment-desc">البطاقات الإئتمانية الدولية</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('applepay')">
+          <div class="payment-icon">🍎</div>
+          <div class="payment-text">
+            <div class="payment-name">Apple Pay</div>
+            <div class="payment-desc">الدفع عبر Apple Pay</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('cash')">
+          <div class="payment-icon">💵</div>
+          <div class="payment-text">
+            <div class="payment-name">الدفع عند الاستلام</div>
+            <div class="payment-desc">الدفع نقداً عند التوصيل</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="orderNotes">ملاحظات إضافية (اختياري)</label>
+        <textarea id="orderNotes" placeholder="ملاحظات خاصة للطلب"></textarea>
+      </div>
+      
+      <div class="cart-total" style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+        <span>المجموع النهائي:</span>
+        <span id="checkoutTotal">0 ريال</span>
+      </div>
+      
+      <button class="submit-btn" onclick="submitOrder()">تأكيد الطلب</button>
+    </div>
+    
+    <div id="successMessage" class="success-message" style="display: none;">
+      <div class="success-icon">✓</div>
+      <h3>تم تأكيد طلبك بنجاح!</h3>
+      <p>رقم طلبك: <strong id="orderNumber">#12345</strong></p>
+      <p>سيتم التواصل معك قريباً لتأكيد التفاصيل.</p>
+      <button class="submit-btn" onclick="closeModal('checkoutModal')" style="margin-top: 30px;">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Menu data
+const menuItems = [
+  {
+    id: 1,
+    name: "وجبة شخصين",
+    description: "وجبة خاصة لشخصين مع تشكيلة متنوعة من المقبلات والمشروبات",
+    price: 85,
+    image: "images/item1.png",
+    popular: true
+  },
+  {
+    id: 2,
+    name: "وجبة جو دجاج",
+    description: "وجبة دجاج ومقرمشات لذيذة مع صلصة خاصة",
+    price: 65,
+    image: "images/item2.png",
+    popular: false
+  },
+  {
+    id: 3,
+    name: "وجبة بينوي",
+    description: "وجبة بينوي اللذيذة والمتنوعة مع تشكيلة من المقبلات",
+    price: 75,
+    image: "images/item3.png",
+    popular: false
+  },
+  {
+    id: 4,
+    name: "وجبة الاحتفال",
+    description: "وجبة احتفالية كبيرة لـ 2–3 أشخاص مع تشكيلة مميزة",
+    price: 120,
+    image: "images/item4.png",
+    popular: true
+  },
+  {
+    id: 5,
+    name: "وجبة جو ديل رويال",
+    description: "وجبة جو رويال مزدوجة وفاخرة مع إضافات خاصة",
+    price: 110,
+    image: "images/item5.png",
+    popular: false
+  },
+  {
+    id: 6,
+    name: "الوجبة القيمة",
+    description: "وجبة اقتصادية مع إضافات مميزة تناسب الجميع",
+    price: 55,
+    image: "images/item6.png",
+    popular: false
+  },
+  {
+    id: 7,
+    name: "رويال ميل",
+    description: "الوجبة الملكية مع جميع الإضافات والصلصات الخاصة",
+    price: 95,
+    image: "images/item7.png",
+    popular: false
+  },
+  {
+    id: 8,
+    name: "وليمة أرز الدجاج الذهبي",
+    description: "وليمة دجاج مع أرز ذهبي مميز وتوابل خاصة",
+    price: 130,
+    image: "images/item8.png",
+    popular: true
+  },
+  {
+    id: 9,
+    name: "وجبة السعادة",
+    description: "وجبة السعادة مع تشكيلة مميزة من الأطباق اللذيذة",
+    price: 70,
+    image: "images/item9.png",
+    popular: false
+  },
+  {
+    id: 10,
+    name: "باكيت تندر مع الجرافي",
+    description: "باكيت تندر دجاج مع صوص الجرافي اللذيذ",
+    price: 80,
+    image: "images/item10.png",
+    popular: false
+  }
+];
+
+// Add-ons data
+const addons = [
+  { id: 1, name: "صلصة جبن إضافية", price: 5 },
+  { id: 2, name: "صلصة باربيكيو", price: 4 },
+  { id: 3, name: "صوص ثوم", price: 3 },
+  { id: 4, name: "مشروب كبير", price: 8 },
+  { id: 5, name: "بطاطس إضافية", price: 6 },
+  { id: 6, name: "سلطة جانبية", price: 7 },
+  { id: 7, name: "حلوى شوكولاتة", price: 10 },
+  { id: 8, name: "قهوة عربية", price: 12 }
+];
+
+// Shopping cart
+let cart = [];
+let currentItemId = null;
+let selectedPayment = 'stcpay';
+
+// Initialize menu
+function initializeMenu() {
+  const menuGrid = document.querySelector('.menu-grid');
+  
+  menuItems.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      ${item.popular ? '<div class="popular-badge">الأكثر طلباً</div>' : ''}
+      <img class="card-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x180/1e293b/2dd4bf?text=${encodeURIComponent(item.name)}'">
+      <div class="card-content">
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <div class="price">
+          <span>${item.price} ريال</span>
+          <button class="add-btn" onclick="openAddonsModal(${item.id})">+</button>
+        </div>
+      </div>
+    `;
+    menuGrid.appendChild(card);
+  });
+}
+
+// Open add-ons modal
+function openAddonsModal(itemId) {
+  currentItemId = itemId;
+  const item = menuItems.find(i => i.id === itemId);
+  
+  document.getElementById('addonsTitle').textContent = `إضافات ${item.name}`;
+  
+  const addonsList = document.getElementById('addonsList');
+  addonsList.innerHTML = '';
+  
+  // Randomly select 3-5 add-ons for this item
+  const randomAddons = [...addons]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, Math.floor(Math.random() * 3) + 3);
+  
+  randomAddons.forEach(addon => {
+    const addonItem = document.createElement('div');
+    addonItem.className = 'addon-item';
+    addonItem.innerHTML = `
+      <div class="addon-info">
+        <div class="addon-name">${addon.name}</div>
+        <div class="addon-price">${addon.price} ريال</div>
+      </div>
+      <select class="addon-select" id="addon-${addon.id}">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    `;
+    addonsList.appendChild(addonItem);
+  });
+  
+  document.getElementById('addonsModal').style.display = 'flex';
+}
+
+// Add item to cart with add-ons
+function addToCartWithAddons() {
+  const item = menuItems.find(i => i.id === currentItemId);
+  const selectedAddons = [];
+  
+  // Get selected add-ons
+  addons.forEach(addon => {
+    const select = document.getElementById(`addon-${addon.id}`);
+    if (select) {
+      const qty = parseInt(select.value);
+      if (qty > 0) {
+        selectedAddons.push({
+          id: addon.id,
+          name: addon.name,
+          price: addon.price,
+          quantity: qty
+        });
+      }
+    }
+  });
+  
+  // Add to cart
+  cart.push({
+    id: Date.now(),
+    itemId: item.id,
+    name: item.name,
+    basePrice: item.price,
+    addons: selectedAddons,
+    quantity: 1
+  });
+  
+  updateCart();
+  closeModal('addonsModal');
+  
+  // Show feedback
+  const addBtn = document.querySelector(`[onclick="openAddonsModal(${item.id})"]`);
+  addBtn.textContent = '✓';
+  addBtn.classList.add('added');
+  setTimeout(() => {
+    addBtn.textContent = '+';
+    addBtn.classList.remove('added');
+  }, 2000);
+}
+
+// Update cart display
+function updateCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartCount = document.querySelector('.cart-count');
+  const cartTotal = document.getElementById('cartTotal');
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p style="text-align: center; color: #a0aec0; padding: 20px;">السلة فارغة</p>';
+    cartCount.textContent = '0';
+    cartTotal.textContent = '0 ريال';
+    return;
+  }
+  
+  // Calculate total
+  let total = 0;
+  cartItems.innerHTML = '';
+  
+  cart.forEach((item, index) => {
+    const itemTotal = item.basePrice + item.addons.reduce((sum, addon) => sum + (addon.price * addon.quantity), 0);
+    total += itemTotal * item.quantity;
+    
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <div class="cart-item-name">
+        <strong>${item.name}</strong>
+        ${item.addons.length > 0 ? 
+          `<div style="font-size: 12px; color: #a0aec0; margin-top: 5px;">
+            ${item.addons.map(a => `${a.name} (×${a.quantity})`).join('، ')}
+          </div>` : ''
+        }
+      </div>
+      <div class="cart-item-price">${itemTotal} ريال</div>
+      <div class="cart-item-qty">
+        <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+        <span>${item.quantity}</span>
+        <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+        <button class="qty-btn" onclick="removeFromCart(${index})" style="background: rgba(239,68,68,0.2); color: #ef4444; margin-right: 10px;">×</button>
+      </div>
+    `;
+    cartItems.appendChild(cartItem);
+  });
+  
+  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartTotal.textContent = `${total} ريال`;
+}
+
+// Update item quantity
+function updateQuantity(index, newQuantity) {
+  if (newQuantity < 1) {
+    removeFromCart(index);
+    return;
+  }
+  
+  cart[index].quantity = newQuantity;
+  updateCart();
+}
+
+// Remove item from cart
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+// Clear cart
+function clearCart() {
+  if (cart.length === 0) return;
+  
+  if (confirm('هل تريد تفريغ السلة؟')) {
+    cart = [];
+    updateCart();
+    toggleCart();
+  }
+}
+
+// Toggle cart visibility
+function toggleCart() {
+  const cartContainer = document.getElementById('cartContainer');
+  cartContainer.style.display = cartContainer.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close modal
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+// Open checkout
+function openCheckout() {
+  if (cart.length === 0) {
+    alert('السلة فارغة. أضف عناصر إلى السلة أولاً.');
+    return;
+  }
+  
+  // Calculate total
+  const total = cart.reduce((sum, item) => {
+    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
+    return sum + (itemTotal * item.quantity);
+  }, 0);
+  
+  document.getElementById('checkoutTotal').textContent =
