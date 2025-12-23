@@ -3,293 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المنيو الرقمي - جو كرسبي</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Digital Menu</title>
+
 <style>
-/* ... (الأنماط تبقى كما هي) ... */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #122b3f, #060b12);
+  color: #ffffff;
+}
+
+/* Phone preview container */
+.phone {
+  max-width: 420px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 18px 14px 30px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 0.4px;
+}
+
+/* Horizontal menu */
+.menu {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.menu::-webkit-scrollbar {
+  height: 6px;
+}
+.menu::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* Card */
+.card {
+  min-width: 270px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.03)
+  );
+  border-radius: 20px;
+  padding: 14px;
+  scroll-snap-align: start;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.45);
+}
+
+/* Image */
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.35);
+  margin-bottom: 12px;
+}
+
+/* Text */
+.card h4 {
+  margin: 4px 0 6px;
+  font-size: 15px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 13px;
+  color: #cfd8e3;
+  line-height: 1.4;
+}
+
+/* Price */
+.price {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #2dd4bf;
+}
 </style>
 </head>
+
 <body>
 
-<div class="restaurant-header">
-  <div class="restaurant-logo">
-    <img src="images/profile.png" alt="جو كرسبي">
-  </div>
-  <h1>جو كرسبي</h1>
-  <p>أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية</p>
-  <p style="margin-top: 10px; color: #00a884; font-size: 14px;"><i class="fas fa-star"></i> 4.8 ★ (950 تقييم)</p>
-</div>
+<div class="phone">
 
-<div class="menu-section">
-  <h2><i class="fas fa-utensils"></i> قائمة الطعام</h2>
-  
-  <div class="menu-items" id="menuItems">
-    <!-- Menu items will be loaded by JavaScript -->
+  <div class="header">
+    🍗 المنيو الرقمي
   </div>
-</div>
 
-<div class="cart-summary">
-  <h3><i class="fas fa-shopping-bag"></i> طلبك</h3>
-  <div class="cart-items" id="cartItems">
-    <div class="empty-cart" id="emptyCart">
-      <i class="fas fa-shopping-basket"></i>
-      <p>لم تقم بإضافة أي منتجات بعد</p>
+  <div class="menu">
+
+    <div class="card">
+      <img src="images/item1.png">
+      <h4>وجبة شخصين</h4>
+      <p>وجبة خاصة لشخصين</p>
+      <div class="price">85 ريال</div>
     </div>
+
+    <div class="card">
+      <img src="images/item2.png">
+      <h4>وجبة جو دجاج</h4>
+      <p>وجبة دجاج ومقرمش</p>
+      <div class="price">65 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item3.png">
+      <h4>وجبة بينوي</h4>
+      <p>وجبة بينوي اللذيذة والمتنوعة</p>
+      <div class="price">75 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item4.png">
+      <h4>وجبة الاحتفال</h4>
+      <p>وجبة احتفالية كبيرة لـ 2–3 أشخاص</p>
+      <div class="price">120 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item5.png">
+      <h4>وجبة جو ديل رويال</h4>
+      <p>وجبة جو رويال مزدوجة وفاخرة</p>
+      <div class="price">110 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item6.png">
+      <h4>الوجبة القيمة</h4>
+      <p>وجبة اقتصادية مع إضافات مميزة</p>
+      <div class="price">55 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item7.png">
+      <h4>رويال ميل</h4>
+      <p>الوجبة الملكية مع جميع الإضافات</p>
+      <div class="price">95 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item8.png">
+      <h4>وليمة أرز الدجاج الذهبي</h4>
+      <p>وليمة دجاج مع أرز ذهبي مميز</p>
+      <div class="price">130 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item9.png">
+      <h4>وجبة السعادة</h4>
+      <p>وجبة السعادة مع تشكيلة مميزة</p>
+      <div class="price">70 ريال</div>
+    </div>
+
+    <div class="card">
+      <img src="images/item10.png">
+      <h4>باكيت تندر مع الجرافي</h4>
+      <p>باكيت تندر دجاج مع صوص الجرافي</p>
+      <div class="price">80 ريال</div>
+    </div>
+
   </div>
-  <div class="cart-total" id="cartTotal" style="display: none;">
-    <div class="cart-total-label">الإجمالي</div>
-    <div class="cart-total-amount" id="totalAmount">0 ريال</div>
-  </div>
+
 </div>
 
-<div class="action-buttons">
-  <a href="index.html" class="action-btn back-btn">
-    <i class="fas fa-arrow-right"></i> العودة للواتساب
-  </a>
-  <button class="action-btn complete-order-btn disabled" id="completeOrderBtn">
-    <i class="fas fa-check-circle"></i> إكمال الطلب
-  </button>
-</div>
-
-<script>
-// Menu items (same as in index.html)
-const menuItems = [
-  {
-    id: 1,
-    name: "وجبة لشخصين",
-    description: "وجبة خاصة لشخصين مع مشروبات",
-    price: 85,
-    image: "images/item1.png"
-  },
-  {
-    id: 2,
-    name: "وجبة جو دجاج",
-    description: "وجبة دجاج جو المقرمشة",
-    price: 65,
-    image: "images/item2.png"
-  },
-  {
-    id: 3,
-    name: "وجبة بينوي",
-    description: "وجبة بينوي اللذيذة مع أصناف متنوعة",
-    price: 75,
-    image: "images/item3.png"
-  },
-  {
-    id: 4,
-    name: "وجبة الاحتفال",
-    description: "وجبة احتفالية كبيرة مع جميع الأصناف",
-    price: 120,
-    image: "images/item4.png"
-  },
-  {
-    id: 5,
-    name: "وجبة جو دبل رويال",
-    description: "وجبة جو رويال مزدوجة وفاخرة",
-    price: 110,
-    image: "images/item5.png"
-  },
-  {
-    id: 6,
-    name: "الوجبة القيمة",
-    description: "وجبة اقتصادية مع قيمة ممتازة",
-    price: 55,
-    image: "images/item6.png"
-  },
-  {
-    id: 7,
-    name: "رويال ميل",
-    description: "الوجبة الملكية مع جميع الإضافات",
-    price: 95,
-    image: "images/item7.png"
-  },
-  {
-    id: 8,
-    name: "وليمة أرز الدجاج الذهبي",
-    description: "وليمة دجاج مع أرز ذهبي لذيذ",
-    price: 130,
-    image: "images/item8.png"
-  },
-  {
-    id: 9,
-    name: "وجبة السعادة",
-    description: "وجبة تجلب السعادة مع أصناف مميزة",
-    price: 70,
-    image: "images/item9.png"
-  },
-  {
-    id: 10,
-    name: "باكيت تندر مع الجرافي",
-    description: "باكيت تندر دجاج مع صوص الجرافي الخاص",
-    price: 80,
-    image: "images/item10.png"
-  }
-];
-
-// Cart state
-let cart = {};
-
-// Initialize the menu
-function initMenu() {
-  const menuItemsContainer = document.getElementById('menuItems');
-  
-  menuItems.forEach(item => {
-    const itemElement = document.createElement('div');
-    itemElement.className = 'menu-item-card';
-    itemElement.innerHTML = `
-      <div class="menu-item-image">
-        <img src="${item.image}" alt="${item.name}" onerror="this.src='images/item1.png'">
-      </div>
-      <div class="menu-item-content">
-        <div class="menu-item-name">${item.name}</div>
-        <div class="menu-item-desc">${item.description}</div>
-        <div class="menu-item-footer">
-          <div class="menu-item-price">${item.price} ريال</div>
-          <div class="quantity-controls">
-            <button class="quantity-btn minus-btn" onclick="updateQuantity(${item.id}, -1)">
-              <i class="fas fa-minus"></i>
-            </button>
-            <div class="quantity-display" id="qty-${item.id}">0</div>
-            <button class="quantity-btn plus-btn" onclick="updateQuantity(${item.id}, 1)">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    
-    menuItemsContainer.appendChild(itemElement);
-  });
-  
-  updateCartDisplay();
-}
-
-// Update item quantity
-function updateQuantity(itemId, change) {
-  if (!cart[itemId]) {
-    cart[itemId] = 0;
-  }
-  
-  const newQuantity = cart[itemId] + change;
-  
-  if (newQuantity < 0) return;
-  
-  cart[itemId] = newQuantity;
-  
-  // Update quantity display
-  const qtyDisplay = document.getElementById(`qty-${itemId}`);
-  if (qtyDisplay) {
-    qtyDisplay.textContent = newQuantity;
-    
-    // Update button states
-    const card = qtyDisplay.closest('.menu-item-card');
-    const minusBtn = card.querySelector('.minus-btn');
-    if (minusBtn) {
-      minusBtn.classList.toggle('disabled', newQuantity === 0);
-    }
-  }
-  
-  updateCartDisplay();
-}
-
-// Update cart display
-function updateCartDisplay() {
-  const cartItemsContainer = document.getElementById('cartItems');
-  const emptyCartElement = document.getElementById('emptyCart');
-  const cartTotalElement = document.getElementById('cartTotal');
-  const totalAmountElement = document.getElementById('totalAmount');
-  const completeOrderBtn = document.getElementById('completeOrderBtn');
-  
-  // Calculate cart items and total
-  let itemsHTML = '';
-  let total = 0;
-  let itemCount = 0;
-  
-  Object.keys(cart).forEach(itemId => {
-    const quantity = cart[itemId];
-    if (quantity > 0) {
-      const item = menuItems.find(i => i.id == itemId);
-      if (item) {
-        const itemTotal = item.price * quantity;
-        total += itemTotal;
-        itemCount += quantity;
-        
-        itemsHTML += `
-          <div class="cart-item">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-quantity">${quantity} × ${item.price} ريال</div>
-            <div class="cart-item-price">${itemTotal} ريال</div>
-          </div>
-        `;
-      }
-    }
-  });
-  
-  // Show/hide empty cart message
-  if (itemCount === 0) {
-    emptyCartElement.style.display = 'block';
-    cartTotalElement.style.display = 'none';
-    completeOrderBtn.classList.add('disabled');
-    completeOrderBtn.disabled = true;
-  } else {
-    emptyCartElement.style.display = 'none';
-    cartTotalElement.style.display = 'flex';
-    totalAmountElement.textContent = `${total} ريال`;
-    completeOrderBtn.classList.remove('disabled');
-    completeOrderBtn.disabled = false;
-  }
-  
-  // Update cart items
-  if (itemsHTML) {
-    const existingItems = cartItemsContainer.querySelectorAll('.cart-item');
-    existingItems.forEach(item => item.remove());
-    cartItemsContainer.insertAdjacentHTML('afterbegin', itemsHTML);
-  }
-}
-
-// Complete order and redirect to WhatsApp flow
-function completeOrder() {
-  if (Object.keys(cart).length === 0) return;
-  
-  // Prepare order data
-  const orderData = {
-    source: 'digitalmenu',
-    items: cart, // استخدم الكارت مباشرة
-    total: 0,
-    itemCount: 0
-  };
-  
-  // Calculate total and item count
-  let itemsList = [];
-  Object.keys(cart).forEach(itemId => {
-    const quantity = cart[itemId];
-    if (quantity > 0) {
-      const item = menuItems.find(i => i.id == itemId);
-      if (item) {
-        orderData.total += item.price * quantity;
-        orderData.itemCount += quantity;
-        itemsList.push(`${itemId}:${quantity}:${item.price}:${item.name}`);
-      }
-    }
-  });
-  
-  if (orderData.itemCount === 0) return;
-  
-  // إنشاء رابط مع البيانات
-  const itemsParam = itemsList.join('|'); // تنسيق: 1:2:85:وجبة لشخصين|2:1:65:وجبة جو دجاج
-  const url = `index.html?digitalmenu=1&items=${encodeURIComponent(itemsParam)}&total=${orderData.total}&count=${orderData.itemCount}`;
-  
-  // الانتقال إلى صفحة الواتساب
-  window.location.href = url;
-}
-
-// Initialize
-window.onload = function() {
-  initMenu();
-  
-  // Add event listener to complete order button
-  document.getElementById('completeOrderBtn').addEventListener('click', completeOrder);
-};
-</script>
 </body>
 </html>
