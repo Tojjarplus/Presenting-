@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Digital Menu</title>
 
 <style>
@@ -337,7 +337,7 @@ body {
   background: rgba(239, 68, 68, 0.3);
 }
 
-/* Add-ons Modal */
+/* Modals */
 .modal {
   display: none;
   position: fixed;
@@ -444,6 +444,125 @@ body {
   flex-shrink: 0;
 }
 
+/* Location */
+.location-container {
+  margin: 15px 0;
+}
+
+.location-button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(45, 212, 191, 0.3);
+  background: rgba(45, 212, 191, 0.1);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: clamp(14px, 3.5vw, 16px);
+}
+
+.location-button:hover {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+}
+
+.location-button:active {
+  transform: scale(0.98);
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin: 15px 0;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 10px;
+}
+
+.payment-option:hover {
+  border-color: rgba(45, 212, 191, 0.5);
+  background: rgba(45, 212, 191, 0.05);
+}
+
+.payment-option.selected {
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.1);
+}
+
+.payment-icon {
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.payment-text {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.payment-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-size: clamp(14px, 3.5vw, 16px);
+}
+
+.payment-desc {
+  font-size: clamp(11px, 3vw, 12px);
+  color: #a0aec0;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: clamp(16px, 4vw, 18px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  min-height: 48px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.success-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: #10b981;
+}
+
 /* Floating Cart Button */
 .floating-cart-btn {
   position: fixed;
@@ -485,6 +604,264 @@ body {
   justify-content: center;
 }
 
+/* Payment iframe container */
+.payment-iframe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+}
+
+.payment-header {
+  background: #122b3f;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.payment-header h3 {
+  margin: 0;
+  font-size: clamp(16px, 4vw, 18px);
+}
+
+.close-payment-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.close-payment-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.payment-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+/* Responsive Media Queries */
+
+/* الهواتف الصغيرة جداً (أقل من 400px) */
+@media (max-width: 400px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card {
+    padding: 14px;
+  }
+  
+  .card-img {
+    height: 140px;
+  }
+  
+  .floating-cart-btn {
+    width: 52px;
+    height: 52px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .cart-container {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .cart-box {
+    padding: 12px;
+  }
+  
+  .cart-item {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .cart-item-name {
+    flex: 0 0 100%;
+    margin: 0 0 5px 0;
+  }
+  
+  .modal-content {
+    padding: 15px;
+  }
+}
+
+/* الهواتف الأفقية والأجهزة اللوحية الصغيرة (401px - 600px) */
+@media (min-width: 401px) and (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .card-img {
+    height: 150px;
+  }
+}
+
+/* الأجهزة اللوحية (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .card-img {
+    height: 170px;
+  }
+  
+  .floating-cart-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+}
+
+/* الأجهزة اللوحية الأفقية (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  
+  .container {
+    padding: 25px;
+  }
+  
+  .modal-content {
+    max-width: 600px;
+  }
+}
+
+/* شاشات الكمبيوتر الكبيرة (أكثر من 1024px) */
+@media (min-width: 1025px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .container {
+    padding: 30px;
+  }
+}
+
+/* تحسينات للأجهزة التي تدعم hover */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .add-btn:hover, .checkout-btn:hover, .submit-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .location-button:hover, .payment-option:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* تحسينات لشاشات اللمس */
+@media (hover: none) and (pointer: coarse) {
+  .card:active {
+    transform: translateY(-3px);
+  }
+  
+  .add-btn:active, .checkout-btn:active, .submit-btn:active {
+    transform: scale(1.05);
+  }
+  
+  .location-button:active, .payment-option:active {
+    transform: translateY(-1px);
+  }
+  
+  /* زيادة حجم عناصر اللمس على الأجهزة الصغيرة */
+  @media (max-width: 600px) {
+    .add-btn, .qty-btn, .close-btn, .close-payment-btn {
+      min-width: 44px;
+      min-height: 44px;
+    }
+    
+    .checkout-btn, .clear-btn, .submit-btn, .location-button {
+      min-height: 48px;
+    }
+    
+    .payment-option {
+      padding: 14px;
+    }
+  }
+}
+
+/* دعم الشاشات ذات الارتفاع المنخفض */
+@media (max-height: 600px) {
+  .cart-items {
+    max-height: 40vh;
+  }
+  
+  .modal-content {
+    max-height: 90vh;
+  }
+}
+
+/* تحسينات للأوضاع المظلمة */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.03)
+    );
+  }
+}
+
+/* تحسينات للطباعة */
+@media print {
+  .floating-cart-btn,
+  .cart-container,
+  .modal,
+  .payment-iframe-container {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    background: white;
+    color: black;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -507,75 +884,38 @@ body {
 .card:nth-child(9) { animation-delay: 0.9s; }
 .card:nth-child(10) { animation-delay: 1s; }
 
-/* Responsive Media Queries */
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-  
-  .phone-container {
-    height: 700px;
-    border-radius: 40px;
-    padding: 12px;
-  }
-  
-  .screen {
-    border-radius: 30px;
-  }
-  
-  .whatsapp-header {
-    padding: 10px 12px;
-  }
-  
-  .restaurant-avatar {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .restaurant-details h2 {
-    font-size: 15px;
-  }
-  
-  .restaurant-details p {
-    font-size: 11px;
-  }
-  
-  .header-icons {
-    gap: 12px;
-    font-size: 16px;
-  }
-  
-  .chat-area {
-    padding: 12px 8px;
-  }
-  
-  .menu-item {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  
-  .menu-item-image {
-    width: 55px;
-    height: 55px;
-  }
-  
-  .menu-item-name {
-    font-size: 13px;
-  }
-  
-  .menu-item-desc {
-    font-size: 11px;
-  }
-  
-  .menu-item-price {
-    font-size: 14px;
-  }
-  
-  .menu-item-add {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
+/* تحسينات للنص العربي */
+body {
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* تحسينات للتمرير السلس */
+.cart-items, .modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(45, 212, 191, 0.5) rgba(255, 255, 255, 0.1);
+}
+
+.cart-items::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.cart-items::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.5);
+  border-radius: 3px;
+}
+
+.cart-items::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 212, 191, 0.7);
 }
 </style>
 </head>
@@ -618,7 +958,7 @@ body {
     </div>
     <div class="cart-actions">
       <button class="clear-btn" onclick="clearCart()">تفريغ السلة</button>
-      <button class="checkout-btn" onclick="redirectToWhatsApp()">إتمام الطلب</button>
+      <button class="checkout-btn" onclick="openCheckout()">إتمام الطلب</button>
     </div>
   </div>
 </div>
@@ -635,6 +975,80 @@ body {
     </div>
     <button class="submit-btn" onclick="addToCartWithAddons()">إضافة إلى السلة</button>
   </div>
+</div>
+
+<!-- Checkout Modal (Simplified) -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>إتمام الطلب</h3>
+      <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
+    </div>
+    
+    <div id="checkoutForm">
+      <div class="location-container">
+        <label>الموقع</label>
+        <p style="font-size: 14px; color: #a0aec0; margin-bottom: 10px;">سيتم استخدام موقعك الحالي لتحديد أقرب فرع للتوصيل</p>
+        <button class="location-button" onclick="getUserLocation()">
+          <span>📍</span>
+          استخدام موقعي الحالي
+        </button>
+        <p id="locationStatus" style="font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px;"></p>
+      </div>
+      
+      <div class="payment-methods">
+        <h4>طريقة الدفع</h4>
+        
+        <div class="payment-option selected" onclick="selectPayment('stcpay')">
+          <div class="payment-icon">📱</div>
+          <div class="payment-text">
+            <div class="payment-name">STC Pay</div>
+            <div class="payment-desc">الدفع عبر تطبيق STC Pay</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('mada')">
+          <div class="payment-icon">💳</div>
+          <div class="payment-text">
+            <div class="payment-name">مدى</div>
+            <div class="payment-desc">بطاقة مدى البنكية</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('visa')">
+          <div class="payment-icon">💳</div>
+          <div class="payment-text">
+            <div class="payment-name">فيزا / ماستركارد</div>
+            <div class="payment-desc">البطاقات الإئتمانية الدولية</div>
+          </div>
+        </div>
+        
+        <div class="payment-option" onclick="selectPayment('applepay')">
+          <div class="payment-icon">🍎</div>
+          <div class="payment-text">
+            <div class="payment-name">Apple Pay</div>
+            <div class="payment-desc">الدفع عبر Apple Pay</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cart-total" style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+        <span>المجموع النهائي:</span>
+        <span id="checkoutTotal">0 ريال</span>
+      </div>
+      
+      <button class="submit-btn" onclick="processPayment()">متابعة للدفع</button>
+    </div>
+  </div>
+</div>
+
+<!-- Payment iframe container -->
+<div class="payment-iframe-container" id="paymentContainer">
+  <div class="payment-header">
+    <h3 id="paymentTitle">دفع عبر STC Pay</h3>
+    <button class="close-payment-btn" onclick="closePayment()">×</button>
+  </div>
+  <iframe class="payment-iframe" id="paymentFrame" allow="payment"></iframe>
 </div>
 
 <script>
@@ -737,6 +1151,8 @@ const addons = [
 // Shopping cart
 let cart = [];
 let currentItemId = null;
+let selectedPayment = 'stcpay';
+let userLocation = null;
 
 // Initialize menu
 function initializeMenu() {
@@ -929,54 +1345,157 @@ function closeModal(modalId) {
   document.getElementById(modalId).style.display = 'none';
 }
 
-// NEW FUNCTION: Redirect to WhatsApp with order data
-function redirectToWhatsApp() {
+// Open checkout
+function openCheckout() {
   if (cart.length === 0) {
     alert('السلة فارغة. أضف عناصر إلى السلة أولاً.');
     return;
   }
   
-  // Calculate order total
-  let total = 0;
-  const items = [];
+  // Calculate total
+  const total = cart.reduce((sum, item) => {
+    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
+    return sum + (itemTotal * item.quantity);
+  }, 0);
   
-  cart.forEach(item => {
-    const itemTotal = item.basePrice + item.addons.reduce((sum, addon) => sum + (addon.price * addon.quantity), 0);
-    total += itemTotal * item.quantity;
-    
-    // Create item data for WhatsApp
-    items.push({
-      id: item.itemId,
-      name: item.name,
-      price: item.basePrice,
-      quantity: item.quantity,
-      addons: item.addons
-    });
+  document.getElementById('checkoutTotal').textContent = `${total} ريال`;
+  document.getElementById('checkoutForm').style.display = 'block';
+  
+  // Reset location status
+  document.getElementById('locationStatus').textContent = 'انقر على الزر أعلاه لتحديد موقعك';
+  document.getElementById('locationStatus').style.color = '#a0aec0';
+  userLocation = null;
+  
+  document.getElementById('checkoutModal').style.display = 'flex';
+  toggleCart();
+}
+
+// Get user location
+function getUserLocation() {
+  const locationStatus = document.getElementById('locationStatus');
+  locationStatus.textContent = 'جاري الحصول على الموقع...';
+  locationStatus.style.color = '#f59e0b';
+  
+  if (!navigator.geolocation) {
+    locationStatus.textContent = 'المتصفح لا يدعم تحديد الموقع. سيتم التواصل معك لتأكيد العنوان.';
+    locationStatus.style.color = '#ef4444';
+    return;
+  }
+  
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      userLocation = { lat, lng };
+      
+      // Format location for display
+      locationStatus.textContent = `✓ تم تحديد موقعك بنجاح`;
+      locationStatus.style.color = '#10b981';
+    },
+    (error) => {
+      let errorMessage = 'تعذر الحصول على الموقع. ';
+      errorMessage += 'سيتم التواصل معك لتأكيد العنوان.';
+      
+      locationStatus.textContent = errorMessage;
+      locationStatus.style.color = '#ef4444';
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    }
+  );
+}
+
+// Select payment method
+function selectPayment(method) {
+  selectedPayment = method;
+  
+  document.querySelectorAll('.payment-option').forEach(option => {
+    option.classList.remove('selected');
   });
   
-  // Generate a unique order ID
-  const orderId = 'DM' + Date.now();
-  
-  // Prepare data for WhatsApp
-  const orderData = {
-    source: 'digitalmenu',
-    orderId: orderId,
-    total: total,
-    items: JSON.stringify(items), // Convert array to JSON string
-    itemCount: cart.reduce((sum, item) => sum + item.quantity, 0)
-  };
-  
-  // Create URL parameters
-  const params = new URLSearchParams();
-  params.append('source', orderData.source);
-  params.append('orderId', orderData.orderId);
-  params.append('total', orderData.total);
-  params.append('items', orderData.items);
-  params.append('itemCount', orderData.itemCount);
-  
-  // Redirect to WhatsApp interface
-  window.location.href = `index.html?${params.toString()}`;
+  const clickedOption = event.target.closest('.payment-option');
+  if (clickedOption) {
+    clickedOption.classList.add('selected');
+  }
 }
+
+// Process payment - opens appropriate payment page
+function processPayment() {
+  const total = cart.reduce((sum, item) => {
+    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
+    return sum + (itemTotal * item.quantity);
+  }, 0);
+  
+  const itemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  
+  // Prepare query parameters
+  const params = new URLSearchParams({
+    orderId: 'ORD' + Date.now(),
+    total: total,
+    items: itemsCount,
+    delivery: 'pickup'
+  });
+  
+  let paymentFile = '';
+  let paymentTitle = '';
+  
+  // Determine which payment page to open
+  switch(selectedPayment) {
+    case 'stcpay':
+      paymentFile = 'stcpay.html';
+      paymentTitle = 'دفع عبر STC Pay';
+      break;
+    case 'mada':
+    case 'visa':
+    case 'applepay':
+      paymentFile = 'checkout.html';
+      paymentTitle = 'الدفع الإلكتروني';
+      break;
+    default:
+      paymentFile = 'checkout.html';
+      paymentTitle = 'الدفع الإلكتروني';
+  }
+  
+  // Set iframe source
+  const paymentUrl = `${paymentFile}?${params.toString()}`;
+  document.getElementById('paymentFrame').src = paymentUrl;
+  document.getElementById('paymentTitle').textContent = paymentTitle;
+  
+  // Show payment container
+  document.getElementById('paymentContainer').style.display = 'flex';
+  
+  // Close checkout modal
+  closeModal('checkoutModal');
+}
+
+// Close payment iframe
+function closePayment() {
+  document.getElementById('paymentContainer').style.display = 'none';
+  document.getElementById('paymentFrame').src = '';
+  
+  // Check if payment was successful (in a real app, you would check with your backend)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('payment') === 'success') {
+    // Clear cart after successful payment
+    cart = [];
+    updateCart();
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
+  }
+}
+
+// Listen for messages from payment iframe
+window.addEventListener('message', function(event) {
+  // Check if message is from payment page
+  if (event.data && event.data.type === 'paymentSuccess') {
+    // Clear cart and show success message
+    cart = [];
+    updateCart();
+    closePayment();
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
+  }
+});
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -990,6 +1509,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  
+  // Close payment container when clicking outside
+  const paymentContainer = document.getElementById('paymentContainer');
+  if (paymentContainer) {
+    paymentContainer.addEventListener('click', (e) => {
+      if (e.target === paymentContainer) {
+        closePayment();
+      }
+    });
+  }
+  
+  // Handle window resize for better mobile experience
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Recalculate cart height on resize
+      const cartItems = document.getElementById('cartItems');
+      if (cartItems) {
+        cartItems.style.maxHeight = window.innerHeight * 0.45 + 'px';
+      }
+    }, 250);
+  });
+  
+  // Initial cart height calculation
+  setTimeout(() => {
+    const cartItems = document.getElementById('cartItems');
+    if (cartItems) {
+      cartItems.style.maxHeight = window.innerHeight * 0.45 + 'px';
+    }
+  }, 100);
 });
 </script>
 
