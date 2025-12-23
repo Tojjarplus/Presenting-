@@ -1,3 +1,5 @@
+[file name]: digitalmenu.html
+[file content begin]
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -1345,29 +1347,40 @@ function closeModal(modalId) {
   document.getElementById(modalId).style.display = 'none';
 }
 
-// Open checkout
-function openCheckout() {
+// NEW FUNCTION: Redirect to WhatsApp order flow
+function redirectToWhatsAppOrder() {
   if (cart.length === 0) {
     alert('السلة فارغة. أضف عناصر إلى السلة أولاً.');
     return;
   }
   
-  // Calculate total
-  const total = cart.reduce((sum, item) => {
-    const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
-    return sum + (itemTotal * item.quantity);
-  }, 0);
+  // Prepare cart data for transfer
+  const cartData = {
+    items: cart.map(item => ({
+      itemId: item.itemId,
+      name: item.name,
+      basePrice: item.basePrice,
+      quantity: item.quantity,
+      addons: item.addons
+    })),
+    total: cart.reduce((sum, item) => {
+      const itemTotal = item.basePrice + item.addons.reduce((addonSum, addon) => addonSum + (addon.price * addon.quantity), 0);
+      return sum + (itemTotal * item.quantity);
+    }, 0),
+    source: 'digitalmenu'
+  };
   
-  document.getElementById('checkoutTotal').textContent = `${total} ريال`;
-  document.getElementById('checkoutForm').style.display = 'block';
+  // Encode cart data as URL parameter
+  const encodedCartData = encodeURIComponent(JSON.stringify(cartData));
   
-  // Reset location status
-  document.getElementById('locationStatus').textContent = 'انقر على الزر أعلاه لتحديد موقعك';
-  document.getElementById('locationStatus').style.color = '#a0aec0';
-  userLocation = null;
-  
-  document.getElementById('checkoutModal').style.display = 'flex';
-  toggleCart();
+  // Redirect to WhatsApp order page with cart data
+  window.location.href = `index.html?cartData=${encodedCartData}`;
+}
+
+// MODIFIED: Open checkout - now redirects to WhatsApp order flow
+function openCheckout() {
+  // Redirect to WhatsApp order flow instead of showing modal
+  redirectToWhatsAppOrder();
 }
 
 // Get user location
@@ -1545,3 +1558,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+[file content end]
