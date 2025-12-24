@@ -1149,13 +1149,17 @@ function checkForDigitalMenuOrder() {
   return false;
 }
 
-// NEW: Process digital menu order
+// NEW: Process digital menu order - FIXED VERSION
 function processDigitalMenuOrder(cartData) {
   // Clear existing cart
   cart = [];
   selectedItems = {};
   
   // Add items from digital menu to cart
+  let itemsTotal = 0;
+  let itemsHTML = '';
+  let totalItemsCount = 0;
+  
   cartData.items.forEach(itemData => {
     // Find the corresponding menu item
     const menuItem = menuItems.find(item => item.id === itemData.itemId);
@@ -1164,47 +1168,74 @@ function processDigitalMenuOrder(cartData) {
       selectedItems[menuItem.id] = true;
       cart.push(menuItem.id);
       
-      // Show order summary
-      const orderSummaryHTML = `
-        <div class="cart-summary">
-          <h3><i class="fas fa-shopping-bag"></i> طلبك من المنيو الرقمي</h3>
-          <div class="cart-items">
-            <div class="cart-item">
-              <div class="cart-item-name">${menuItem.name} × ${itemData.quantity}</div>
-              <div class="cart-item-price">${menuItem.price * itemData.quantity} ريال</div>
-            </div>
-            ${itemData.addons && itemData.addons.length > 0 ? 
-              itemData.addons.map(addon => `
-                <div class="cart-item">
-                  <div class="cart-item-name" style="font-size: 12px; padding-left: 15px;">+ ${addon.name} × ${addon.quantity}</div>
-                  <div class="cart-item-price" style="font-size: 12px;">${addon.price * addon.quantity} ريال</div>
-                </div>
-              `).join('') : ''
-            }
-          </div>
-          <div class="cart-total">
-            <div class="cart-total-label">الإجمالي</div>
-            <div class="cart-total-amount">${cartData.total} ريال</div>
-          </div>
-          <button class="checkout-btn" onclick="showDeliveryOptions()">
-            <i class="fas fa-lock"></i> تأكيد الطلب والدفع
-          </button>
+      const itemTotal = menuItem.price * itemData.quantity;
+      itemsTotal += itemTotal;
+      totalItemsCount += itemData.quantity;
+      
+      // Add main item to summary
+      itemsHTML += `
+        <div class="cart-item">
+          <div class="cart-item-name">${menuItem.name} × ${itemData.quantity}</div>
+          <div class="cart-item-price">${itemTotal} ريال</div>
         </div>
       `;
       
-      // Add order summary message
-      addBotMessage(orderSummaryHTML, getCurrentTime());
+      // Add addons if any
+      if (itemData.addons && itemData.addons.length > 0) {
+        itemData.addons.forEach(addon => {
+          const addonTotal = addon.price * addon.quantity;
+          itemsTotal += addonTotal;
+          itemsHTML += `
+            <div class="cart-item">
+              <div class="cart-item-name" style="font-size: 12px; padding-left: 15px;">+ ${addon.name} × ${addon.quantity}</div>
+              <div class="cart-item-price" style="font-size: 12px;">${addonTotal} ريال</div>
+            </div>
+          `;
+        });
+      }
       
-      // Show confirmation message
-      addBotMessage(`✅ تم استلام طلبك من المنيو الرقمي. إجمالي الطلب: ${cartData.total} ريال`, getCurrentTime());
+      // Add modifier if any (from new digital menu)
+      if (itemData.modifier) {
+        itemsHTML += `
+          <div class="cart-item">
+            <div class="cart-item-name" style="font-size: 12px; padding-left: 15px; color: #666;">↳ ${itemData.modifier.name}</div>
+            <div class="cart-item-price" style="font-size: 12px; color: #666;">مشمول</div>
+          </div>
+        `;
+      }
     }
   });
+  
+  // Show ONE combined order summary
+  const orderSummaryHTML = `
+    <div class="cart-summary">
+      <h3><i class="fas fa-shopping-bag"></i> طلبك من المنيو الرقمي</h3>
+      <div class="cart-items">
+        ${itemsHTML}
+      </div>
+      <div class="cart-total">
+        <div class="cart-total-label">الإجمالي</div>
+        <div class="cart-total-amount">${itemsTotal} ريال</div>
+      </div>
+    </div>
+  `;
+  
+  // Add order summary message (ONE message only)
+  addBotMessage(orderSummaryHTML, getCurrentTime());
+  
+  // Show confirmation message
+  addBotMessage(`✅ تم استلام طلبك من المنيو الرقمي. إجمالي الطلب: ${itemsTotal} ريال`, getCurrentTime());
   
   // Set current step to ordering
   currentStep = 'ordering';
   
   // Auto-scroll to bottom
   scrollToBottom();
+  
+  // AUTO SHOW DELIVERY OPTIONS after 1 second (NO CONFIRMATION BUTTON NEEDED)
+  setTimeout(() => {
+    showDeliveryOptions();
+  }, 1000);
   
   // Return true to indicate order was processed
   return true;
