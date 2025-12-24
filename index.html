@@ -1671,7 +1671,7 @@ function showDeliveryOptions() {
   scrollToBottom();
 }
 
-// Select delivery option
+// Select delivery option - UPDATED: No confirmation button needed
 function selectDelivery(type) {
   deliveryType = type;
   
@@ -1686,31 +1686,14 @@ function selectDelivery(type) {
     selectedOption.classList.add('selected');
   }
   
-  // Show confirmation button
+  // AUTO PROCEED based on selection (NO CONFIRMATION BUTTON NEEDED)
   setTimeout(() => {
-    const confirmationBtn = document.createElement('button');
-    confirmationBtn.className = 'checkout-btn';
-    confirmationBtn.innerHTML = '<i class="fas fa-check-circle"></i> تأكيد طريقة الاستلام';
-    confirmationBtn.onclick = confirmDeliverySelection;
-    
-    const chatContent = document.getElementById('chatContent');
-    chatContent.appendChild(confirmationBtn);
-    scrollToBottom();
+    if (deliveryType === 'delivery') {
+      showLocationSharing();
+    } else {
+      showPickupInfo();
+    }
   }, 300);
-}
-
-// Confirm delivery selection
-function confirmDeliverySelection() {
-  if (!deliveryType) {
-    addBotMessage("الرجاء اختيار طريقة الاستلام أولاً");
-    return;
-  }
-  
-  if (deliveryType === 'delivery') {
-    showLocationSharing();
-  } else {
-    showPickupInfo();
-  }
 }
 
 // Show location sharing for delivery
