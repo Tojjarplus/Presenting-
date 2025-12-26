@@ -1074,20 +1074,20 @@ body::before {
 .card:nth-child(9) { animation-delay: 0.9s; }
 .card:nth-child(10) { animation-delay: 1s; }
 
-/* Arabic text improvements */
+/* تحسينات للنص العربي */
 body {
   line-height: 1.6;
   text-align: right;
   font-weight: 500;
 }
 
-/* Smooth scrolling improvements */
+/* تحسينات للتمرير السلس */
 .cart-items, .modifier-content, .modifier-options, .modal-content {
   scrollbar-width: thin;
   scrollbar-color: #9370db #f0ebff;
 }
 
-/* Main colors used */
+/* الألوان الرئيسية المستخدمة */
 :root {
   --primary-purple: #9370db;
   --primary-pink: #ff69b4;
@@ -1105,8 +1105,8 @@ body {
 <div class="container">
 
   <div class="header">
-    <h1>🍗 Digital Menu</h1>
-    <p>Enjoy our exclusive selection of delicious meals. Add to cart and order now</p>
+    <h1>🍗 المنيو الرقمي</h1>
+    <p>استمتع بتشكيلتنا المميزة من الوجبات اللذيذة. أضف إلى السلة واطلب الآن</p>
   </div>
 
   <div class="menu-grid">
@@ -1125,20 +1125,20 @@ body {
 <div class="cart-container" id="cartContainer">
   <div class="cart-box">
     <div class="cart-header">
-      <h3>Order Cart</h3>
+      <h3>سلة الطلبات</h3>
       <button class="close-btn" onclick="toggleCart()">×</button>
     </div>
     <div class="cart-items" id="cartItems">
       <!-- Cart items will be added here -->
-      <p style="text-align: center; color: #666677; padding: 20px;">Cart is empty</p>
+      <p style="text-align: center; color: #666677; padding: 20px;">السلة فارغة</p>
     </div>
     <div class="cart-total">
-      <span>Total:</span>
-      <span class="cart-total-amount" id="cartTotal">0 SAR</span>
+      <span>المجموع:</span>
+      <span class="cart-total-amount" id="cartTotal">0 ريال</span>
     </div>
     <div class="cart-actions">
-      <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
-      <button class="checkout-btn" onclick="openCheckout()">Complete Order</button>
+      <button class="clear-btn" onclick="clearCart()">تفريغ السلة</button>
+      <button class="checkout-btn" onclick="openCheckout()">إتمام الطلب</button>
     </div>
   </div>
 </div>
@@ -1147,14 +1147,14 @@ body {
 <div class="modifier-modal" id="modifierModal">
   <div class="modifier-content">
     <div class="modifier-header">
-      <h3 id="modifierTitle">Customize Meal</h3>
+      <h3 id="modifierTitle">تخصيص الوجبة</h3>
       <button class="close-btn" onclick="closeModifierModal()">×</button>
     </div>
     
     <!-- Modifier Section -->
     <div class="modifier-section">
-      <div class="section-title" id="flavorTitle">Choose Flavor *</div>
-      <div class="section-subtitle" id="flavorSubtitle">Please choose 1</div>
+      <div class="section-title" id="flavorTitle">اختيار النكهة *</div>
+      <div class="section-subtitle" id="flavorSubtitle">الرجاء اختيار 1</div>
       
       <div class="modifier-options" id="flavorOptions">
         <!-- Flavor options will be added here -->
@@ -1162,12 +1162,12 @@ body {
     </div>
     
     <div class="validation-error" id="modifierError">
-      ⚠️ You must choose a flavor type before adding the meal to cart
+      ⚠️ يجب اختيار نوع النكهة قبل إضافة الوجبة إلى السلة
     </div>
     
     <!-- Quantity Selector -->
     <div class="quantity-selector">
-      <div class="quantity-label">Quantity</div>
+      <div class="quantity-label">الكمية</div>
       <div class="quantity-controls">
         <button class="qty-btn" onclick="adjustQuantity(-1)">-</button>
         <div class="qty-display" id="modifierQty">1</div>
@@ -1178,12 +1178,12 @@ body {
     <!-- Price and Add Button -->
     <div class="modifier-actions">
       <div class="modifier-price">
-        <div class="modifier-total" id="modifierTotalPrice">0 SAR</div>
+        <div class="modifier-total" id="modifierTotalPrice">0 ريال</div>
         <div class="modifier-original" id="modifierOriginalPrice"></div>
       </div>
       <button class="add-order-btn" id="addOrderBtn" onclick="addToCartWithModifier()">
         <span>➕</span>
-        Add to Order
+        إضافة إلى الطلب
       </button>
     </div>
   </div>
@@ -1193,13 +1193,13 @@ body {
 <div class="modal" id="addonsModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3 id="addonsTitle">Meal Add-ons</h3>
+      <h3 id="addonsTitle">إضافات الوجبة</h3>
       <button class="close-btn" onclick="closeModal('addonsModal')">×</button>
     </div>
     <div class="addons-container" id="addonsList">
       <!-- Add-ons will be added here -->
     </div>
-    <button class="submit-btn" onclick="addToCartWithAddons()">Add to Cart</button>
+    <button class="submit-btn" onclick="addToCartWithAddons()">إضافة إلى السلة</button>
   </div>
 </div>
 
@@ -1207,45 +1207,45 @@ body {
 <div class="modal" id="checkoutModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>Complete Order</h3>
+      <h3>إتمام الطلب</h3>
       <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
     </div>
     
     <div id="checkoutForm">
       <div class="location-container">
-        <label>Location</label>
-        <p style="font-size: 14px; color: #666677; margin-bottom: 10px;">Your current location will be used to determine the nearest branch for delivery</p>
+        <label>الموقع</label>
+        <p style="font-size: 14px; color: #666677; margin-bottom: 10px;">سيتم استخدام موقعك الحالي لتحديد أقرب فرع للتوصيل</p>
         <button class="location-button" onclick="getUserLocation()">
           <span>📍</span>
-          Use My Current Location
+          استخدام موقعي الحالي
         </button>
         <p id="locationStatus" style="font-size: 14px; margin-top: 15px; padding: 10px; background: rgba(147, 112, 219, 0.05); border-radius: 8px;"></p>
       </div>
       
       <div class="payment-methods">
-        <h4>Payment Method</h4>
+        <h4>طريقة الدفع</h4>
         
         <div class="payment-option selected" onclick="selectPayment('stcpay')">
           <div class="payment-icon">📱</div>
           <div class="payment-text">
             <div class="payment-name">STC Pay</div>
-            <div class="payment-desc">Pay via STC Pay app</div>
+            <div class="payment-desc">الدفع عبر تطبيق STC Pay</div>
           </div>
         </div>
         
         <div class="payment-option" onclick="selectPayment('mada')">
           <div class="payment-icon">💳</div>
           <div class="payment-text">
-            <div class="payment-name">Mada</div>
-            <div class="payment-desc">Mada bank card</div>
+            <div class="payment-name">مدى</div>
+            <div class="payment-desc">بطاقة مدى البنكية</div>
           </div>
         </div>
         
         <div class="payment-option" onclick="selectPayment('visa')">
           <div class="payment-icon">💳</div>
           <div class="payment-text">
-            <div class="payment-name">Visa / Mastercard</div>
-            <div class="payment-desc">International credit cards</div>
+            <div class="payment-name">فيزا / ماستركارد</div>
+            <div class="payment-desc">البطاقات الإئتمانية الدولية</div>
           </div>
         </div>
         
@@ -1253,17 +1253,17 @@ body {
           <div class="payment-icon">🍎</div>
           <div class="payment-text">
             <div class="payment-name">Apple Pay</div>
-            <div class="payment-desc">Pay via Apple Pay</div>
+            <div class="payment-desc">الدفع عبر Apple Pay</div>
           </div>
         </div>
       </div>
       
       <div class="cart-total" style="margin: 20px 0; padding: 15px; background: rgba(147, 112, 219, 0.05); border-radius: 12px;">
-        <span>Final Total:</span>
-        <span id="checkoutTotal">0 SAR</span>
+        <span>المجموع النهائي:</span>
+        <span id="checkoutTotal">0 ريال</span>
       </div>
       
-      <button class="submit-btn" onclick="processPayment()">Proceed to Payment</button>
+      <button class="submit-btn" onclick="processPayment()">متابعة للدفع</button>
     </div>
   </div>
 </div>
@@ -1271,7 +1271,7 @@ body {
 <!-- Payment iframe container -->
 <div class="payment-iframe-container" id="paymentContainer">
   <div class="payment-header">
-    <h3 id="paymentTitle">Pay via STC Pay</h3>
+    <h3 id="paymentTitle">دفع عبر STC Pay</h3>
     <button class="close-payment-btn" onclick="closePayment()">×</button>
   </div>
   <iframe class="payment-iframe" id="paymentFrame" allow="payment"></iframe>
@@ -1283,171 +1283,171 @@ body {
 const menuItems = [
   {
     id: 1,
-    name: "Meal for Two",
-    description: "Special meal for two with a variety of appetizers and drinks",
+    name: "وجبة شخصين",
+    description: "وجبة خاصة لشخصين مع تشكيلة متنوعة من المقبلات والمشروبات",
     price: 85,
     image: "images/item1.png",
     popular: true,
     modifiers: {
-      title: "Choose Chicken Flavor *",
-      subtitle: "Please choose 1",
+      title: "اختيار نكهة الدجاج *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "3 pieces normal chicken", desc: "3 PCS Normal CH" },
-        { id: 2, name: "3 pieces spicy chicken", desc: "3 PCS Spicy CH" },
-        { id: 3, name: "3 pieces mixed chicken", desc: "3 PCS MIX CH" }
+        { id: 1, name: "3 قطع دجاج عادي", desc: "3 PCS Normal CH" },
+        { id: 2, name: "3 قطع دجاج حار", desc: "3 PCS Spicy CH" },
+        { id: 3, name: "3 قطع دجاج ميكس", desc: "3 PCS MIX CH" }
       ]
     }
   },
   {
     id: 2,
-    name: "Go Chicken Meal",
-    description: "Delicious chicken and crispy meal with special sauce",
+    name: "وجبة جو دجاج",
+    description: "وجبة دجاج ومقرمشات لذيذة مع صلصة خاصة",
     price: 65,
     image: "images/item2.png",
     popular: false,
     modifiers: {
-      title: "Choose Chicken Flavor *",
-      subtitle: "Please choose 1",
+      title: "اختيار نكهة الدجاج *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "4 pieces normal chicken", desc: "4 PCS Normal CH" },
-        { id: 2, name: "4 pieces spicy chicken", desc: "4 PCS Spicy CH" },
-        { id: 3, name: "4 pieces mixed chicken", desc: "4 PCS MIX CH" }
+        { id: 1, name: "4 قطع دجاج عادي", desc: "4 PCS Normal CH" },
+        { id: 2, name: "4 قطع دجاج حار", desc: "4 PCS Spicy CH" },
+        { id: 3, name: "4 قطع دجاج ميكس", desc: "4 PCS MIX CH" }
       ]
     }
   },
   {
     id: 3,
-    name: "Benowi Meal",
-    description: "Delicious Benowi meal with a variety of appetizers",
+    name: "وجبة بينوي",
+    description: "وجبة بينوي اللذيذة والمتنوعة مع تشكيلة من المقبلات",
     price: 75,
     image: "images/item3.png",
     popular: false,
     modifiers: {
-      title: "Choose Tender Flavor *",
-      subtitle: "Please choose 1",
+      title: "اختيار نكهة تندر *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "5 pieces normal tender", desc: "5 PCS Normal TEND" },
-        { id: 2, name: "5 pieces spicy tender", desc: "5 PCS Spicy TEND" },
-        { id: 3, name: "5 pieces mixed tender", desc: "5 PCS MIX TEND" }
+        { id: 1, name: "5 قطع تندر عادي", desc: "5 PCS Normal TEND" },
+        { id: 2, name: "5 قطع تندر حار", desc: "5 PCS Spicy TEND" },
+        { id: 3, name: "5 قطع تندر ميكس", desc: "5 PCS MIX TEND" }
       ]
     }
   },
   {
     id: 4,
-    name: "Celebration Meal",
-    description: "Large celebration meal for 2-3 people with exclusive selection",
+    name: "وجبة الاحتفال",
+    description: "وجبة احتفالية كبيرة لـ 2–3 أشخاص مع تشكيلة مميزة",
     price: 120,
     image: "images/item4.png",
     popular: true,
     modifiers: {
-      title: "Choose Size and Flavor *",
-      subtitle: "Please choose 1",
+      title: "اختيار حجم ونكهة *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "6 pieces normal", desc: "6 PCS Normal" },
-        { id: 2, name: "8 pieces spicy", desc: "8 PCS Spicy" },
-        { id: 3, name: "10 pieces mixed", desc: "10 PCS MIX" }
+        { id: 1, name: "6 قطع عادي", desc: "6 PCS Normal" },
+        { id: 2, name: "8 قطع حار", desc: "8 PCS Spicy" },
+        { id: 3, name: "10 قطع ميكس", desc: "10 PCS MIX" }
       ]
     }
   },
   {
     id: 5,
-    name: "Go Double Royal Meal",
-    description: "Double and luxurious Go Royal meal with special additions",
+    name: "وجبة جو ديل رويال",
+    description: "وجبة جو رويال مزدوجة وفاخرة مع إضافات خاصة",
     price: 110,
     image: "images/item5.png",
     popular: false,
     modifiers: {
-      title: "Choose Chicken Type *",
-      subtitle: "Please choose 1",
+      title: "اختيار نوع الدجاج *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "6 pieces fillet normal", desc: "6 PCS Fillet Normal" },
-        { id: 2, name: "6 pieces fillet spicy", desc: "6 PCS Fillet Spicy" },
-        { id: 3, name: "8 pieces wings mix", desc: "8 PCS Wings MIX" }
+        { id: 1, name: "6 قطع فيليه عادي", desc: "6 PCS Fillet Normal" },
+        { id: 2, name: "6 قطع فيليه حار", desc: "6 PCS Fillet Spicy" },
+        { id: 3, name: "8 قطع أجنحة ميكس", desc: "8 PCS Wings MIX" }
       ]
     }
   },
   {
     id: 6,
-    name: "Value Meal",
-    description: "Economical meal with special additions suitable for everyone",
+    name: "الوجبة القيمة",
+    description: "وجبة اقتصادية مع إضافات مميزة تناسب الجميع",
     price: 55,
     image: "images/item6.png",
     popular: false,
     modifiers: {
-      title: "Choose Pack *",
-      subtitle: "Please choose 1",
+      title: "اختيار الباكيت *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "2 pieces normal chicken", desc: "2 PCS CH Normal" },
-        { id: 2, name: "3 pieces spicy chicken", desc: "3 PCS CH Spicy" },
-        { id: 3, name: "2 pieces mixed tender", desc: "2 PCS TEND Mix" }
+        { id: 1, name: "2 قطع دجاج عادي", desc: "2 PCS CH Normal" },
+        { id: 2, name: "3 قطع دجاج حار", desc: "3 PCS CH Spicy" },
+        { id: 3, name: "2 قطع تندر ميكس", desc: "2 PCS TEND Mix" }
       ]
     }
   },
   {
     id: 7,
-    name: "Royal Meal",
-    description: "Royal meal with all additions and special sauces",
+    name: "رويال ميل",
+    description: "الوجبة الملكية مع جميع الإضافات والصلصات الخاصة",
     price: 95,
     image: "images/item7.png",
     popular: false,
     modifiers: {
-      title: "Choose Royal Bundle *",
-      subtitle: "Please choose 1",
+      title: "اختيار الباقة الملكية *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "8 pieces normal", desc: "8 PCS Normal" },
-        { id: 2, name: "10 pieces spicy", desc: "10 PCS Spicy" },
-        { id: 3, name: "12 pieces mixed", desc: "12 PCS MIX" }
+        { id: 1, name: "8 قطع عادي", desc: "8 PCS Normal" },
+        { id: 2, name: "10 قطع حار", desc: "10 PCS Spicy" },
+        { id: 3, name: "12 قطع ميكس", desc: "12 PCS MIX" }
       ]
     }
   },
   {
     id: 8,
-    name: "Golden Chicken Rice Feast",
-    description: "Chicken feast with special golden rice and spices",
+    name: "وليمة أرز الدجاج الذهبي",
+    description: "وليمة دجاج مع أرز ذهبي مميز وتوابل خاصة",
     price: 130,
     image: "images/item8.png",
     popular: true,
     modifiers: {
-      title: "Choose Feast *",
-      subtitle: "Please choose 1",
+      title: "اختيار الوليمة *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "Whole normal chicken", desc: "Whole CH Normal" },
-        { id: 2, name: "Whole spicy chicken", desc: "Whole CH Spicy" },
-        { id: 3, name: "Mix chicken and tender", desc: "Mix CH & TEND" }
+        { id: 1, name: "دجاج كامل عادي", desc: "Whole CH Normal" },
+        { id: 2, name: "دجاج كامل حار", desc: "Whole CH Spicy" },
+        { id: 3, name: "ميكس دجاج وتندر", desc: "Mix CH & TEND" }
       ]
     }
   },
   {
     id: 9,
-    name: "Happiness Meal",
-    description: "Happiness meal with exclusive selection of delicious dishes",
+    name: "وجبة السعادة",
+    description: "وجبة السعادة مع تشكيلة مميزة من الأطباق اللذيذة",
     price: 70,
     image: "images/item9.png",
     popular: false,
     modifiers: {
-      title: "Choose Happiness Meal *",
-      subtitle: "Please choose 1",
+      title: "اختيار وجبة السعادة *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "4 pieces normal + fries", desc: "4 PCS Normal + Fries" },
-        { id: 2, name: "4 pieces spicy + fries", desc: "4 PCS Spicy + Fries" },
-        { id: 3, name: "6 pieces mix + drink", desc: "6 PCS Mix + Drink" }
+        { id: 1, name: "4 قطع عادي + بطاطس", desc: "4 PCS Normal + Fries" },
+        { id: 2, name: "4 قطع حار + بطاطس", desc: "4 PCS Spicy + Fries" },
+        { id: 3, name: "6 قطع ميكس + مشروب", desc: "6 PCS Mix + Drink" }
       ]
     }
   },
   {
     id: 10,
-    name: "Tender Pack with Gravy",
-    description: "Chicken tender pack with delicious gravy sauce",
+    name: "باكيت تندر مع الجرافي",
+    description: "باكيت تندر دجاج مع صوص الجرافي اللذيذ",
     price: 80,
     image: "images/item10.png",
     popular: false,
     modifiers: {
-      title: "Choose Pack *",
-      subtitle: "Please choose 1",
+      title: "اختيار الباكيت *",
+      subtitle: "الرجاء اختيار 1",
       options: [
-        { id: 1, name: "6 pieces normal tender", desc: "6 PCS TEND Normal" },
-        { id: 2, name: "8 pieces spicy tender", desc: "8 PCS TEND Spicy" },
-        { id: 3, name: "10 pieces mixed tender", desc: "10 PCS TEND Mix" }
+        { id: 1, name: "6 قطع تندر عادي", desc: "6 PCS TEND Normal" },
+        { id: 2, name: "8 قطع تندر حار", desc: "8 PCS TEND Spicy" },
+        { id: 3, name: "10 قطع تندر ميكس", desc: "10 PCS TEND Mix" }
       ]
     }
   }
@@ -1455,14 +1455,14 @@ const menuItems = [
 
 // Add-ons data (ORIGINAL - KEPT FOR COMPATIBILITY)
 const addons = [
-  { id: 1, name: "Extra cheese sauce", price: 5 },
-  { id: 2, name: "Barbecue sauce", price: 4 },
-  { id: 3, name: "Garlic sauce", price: 3 },
-  { id: 4, name: "Large drink", price: 8 },
-  { id: 5, name: "Extra fries", price: 6 },
-  { id: 6, name: "Side salad", price: 7 },
-  { id: 7, name: "Chocolate dessert", price: 10 },
-  { id: 8, name: "Arabic coffee", price: 12 }
+  { id: 1, name: "صلصة جبن إضافية", price: 5 },
+  { id: 2, name: "صلصة باربيكيو", price: 4 },
+  { id: 3, name: "صوص ثوم", price: 3 },
+  { id: 4, name: "مشروب كبير", price: 8 },
+  { id: 5, name: "بطاطس إضافية", price: 6 },
+  { id: 6, name: "سلطة جانبية", price: 7 },
+  { id: 7, name: "حلوى شوكولاتة", price: 10 },
+  { id: 8, name: "قهوة عربية", price: 12 }
 ];
 
 // Shopping cart
@@ -1481,13 +1481,13 @@ function initializeMenu() {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      ${item.popular ? '<div class="popular-badge">Most Ordered</div>' : ''}
+      ${item.popular ? '<div class="popular-badge">الأكثر طلباً</div>' : ''}
       <img class="card-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/300x180/f0ebff/9370db?text=${encodeURIComponent(item.name)}'">
       <div class="card-content">
         <h3>${item.name}</h3>
         <p>${item.description}</p>
         <div class="price">
-          <span>${item.price} SAR</span>
+          <span>${item.price} ريال</span>
           <button class="add-btn" onclick="openModifierModal(${item.id})">+</button>
         </div>
       </div>
@@ -1505,7 +1505,7 @@ function openModifierModal(itemId) {
   const item = menuItems.find(i => i.id === itemId);
   
   // Set modal title
-  document.getElementById('modifierTitle').textContent = `Customize ${item.name}`;
+  document.getElementById('modifierTitle').textContent = `تخصيص ${item.name}`;
   
   // Set flavor section
   document.getElementById('flavorTitle').textContent = item.modifiers.title;
@@ -1536,7 +1536,7 @@ function openModifierModal(itemId) {
   document.getElementById('modifierError').style.display = 'none';
   document.getElementById('addOrderBtn').disabled = true;
   document.getElementById('modifierQty').textContent = '1';
-  document.getElementById('modifierTotalPrice').textContent = `${item.price} SAR`;
+  document.getElementById('modifierTotalPrice').textContent = `${item.price} ريال`;
   
   // Show modal
   document.getElementById('modifierModal').style.display = 'flex';
@@ -1574,7 +1574,7 @@ function adjustQuantity(change) {
 function updateModifierPrice() {
   const item = menuItems.find(i => i.id === currentItemId);
   const totalPrice = item.price * currentQuantity;
-  document.getElementById('modifierTotalPrice').textContent = `${totalPrice} SAR`;
+  document.getElementById('modifierTotalPrice').textContent = `${totalPrice} ريال`;
 }
 
 // NEW: Add item to cart with modifier
@@ -1629,9 +1629,9 @@ function updateCart() {
   const cartTotal = document.getElementById('cartTotal');
   
   if (cart.length === 0) {
-    cartItems.innerHTML = '<p style="text-align: center; color: #666677; padding: 20px;">Cart is empty</p>';
+    cartItems.innerHTML = '<p style="text-align: center; color: #666677; padding: 20px;">السلة فارغة</p>';
     cartCount.textContent = '0';
-    cartTotal.textContent = '0 SAR';
+    cartTotal.textContent = '0 ريال';
     return;
   }
   
@@ -1652,7 +1652,7 @@ function updateCart() {
           `<div class="cart-item-modifier">${item.modifier.name} (${item.modifier.desc})</div>` : ''
         }
       </div>
-      <div class="cart-item-price">${itemTotal} SAR</div>
+      <div class="cart-item-price">${itemTotal} ريال</div>
       <div class="cart-item-qty">
         <button class="qty-btn" onclick="updateCartQuantity(${index}, ${item.quantity - 1})">-</button>
         <span>${item.quantity}</span>
@@ -1664,7 +1664,7 @@ function updateCart() {
   });
   
   cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  cartTotal.textContent = `${total} SAR`;
+  cartTotal.textContent = `${total} ريال`;
 }
 
 // Update cart item quantity
@@ -1675,7 +1675,7 @@ function updateCartQuantity(index, newQuantity) {
   }
   
   if (newQuantity > 10) {
-    alert('Maximum quantity is 10');
+    alert('الحد الأقصى للكمية هو 10');
     return;
   }
   
@@ -1693,7 +1693,7 @@ function removeFromCart(index) {
 function clearCart() {
   if (cart.length === 0) return;
   
-  if (confirm('Do you want to clear the cart?')) {
+  if (confirm('هل تريد تفريغ السلة؟')) {
     cart = [];
     updateCart();
     toggleCart();
@@ -1711,7 +1711,7 @@ function openAddonsModal(itemId) {
   currentItemId = itemId;
   const item = menuItems.find(i => i.id === itemId);
   
-  document.getElementById('addonsTitle').textContent = `Add-ons for ${item.name}`;
+  document.getElementById('addonsTitle').textContent = `إضافات ${item.name}`;
   
   const addonsList = document.getElementById('addonsList');
   addonsList.innerHTML = '';
@@ -1727,7 +1727,7 @@ function openAddonsModal(itemId) {
     addonItem.innerHTML = `
       <div class="addon-info">
         <div class="addon-name">${addon.name}</div>
-        <div class="addon-price">${addon.price} SAR</div>
+        <div class="addon-price">${addon.price} ريال</div>
       </div>
       <select class="addon-select" id="addon-${addon.id}">
         <option value="0">0</option>
@@ -1796,11 +1796,11 @@ function closeModal(modalId) {
 // ORIGINAL: Get user location (KEPT FOR COMPATIBILITY)
 function getUserLocation() {
   const locationStatus = document.getElementById('locationStatus');
-  locationStatus.textContent = 'Getting location...';
+  locationStatus.textContent = 'جاري الحصول على الموقع...';
   locationStatus.style.color = '#9370db';
   
   if (!navigator.geolocation) {
-    locationStatus.textContent = 'Browser does not support location. We will contact you to confirm address.';
+    locationStatus.textContent = 'المتصفح لا يدعم تحديد الموقع. سيتم التواصل معك لتأكيد العنوان.';
     locationStatus.style.color = '#ff4757';
     return;
   }
@@ -1812,12 +1812,12 @@ function getUserLocation() {
       userLocation = { lat, lng };
       
       // Format location for display
-      locationStatus.textContent = `✓ Location determined successfully`;
+      locationStatus.textContent = `✓ تم تحديد موقعك بنجاح`;
       locationStatus.style.color = '#10b981';
     },
     (error) => {
-      let errorMessage = 'Unable to get location. ';
-      errorMessage += 'We will contact you to confirm address.';
+      let errorMessage = 'تعذر الحصول على الموقع. ';
+      errorMessage += 'سيتم التواصل معك لتأكيد العنوان.';
       
       locationStatus.textContent = errorMessage;
       locationStatus.style.color = '#ff4757';
@@ -1868,17 +1868,17 @@ function processPayment() {
   switch(selectedPayment) {
     case 'stcpay':
       paymentFile = 'stcpay.html';
-      paymentTitle = 'Pay via STC Pay';
+      paymentTitle = 'دفع عبر STC Pay';
       break;
     case 'mada':
     case 'visa':
     case 'applepay':
       paymentFile = 'checkout.html';
-      paymentTitle = 'Electronic Payment';
+      paymentTitle = 'الدفع الإلكتروني';
       break;
     default:
       paymentFile = 'checkout.html';
-      paymentTitle = 'Electronic Payment';
+      paymentTitle = 'الدفع الإلكتروني';
   }
   
   // Set iframe source
@@ -1904,14 +1904,14 @@ function closePayment() {
     // Clear cart after successful payment
     cart = [];
     updateCart();
-    alert('Payment successful! Thank you for your order.');
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
   }
 }
 
 // ORIGINAL: NEW FUNCTION: Redirect to WhatsApp order flow (KEPT FOR COMPATIBILITY)
 function redirectToWhatsAppOrder() {
   if (cart.length === 0) {
-    alert('Cart is empty. Add items to cart first.');
+    alert('السلة فارغة. أضف عناصر إلى السلة أولاً.');
     return;
   }
   
@@ -1953,7 +1953,7 @@ window.addEventListener('message', function(event) {
     cart = [];
     updateCart();
     closePayment();
-    alert('Payment successful! Thank you for your order.');
+    alert('تم الدفع بنجاح! شكراً لطلبك.');
   }
 });
 
