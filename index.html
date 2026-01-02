@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>WhatsApp Order - دريم</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-/* CHANGED: Light background color */
+/* EMBED OPTIMIZATION: Better scaling for iframes */
 body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -22,13 +22,15 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  overflow: hidden; /* Prevent scrollbars in iframe */
 }
 
-/* RESPONSIVE PHONE CONTAINER */
+/* RESPONSIVE PHONE CONTAINER - UPDATED FOR EMBED */
 .phone-container {
   width: 100%;
   max-width: 380px;
-  height: 780px;
+  height: auto; /* Changed from fixed to auto */
+  min-height: 780px; /* Minimum height */
   background: #000;
   border-radius: 50px;
   padding: 18px;
@@ -36,6 +38,8 @@ body {
               inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  transform-origin: center top; /* Better scaling */
+  transition: all 0.3s ease;
 }
 
 .phone-container::before {
@@ -54,7 +58,6 @@ body {
 .screen {
   width: 100%;
   height: 100%;
-  /* CHANGED: Light WhatsApp background */
   background: #f0f2f5;
   border-radius: 40px;
   overflow: hidden;
@@ -65,7 +68,6 @@ body {
 
 /* WhatsApp Header - IMPROVED ALIGNMENT */
 .whatsapp-header {
-  /* CHANGED: Lighter header background */
   background: #00a884;
   padding: 12px 15px;
   display: flex;
@@ -143,7 +145,6 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 15px 10px;
-  /* CHANGED: Light chat background */
   background: #efeae2 url('https://web.whatsapp.com/img/bg-chat-tile-light_686b98c9fdffef3f63127759e2057750.png') repeat;
   position: relative;
 }
@@ -155,7 +156,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  /* CHANGED: Light overlay */
   background: rgba(239, 234, 226, 0.95);
   z-index: 1;
 }
@@ -191,14 +191,12 @@ body {
 }
 
 .user .bubble {
-  /* CHANGED: Slightly darker green for better contrast */
   background: #128c7e;
   color: white;
   border-bottom-right-radius: 5px;
 }
 
 .bot .bubble {
-  /* CHANGED: White background for bot messages */
   background: #ffffff;
   color: #303030;
   border-bottom-left-radius: 5px;
@@ -949,7 +947,6 @@ body {
   }
 }
 
-/* Fix for very small screens */
 @media (max-width: 320px) {
   .phone-container {
     height: 600px;
@@ -983,6 +980,81 @@ body {
     font-size: 16px;
   }
 }
+
+/* NEW: Height-based responsive queries for embed optimization */
+@media (max-height: 800px) {
+  .phone-container {
+    max-width: 340px;
+    min-height: 680px;
+    padding: 14px;
+  }
+  
+  .screen {
+    border-radius: 35px;
+  }
+  
+  .whatsapp-header {
+    padding: 10px 12px;
+  }
+  
+  .chat-area {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-height: 700px) {
+  .phone-container {
+    max-width: 320px;
+    min-height: 600px;
+    padding: 12px;
+    border-radius: 40px;
+  }
+  
+  .screen {
+    border-radius: 30px;
+  }
+  
+  .whatsapp-header {
+    padding: 8px 10px;
+  }
+  
+  .restaurant-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .menu-item {
+    padding: 10px 12px;
+  }
+}
+
+/* NEW: Embed mode styling */
+.embed-mode .phone-container {
+  transform: scale(0.95);
+}
+
+/* Scale controls (optional, can remove) */
+.scale-control {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.scale-control button {
+  background: #00a884;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  margin: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -1002,7 +1074,6 @@ body {
         </div>
         <div class="restaurant-details">
           <h2>دريم</h2>
-          <!-- CHANGED: Removed "التوصيل السريع" -->
           <p>متصل الآن</p>
         </div>
       </div>
@@ -1317,7 +1388,6 @@ function showPaymentSuccessConfirmation(orderId, source) {
       </div>
     </div>
     <div style="text-align: center; color: #666666; font-size: 14px; padding: 20px;">
-	
       شكرا لاختياركم دريم! 🍽️✨
     </div>
   `;
@@ -1920,8 +1990,13 @@ function completePayment() {
   }, 3000);
 }
 
-// Initialize on load
+// NEW: Detect if embedded in iframe and adjust
 window.onload = function() {
+  // Check if we're inside an iframe
+  if (window !== window.top) {
+    document.body.classList.add('embed-mode');
+  }
+  
   initChat();
   
   // Add welcome message after a delay
@@ -1932,6 +2007,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
-
-
