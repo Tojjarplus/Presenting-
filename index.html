@@ -6,14 +6,13 @@
 <title>WhatsApp Order - دريم</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* GLOBAL IMPROVEMENTS */
+/* COMPACT VERSION - LIGHTER & SMALLER */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* EMBED OPTIMIZATION: Better scaling for iframes */
 body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -21,25 +20,25 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
-  overflow: hidden; /* Prevent scrollbars in iframe */
+  padding: 15px;
+  overflow: hidden;
 }
 
-/* RESPONSIVE PHONE CONTAINER - UPDATED FOR EMBED */
+/* COMPACT PHONE CONTAINER */
 .phone-container {
   width: 100%;
-  max-width: 380px;
-  height: auto; /* Changed from fixed to auto */
-  min-height: 780px; /* Minimum height */
+  max-width: 340px;
+  height: auto;
+  min-height: 620px;
+  max-height: 680px;
   background: #000;
-  border-radius: 50px;
-  padding: 18px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
+  border-radius: 35px;
+  padding: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2),
               inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-  transform-origin: center top; /* Better scaling */
-  transition: all 0.3s ease;
+  transform-origin: center top;
 }
 
 .phone-container::before {
@@ -48,10 +47,10 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px;
-  height: 30px;
+  width: 140px;
+  height: 22px;
   background: #000;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 15px 15px;
   z-index: 10;
 }
 
@@ -59,44 +58,44 @@ body {
   width: 100%;
   height: 100%;
   background: #f0f2f5;
-  border-radius: 40px;
+  border-radius: 25px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-/* WhatsApp Header - IMPROVED ALIGNMENT */
+/* COMPACT HEADER */
 .whatsapp-header {
   background: #00a884;
-  padding: 12px 15px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 2;
   flex-shrink: 0;
 }
 
 .back-btn {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
-  min-width: 24px;
+  min-width: 22px;
 }
 
 .restaurant-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex: 1;
-  min-width: 0; /* Allow text truncation */
+  min-width: 0;
 }
 
 .restaurant-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #ffffff;
@@ -111,20 +110,20 @@ body {
 
 .restaurant-details {
   flex: 1;
-  min-width: 0; /* Allow text truncation */
+  min-width: 0;
 }
 
 .restaurant-details h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .restaurant-details p {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   overflow: hidden;
@@ -133,18 +132,18 @@ body {
 
 .header-icons {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   color: #ffffff;
-  font-size: 18px;
-  margin-right: 5px;
+  font-size: 16px;
+  margin-right: 3px;
   flex-shrink: 0;
 }
 
-/* Chat Area - IMPROVED LAYOUT */
+/* COMPACT CHAT AREA */
 .chat-area {
   flex: 1;
   overflow-y: auto;
-  padding: 15px 10px;
+  padding: 12px 8px;
   background: #efeae2 url('https://web.whatsapp.com/img/bg-chat-tile-light_686b98c9fdffef3f63127759e2057750.png') repeat;
   position: relative;
 }
@@ -165,13 +164,12 @@ body {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Consistent gap between messages */
+  gap: 10px;
 }
 
-/* Message Bubbles - TIGHTENED SPACING */
 .message {
   display: flex;
-  max-width: 85%;
+  max-width: 80%;
   align-self: flex-start;
 }
 
@@ -180,11 +178,11 @@ body {
 }
 
 .bubble {
-  padding: 10px 14px;
-  border-radius: 18px;
+  padding: 8px 12px;
+  border-radius: 16px;
   position: relative;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.3;
   word-wrap: break-word;
   max-width: 100%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -203,26 +201,26 @@ body {
 }
 
 .time {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(0, 0, 0, 0.5);
   text-align: left;
-  margin-top: 4px;
+  margin-top: 3px;
   direction: ltr;
 }
 
-/* WhatsApp Catalog */
+/* COMPACT CATALOG */
 .catalog-message {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   width: 100%;
-  max-width: 280px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 240px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .catalog-image {
-  height: 100px;
+  height: 80px;
   overflow: hidden;
   position: relative;
 }
@@ -234,37 +232,37 @@ body {
 }
 
 .catalog-details {
-  padding: 12px;
+  padding: 10px;
 }
 
 .catalog-details h3 {
   color: #303030;
-  font-size: 15px;
-  margin-bottom: 4px;
+  font-size: 14px;
+  margin-bottom: 3px;
   font-weight: 600;
 }
 
 .catalog-details p {
   color: #666666;
-  font-size: 12px;
-  margin-bottom: 10px;
-  line-height: 1.3;
+  font-size: 11px;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .catalog-btn {
   background: #00a884;
   color: white;
   text-align: center;
-  padding: 9px;
-  border-radius: 8px;
+  padding: 7px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   width: 100%;
   border: none;
 }
@@ -273,22 +271,22 @@ body {
   background: #008f70;
 }
 
-/* Menu Items - REDUCED SPACING */
+/* COMPACT MENU */
 .menu-card {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 0;
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  transition: background 0.3s ease;
-  gap: 12px; /* Reduced gap */
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transition: background 0.2s ease;
+  gap: 10px;
 }
 
 .menu-item:last-child {
@@ -296,13 +294,13 @@ body {
 }
 
 .menu-item:hover {
-  background: rgba(0, 168, 132, 0.05);
+  background: rgba(0, 168, 132, 0.04);
 }
 
 .menu-item-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -315,22 +313,22 @@ body {
 
 .menu-item-details {
   flex: 1;
-  min-width: 0; /* Prevent overflow */
+  min-width: 0;
 }
 
 .menu-item-name {
   color: #303030;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 4px;
-  line-height: 1.2;
+  margin-bottom: 3px;
+  line-height: 1.1;
 }
 
 .menu-item-desc {
   color: #666666;
-  font-size: 12px;
-  margin-bottom: 6px;
-  line-height: 1.3;
+  font-size: 11px;
+  margin-bottom: 5px;
+  line-height: 1.2;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -339,13 +337,13 @@ body {
 
 .menu-item-price {
   color: #00a884;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .menu-item-add {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(0, 168, 132, 0.1);
   border: 2px solid #00a884;
@@ -353,10 +351,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
@@ -367,38 +365,38 @@ body {
 }
 
 .menu-item-add:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-/* Cart Summary - IMPROVED LAYOUT */
+/* COMPACT CART */
 .cart-summary {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 168, 132, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 168, 132, 0.2);
   width: 100%;
 }
 
 .cart-summary h3 {
   color: #303030;
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: 14px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .cart-items {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .cart-item:last-child {
@@ -407,15 +405,15 @@ body {
 
 .cart-item-name {
   color: #303030;
-  font-size: 14px;
+  font-size: 13px;
   flex: 1;
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 .cart-item-price {
   color: #00a884;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   flex-shrink: 0;
 }
 
@@ -423,19 +421,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 12px;
-  border-top: 2px solid rgba(0, 168, 132, 0.3);
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 168, 132, 0.2);
 }
 
 .cart-total-label {
   color: #303030;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .cart-total-amount {
   color: #00a884;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 700;
 }
 
@@ -443,56 +441,56 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 15px;
-  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.2);
+  gap: 6px;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(0, 168, 132, 0.15);
   border: none;
   width: 100%;
 }
 
 .checkout-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 168, 132, 0.2);
 }
 
-/* Delivery Options - IMPROVED */
+/* COMPACT DELIVERY */
 .delivery-card {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
 }
 
 .delivery-header {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .delivery-header h3 {
   color: #303030;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .delivery-option {
   display: flex;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: background 0.3s ease;
-  gap: 12px;
+  transition: background 0.2s ease;
+  gap: 10px;
 }
 
 .delivery-option:last-child {
@@ -500,23 +498,23 @@ body {
 }
 
 .delivery-option:hover {
-  background: rgba(0, 168, 132, 0.05);
+  background: rgba(0, 168, 132, 0.04);
 }
 
 .delivery-option.selected {
-  background: rgba(0, 168, 132, 0.1);
-  border-right: 4px solid #00a884;
+  background: rgba(0, 168, 132, 0.08);
+  border-right: 3px solid #00a884;
 }
 
 .delivery-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(0, 168, 132, 0.1);
+  background: rgba(0, 168, 132, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   color: #00a884;
   flex-shrink: 0;
 }
@@ -528,40 +526,40 @@ body {
 
 .delivery-details h4 {
   color: #303030;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .delivery-details p {
   color: #666666;
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 11px;
+  line-height: 1.2;
 }
 
-/* Location Sharing Card */
+/* COMPACT LOCATION */
 .location-card {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
 }
 
 .location-header {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .location-header h3 {
   color: #303030;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .location-message {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
 }
 
@@ -569,103 +567,103 @@ body {
   background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
   color: white;
   text-align: center;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 5px 15px rgba(0, 168, 132, 0.2);
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 168, 132, 0.15);
   border: none;
   width: 100%;
 }
 
 .location-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 168, 132, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 168, 132, 0.2);
 }
 
 .location-options {
-  padding: 15px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .location-option {
   display: flex;
   align-items: center;
-  padding: 12px;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  gap: 12px;
+  transition: all 0.2s ease;
+  gap: 10px;
 }
 
 .location-option:hover {
-  background: rgba(0, 168, 132, 0.05);
+  background: rgba(0, 168, 132, 0.04);
 }
 
 .location-option-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(0, 168, 132, 0.1);
+  background: rgba(0, 168, 132, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #00a884;
   flex-shrink: 0;
 }
 
 .location-option-details h4 {
   color: #303030;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .location-option-details p {
   color: #666666;
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 11px;
+  line-height: 1.2;
 }
 
-/* Payment Options */
+/* COMPACT PAYMENT */
 .payment-card {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 100%;
 }
 
 .payment-header {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .payment-header h3 {
   color: #303030;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .payment-option {
   display: flex;
   align-items: center;
-  padding: 14px 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: background 0.3s ease;
-  gap: 12px;
+  transition: background 0.2s ease;
+  gap: 10px;
 }
 
 .payment-option:last-child {
@@ -673,37 +671,37 @@ body {
 }
 
 .payment-option:hover {
-  background: rgba(0, 168, 132, 0.05);
+  background: rgba(0, 168, 132, 0.04);
 }
 
 .payment-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.05);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #303030;
   flex-shrink: 0;
 }
 
 .payment-name {
   color: #303030;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   flex: 1;
 }
 
-/* Input Area */
+/* COMPACT INPUT */
 .input-area {
   background: #ffffff;
-  padding: 12px 15px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 2;
   flex-shrink: 0;
 }
@@ -712,10 +710,10 @@ body {
   flex: 1;
   background: #f0f2f5;
   border: none;
-  border-radius: 25px;
-  padding: 10px 16px;
+  border-radius: 20px;
+  padding: 8px 14px;
   color: #303030;
-  font-size: 14px;
+  font-size: 13px;
   outline: none;
 }
 
@@ -724,17 +722,17 @@ body {
 }
 
 .send-btn {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #00a884;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   border: none;
   flex-shrink: 0;
 }
@@ -744,274 +742,206 @@ body {
   transform: scale(1.05);
 }
 
-/* Confirmation Message */
+/* COMPACT CONFIRMATION */
 .confirmation-card {
-  background: rgba(0, 168, 132, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  border: 2px solid #00a884;
-  box-shadow: 0 5px 20px rgba(0, 168, 132, 0.1);
+  background: rgba(0, 168, 132, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #00a884;
+  box-shadow: 0 4px 12px rgba(0, 168, 132, 0.08);
   width: 100%;
 }
 
 .confirmation-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .confirmation-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #00a884;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 20px;
   color: white;
   flex-shrink: 0;
 }
 
 .confirmation-header h3 {
   color: #303030;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .confirmation-details {
   color: #303030;
-  line-height: 1.5;
-  margin-bottom: 15px;
-  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  font-size: 13px;
 }
 
 .confirmation-details p {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .confirmation-points {
   background: rgba(0, 0, 0, 0.02);
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 15px;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 12px;
   text-align: center;
-  border: 1px solid rgba(0, 168, 132, 0.2);
+  border: 1px solid rgba(0, 168, 132, 0.15);
 }
 
 .confirmation-points h4 {
   color: #303030;
-  font-size: 14px;
-  margin-bottom: 6px;
+  font-size: 13px;
+  margin-bottom: 5px;
   font-weight: 600;
 }
 
 .confirmation-points p {
   color: #00a884;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 }
 
-/* Scrollbar */
+/* COMPACT SCROLLBAR */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 ::-webkit-scrollbar-thumb {
   background: #00a884;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #008f70;
 }
 
-/* Quick Message Button */
+/* QUICK MESSAGE */
 .quick-message {
   background: #128c7e;
   color: white;
-  padding: 10px 16px;
-  border-radius: 18px;
-  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 16px;
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   border: none;
   align-self: flex-end;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 4px;
 }
 
 .quick-message:hover {
   background: #0d7a6d;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-/* RESPONSIVE MEDIA QUERIES */
-@media (max-width: 480px) {
+/* EMBED MODE */
+.embed-mode .phone-container {
+  transform: scale(0.95);
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
   body {
     padding: 10px;
   }
   
   .phone-container {
-    height: 700px;
-    border-radius: 40px;
+    max-width: 320px;
+    min-height: 600px;
+    max-height: 640px;
     padding: 12px;
-  }
-  
-  .screen {
     border-radius: 30px;
   }
   
+  .screen {
+    border-radius: 22px;
+  }
+  
   .whatsapp-header {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
   
   .restaurant-avatar {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   
   .restaurant-details h2 {
-    font-size: 15px;
-  }
-  
-  .restaurant-details p {
-    font-size: 11px;
-  }
-  
-  .header-icons {
-    gap: 12px;
-    font-size: 16px;
-  }
-  
-  .chat-area {
-    padding: 12px 8px;
-  }
-  
-  .menu-item {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  
-  .menu-item-image {
-    width: 55px;
-    height: 55px;
-  }
-  
-  .menu-item-name {
-    font-size: 13px;
-  }
-  
-  .menu-item-desc {
-    font-size: 11px;
-  }
-  
-  .menu-item-price {
     font-size: 14px;
-  }
-  
-  .menu-item-add {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 380px) {
-  .phone-container {
-    height: 650px;
-    border-radius: 35px;
-  }
-  
-  .screen {
-    border-radius: 25px;
-  }
-  
-  .bubble {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-  
-  .menu-item {
-    padding: 8px 10px;
-  }
-  
-  .menu-item-image {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-@media (max-width: 320px) {
-  .phone-container {
-    height: 600px;
-  }
-  
-  .whatsapp-header {
-    padding: 8px 10px;
-  }
-  
-  .restaurant-avatar {
-    width: 32px;
-    height: 32px;
   }
   
   .chat-area {
     padding: 10px 6px;
   }
   
+  .bubble {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  
+  .menu-item {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  
+  .menu-item-image {
+    width: 46px;
+    height: 46px;
+  }
+  
   .input-area {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
   
   .input-area input {
-    padding: 8px 14px;
-    font-size: 13px;
+    padding: 7px 12px;
+    font-size: 12px;
   }
   
   .send-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-  }
-}
-
-/* NEW: Height-based responsive queries for embed optimization */
-@media (max-height: 800px) {
-  .phone-container {
-    max-width: 340px;
-    min-height: 680px;
-    padding: 14px;
-  }
-  
-  .screen {
-    border-radius: 35px;
-  }
-  
-  .whatsapp-header {
-    padding: 10px 12px;
-  }
-  
-  .chat-area {
-    padding: 12px 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
   }
 }
 
 @media (max-height: 700px) {
   .phone-container {
     max-width: 320px;
-    min-height: 600px;
-    padding: 12px;
-    border-radius: 40px;
+    min-height: 580px;
+    max-height: 620px;
   }
   
-  .screen {
-    border-radius: 30px;
+  .chat-area {
+    padding: 10px 6px;
+  }
+  
+  .menu-card {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 650px) {
+  .phone-container {
+    max-width: 300px;
+    min-height: 540px;
+    max-height: 580px;
   }
   
   .whatsapp-header {
@@ -1019,41 +949,13 @@ body {
   }
   
   .restaurant-avatar {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
   
-  .menu-item {
-    padding: 10px 12px;
+  .chat-area {
+    padding: 8px 6px;
   }
-}
-
-/* NEW: Embed mode styling */
-.embed-mode .phone-container {
-  transform: scale(0.95);
-}
-
-/* Scale controls (optional, can remove) */
-.scale-control {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-.scale-control button {
-  background: #00a884;
-  color: white;
-  border: none;
-  padding: 4px 8px;
-  margin: 0 4px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 </style>
 </head>
@@ -1094,7 +996,7 @@ body {
     
     <!-- Input Area -->
     <div class="input-area">
-      <i class="fas fa-paperclip" style="color: #666666; font-size: 20px;"></i>
+      <i class="fas fa-paperclip" style="color: #666666; font-size: 18px;"></i>
       <input type="text" id="messageInput" placeholder="اكتب رسالة..." onkeydown="if(event.key === 'Enter') sendMessage()">
       <button class="send-btn" onclick="sendMessage()">
         <i class="fas fa-paper-plane"></i>
@@ -1115,78 +1017,18 @@ const restaurant = {
   rating: "4.8 ★ (950 تقييم)"
 };
 
-// Menu items with your Arabic names and local images
+// Menu items
 const menuItems = [
-  {
-    id: 1,
-    name: "وجبة لشخصين",
-    description: "وجبة خاصة لشخصين مع مشروبات",
-    price: 85,
-    image: "images/item1.png"
-  },
-  {
-    id: 2,
-    name: "وجبة جو دجاج",
-    description: "وجبة دجاج جو المقرمشة",
-    price: 65,
-    image: "images/item2.png"
-  },
-  {
-    id: 3,
-    name: "وجبة بينوي",
-    description: "وجبة بينوي اللذيذة مع أصناف متنوعة",
-    price: 75,
-    image: "images/item3.png"
-  },
-  {
-    id: 4,
-    name: "وجبة الاحتفال",
-    description: "وجبة احتفالية كبيرة مع جميع الأصناف",
-    price: 120,
-    image: "images/item4.png"
-  },
-  {
-    id: 5,
-    name: "وجبة جو دبل رويال",
-    description: "وجبة جو رويال مزدوجة وفاخرة",
-    price: 110,
-    image: "images/item5.png"
-  },
-  {
-    id: 6,
-    name: "الوجبة القيمة",
-    description: "وجبة اقتصادية مع قيمة ممتازة",
-    price: 55,
-    image: "images/item6.png"
-  },
-  {
-    id: 7,
-    name: "رويال ميل",
-    description: "الوجبة الملكية مع جميع الإضافات",
-    price: 95,
-    image: "images/item7.png"
-  },
-  {
-    id: 8,
-    name: "وليمة أرز الدجاج الذهبي",
-    description: "وليمة دجاج مع أرز ذهبي لذيذ",
-    price: 130,
-    image: "images/item8.png"
-  },
-  {
-    id: 9,
-    name: "وجبة السعادة",
-    description: "وجبة تجلب السعادة مع أصناف مميزة",
-    price: 70,
-    image: "images/item9.png"
-  },
-  {
-    id: 10,
-    name: "باكيت تندر مع الجرافي",
-    description: "باكيت تندر دجاج مع صوص الجرافي الخاص",
-    price: 80,
-    image: "images/item10.png"
-  }
+  {id: 1, name: "وجبة لشخصين", description: "وجبة خاصة لشخصين مع مشروبات", price: 85, image: "images/item1.png"},
+  {id: 2, name: "وجبة جو دجاج", description: "وجبة دجاج جو المقرمشة", price: 65, image: "images/item2.png"},
+  {id: 3, name: "وجبة بينوي", description: "وجبة بينوي اللذيذة مع أصناف متنوعة", price: 75, image: "images/item3.png"},
+  {id: 4, name: "وجبة الاحتفال", description: "وجبة احتفالية كبيرة مع جميع الأصناف", price: 120, image: "images/item4.png"},
+  {id: 5, name: "وجبة جو دبل رويال", description: "وجبة جو رويال مزدوجة وفاخرة", price: 110, image: "images/item5.png"},
+  {id: 6, name: "الوجبة القيمة", description: "وجبة اقتصادية مع قيمة ممتازة", price: 55, image: "images/item6.png"},
+  {id: 7, name: "رويال ميل", description: "الوجبة الملكية مع جميع الإضافات", price: 95, image: "images/item7.png"},
+  {id: 8, name: "وليمة أرز الدجاج الذهبي", description: "وليمة دجاج مع أرز ذهبي لذيذ", price: 130, image: "images/item8.png"},
+  {id: 9, name: "وجبة السعادة", description: "وجبة تجلب السعادة مع أصناف مميزة", price: 70, image: "images/item9.png"},
+  {id: 10, name: "باكيت تندر مع الجرافي", description: "باكيت تندر دجاج مع صوص الجرافي الخاص", price: 80, image: "images/item10.png"}
 ];
 
 // Cart and order state
@@ -1196,21 +1038,16 @@ let deliveryType = '';
 let currentStep = 'welcome';
 let userAddress = '';
 
-// NEW: Check for digital menu order on page load
+// Check for digital menu order
 function checkForDigitalMenuOrder() {
   const urlParams = new URLSearchParams(window.location.search);
   const cartDataParam = urlParams.get('cartData');
-  
   if (cartDataParam) {
     try {
       const cartData = JSON.parse(decodeURIComponent(cartDataParam));
       if (cartData && cartData.items && cartData.items.length > 0) {
-        // Process the digital menu order
         processDigitalMenuOrder(cartData);
-        
-        // Clear the URL parameter for clean history
         window.history.replaceState({}, document.title, window.location.pathname);
-        
         return true;
       }
     } catch (error) {
@@ -1220,122 +1057,56 @@ function checkForDigitalMenuOrder() {
   return false;
 }
 
-// NEW: Process digital menu order - FIXED VERSION
 function processDigitalMenuOrder(cartData) {
-  // Clear existing cart
   cart = [];
   selectedItems = {};
-  
-  // Add items from digital menu to cart
   let itemsTotal = 0;
   let itemsHTML = '';
-  let totalItemsCount = 0;
   
   cartData.items.forEach(itemData => {
-    // Find the corresponding menu item
     const menuItem = menuItems.find(item => item.id === itemData.itemId);
     if (menuItem) {
-      // Add to selected items
       selectedItems[menuItem.id] = true;
       cart.push(menuItem.id);
-      
       const itemTotal = menuItem.price * itemData.quantity;
       itemsTotal += itemTotal;
-      totalItemsCount += itemData.quantity;
-      
-      // Add main item to summary
-      itemsHTML += `
-        <div class="cart-item">
-          <div class="cart-item-name">${menuItem.name} × ${itemData.quantity}</div>
-          <div class="cart-item-price">${itemTotal} ريال</div>
-        </div>
-      `;
-      
-      // Add addons if any
+      itemsHTML += `<div class="cart-item"><div class="cart-item-name">${menuItem.name} × ${itemData.quantity}</div><div class="cart-item-price">${itemTotal} ريال</div></div>`;
       if (itemData.addons && itemData.addons.length > 0) {
         itemData.addons.forEach(addon => {
           const addonTotal = addon.price * addon.quantity;
           itemsTotal += addonTotal;
-          itemsHTML += `
-            <div class="cart-item">
-              <div class="cart-item-name" style="font-size: 12px; padding-left: 15px;">+ ${addon.name} × ${addon.quantity}</div>
-              <div class="cart-item-price" style="font-size: 12px;">${addonTotal} ريال</div>
-            </div>
-          `;
+          itemsHTML += `<div class="cart-item"><div class="cart-item-name" style="font-size:11px;padding-left:12px;">+ ${addon.name} × ${addon.quantity}</div><div class="cart-item-price" style="font-size:11px;">${addonTotal} ريال</div></div>`;
         });
-      }
-      
-      // Add modifier if any (from new digital menu)
-      if (itemData.modifier) {
-        itemsHTML += `
-          <div class="cart-item">
-            <div class="cart-item-name" style="font-size: 12px; padding-left: 15px; color: #666;">↳ ${itemData.modifier.name}</div>
-            <div class="cart-item-price" style="font-size: 12px; color: #666;">مشمول</div>
-          </div>
-        `;
       }
     }
   });
   
-  // Show ONE combined order summary
-  const orderSummaryHTML = `
-    <div class="cart-summary">
-      <h3><i class="fas fa-shopping-bag"></i> طلبك من المنيو الرقمي</h3>
-      <div class="cart-items">
-        ${itemsHTML}
-      </div>
-      <div class="cart-total">
-        <div class="cart-total-label">الإجمالي</div>
-        <div class="cart-total-amount">${itemsTotal} ريال</div>
-      </div>
-    </div>
-  `;
-  
-  // Add order summary message (ONE message only)
+  const orderSummaryHTML = `<div class="cart-summary"><h3><i class="fas fa-shopping-bag"></i> طلبك من المنيو الرقمي</h3><div class="cart-items">${itemsHTML}</div><div class="cart-total"><div class="cart-total-label">الإجمالي</div><div class="cart-total-amount">${itemsTotal} ريال</div></div></div>`;
   addBotMessage(orderSummaryHTML, getCurrentTime());
-  
-  // Show confirmation message
   addBotMessage(`✅ تم استلام طلبك من المنيو الرقمي. إجمالي الطلب: ${itemsTotal} ريال`, getCurrentTime());
-  
-  // Set current step to ordering
   currentStep = 'ordering';
-  
-  // Auto-scroll to bottom
   scrollToBottom();
-  
-  // AUTO SHOW DELIVERY OPTIONS after 1 second (NO CONFIRMATION BUTTON NEEDED)
-  setTimeout(() => {
-    showDeliveryOptions();
-  }, 1000);
-  
-  // Return true to indicate order was processed
+  setTimeout(() => { showDeliveryOptions(); }, 800);
   return true;
 }
 
-// NEW: Check for payment success on page load
+// Check for payment success
 function checkPaymentSuccess() {
   const urlParams = new URLSearchParams(window.location.search);
   const paymentStatus = urlParams.get('payment');
   const orderId = urlParams.get('orderId');
   const source = urlParams.get('source');
-  
   if (paymentStatus === 'success' && orderId) {
-    // Clear URL parameters
     window.history.replaceState({}, document.title, window.location.pathname);
-    
-    // Show payment success confirmation
     showPaymentSuccessConfirmation(orderId, source);
     return true;
   }
   return false;
 }
 
-// NEW: Show payment success confirmation
 function showPaymentSuccessConfirmation(orderId, source) {
-  // Calculate totals for confirmation
   let itemsTotal = 0;
   let itemsList = '';
-  
   Object.keys(selectedItems).forEach(itemId => {
     const item = menuItems.find(i => i.id == itemId);
     if (item) {
@@ -1343,11 +1114,9 @@ function showPaymentSuccessConfirmation(orderId, source) {
       itemsList += `<p>• ${item.name} - ${item.price} ريال</p>`;
     }
   });
-  
   const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
-  
   let paymentMethodText = '';
   if (source === 'stcpay') {
     paymentMethodText = 'STC Pay';
@@ -1356,127 +1125,64 @@ function showPaymentSuccessConfirmation(orderId, source) {
   } else {
     paymentMethodText = 'الدفع الإلكتروني';
   }
-  
-  const confirmationHTML = `
-    <div class="confirmation-card">
-      <div class="confirmation-header">
-        <div class="confirmation-icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <div>
-          <h3>تم تأكيد طلبك! 🎉</h3>
-        </div>
-      </div>
-      <div class="confirmation-details">
-        <p><strong>رقم الطلب:</strong> #${orderId}</p>
-        <p><strong>طريقة الدفع:</strong> ${paymentMethodText}</p>
-        <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
-        ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
-        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.02); border-radius: 10px;">
-          <p style="color: #303030; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
-          ${itemsList}
-          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}
-          <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
-        </div>
-        <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
-      </div>
-      <div class="confirmation-points">
-        <h4><i class="fas fa-gift"></i> مكافآت الولاء</h4>
-        <p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p>
-        <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
-      </div>
-    </div>
-    <div style="text-align: center; color: #666666; font-size: 14px; padding: 20px;">
-      شكرا لاختياركم دريم! 🍽️✨
-    </div>
-  `;
-  
+  const confirmationHTML = `<div class="confirmation-card"><div class="confirmation-header"><div class="confirmation-icon"><i class="fas fa-check"></i></div><div><h3>تم تأكيد طلبك! 🎉</h3></div></div><div class="confirmation-details"><p><strong>رقم الطلب:</strong> #${orderId}</p><p><strong>طريقة الدفع:</strong> ${paymentMethodText}</p><p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}<p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p><div style="margin:12px 0;padding:12px;background:rgba(0,0,0,0.02);border-radius:8px;"><p style="color:#303030;margin-bottom:8px;font-weight:600;">تفاصيل الطلب:</p>${itemsList}${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}<p style="margin-top:8px;color:#00a884;font-weight:700;">الإجمالي: ${total} ريال</p></div><p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p></div><div class="confirmation-points"><h4><i class="fas fa-gift"></i> مكافآت الولاء</h4><p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p><p style="font-size:12px;margin-top:3px;">يمكنك استخدامها في طلباتك القادمة</p></div></div><div style="text-align:center;color:#666;font-size:13px;padding:16px;">شكرا لاختياركم دريم! 🍽️✨</div>`;
   addBotMessage(confirmationHTML, getCurrentTime());
   scrollToBottom();
-  
-  // Reset for new order
   setTimeout(() => {
-    cart = [];
-    selectedItems = {};
-    deliveryType = '';
-    userAddress = '';
-    currentStep = 'welcome';
-    
+    cart = []; selectedItems = {}; deliveryType = ''; userAddress = ''; currentStep = 'welcome';
     addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
-  }, 5000);
+  }, 4000);
 }
 
-// NEW: Redirect functions
 function goToCheckout() {
-  // Calculate order total
   let itemsTotal = 0;
   Object.keys(selectedItems).forEach(itemId => {
     const item = menuItems.find(i => i.id == itemId);
     if (item) itemsTotal += item.price;
   });
-  
   const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const orderId = Math.floor(1000 + Math.random() * 9000);
-  
-  // Redirect to checkout with order details
   window.location.href = `./checkout.html?orderId=${orderId}&total=${total}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}`;
 }
 
 function goToStcPay() {
-  // Calculate order total
   let itemsTotal = 0;
   Object.keys(selectedItems).forEach(itemId => {
     const item = menuItems.find(i => i.id == itemId);
     if (item) itemsTotal += item.price;
   });
-  
   const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const orderId = Math.floor(1000 + Math.random() * 9000);
-  
-  // Redirect to STC Pay with order details
   window.location.href = `./stcpay.html?orderId=${orderId}&total=${total}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}`;
 }
 
 // Initialize chat
 function initChat() {
-  // Check if we're returning from a successful payment
-  if (checkPaymentSuccess()) {
-    return;
-  }
+  if (checkPaymentSuccess()) return;
+  if (checkForDigitalMenuOrder()) return;
   
-  // Check if we're receiving an order from digital menu
-  if (checkForDigitalMenuOrder()) {
-    return;
-  }
-  
-  // Only show welcome messages if not returning from payment or digital menu
   addBotMessage("مرحباً بكم في دريم! 🍗✨", "10:30");
   addBotMessage("نقدم لكم أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية. كيف يمكنني خدمتكم اليوم؟", "10:30");
   
-  // Add quick order button
   setTimeout(() => {
     const quickBtn = document.createElement('button');
     quickBtn.className = 'quick-message';
     quickBtn.textContent = 'ابغي اطلب';
     quickBtn.onclick = function() {
       addUserMessage('ابغي اطلب');
-      setTimeout(() => showCatalog(), 500);
+      setTimeout(() => showCatalog(), 400);
     };
-    
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message user';
     messageDiv.style.justifyContent = 'flex-end';
     messageDiv.appendChild(quickBtn);
-    
     document.getElementById('chatContent').appendChild(messageDiv);
     scrollToBottom();
-  }, 1000);
+  }, 800);
 }
 
-// Go back function
 function goBack() {
   if (currentStep === 'ordering') {
     currentStep = 'menu';
@@ -1501,21 +1207,12 @@ function goBack() {
   }
 }
 
-// Add message to chat
 function addMessage(text, sender, time) {
   const chatContent = document.getElementById('chatContent');
   const messageDiv = document.createElement('div');
   messageDiv.className = `message ${sender}`;
-  
   const timeText = time || getCurrentTime();
-  
-  messageDiv.innerHTML = `
-    <div class="bubble">
-      ${text}
-      <div class="time">${timeText}</div>
-    </div>
-  `;
-  
+  messageDiv.innerHTML = `<div class="bubble">${text}<div class="time">${timeText}</div></div>`;
   chatContent.appendChild(messageDiv);
   scrollToBottom();
 }
@@ -1528,37 +1225,30 @@ function addUserMessage(text, time) {
   addMessage(text, 'user', time);
 }
 
-// Get current time in HH:MM format
 function getCurrentTime() {
   const now = new Date();
   return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 }
 
-// Scroll to bottom of chat
 function scrollToBottom() {
   const chatArea = document.getElementById('chatArea');
   setTimeout(() => {
     chatArea.scrollTop = chatArea.scrollHeight;
-  }, 100);
+  }, 80);
 }
 
-// Send message from input
 function sendMessage() {
   const input = document.getElementById('messageInput');
   const text = input.value.trim();
-  
   if (text) {
     addUserMessage(text);
     input.value = '';
-    
-    // Process based on current step
     setTimeout(() => {
       processUserMessage(text);
-    }, 500);
+    }, 400);
   }
 }
 
-// Process user message
 function processUserMessage(text) {
   if (currentStep === 'welcome' && (text.includes('طلب') || text.includes('order') || text.includes('أريد') || text.includes('ابغى') || text.includes('ابغي'))) {
     showCatalog();
@@ -1571,71 +1261,29 @@ function processUserMessage(text) {
   }
 }
 
-// Show catalog (smaller like real WhatsApp)
 function showCatalog() {
   currentStep = 'menu';
-  
-  const catalogHTML = `
-    <div class="catalog-message">
-      <div class="catalog-image">
-        <img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'">
-      </div>
-      <div class="catalog-details">
-        <h3>${restaurant.name}</h3>
-        <p>${restaurant.description}<br>${restaurant.rating}</p>
-        <button class="catalog-btn" onclick="showMenu()">
-          <i class="fas fa-utensils"></i> عرض القائمة
-        </button>
-        <button class="catalog-btn" onclick="openDigitalMenu()" style="margin-top: 10px; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
-          <i class="fas fa-mobile-alt"></i> عرض المنيو الرقمي
-        </button>
-      </div>
-    </div>
-  `;
-  
+  const catalogHTML = `<div class="catalog-message"><div class="catalog-image"><img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'"></div><div class="catalog-details"><h3>${restaurant.name}</h3><p>${restaurant.description}<br>${restaurant.rating}</p><button class="catalog-btn" onclick="showMenu()"><i class="fas fa-utensils"></i> عرض القائمة</button><button class="catalog-btn" onclick="openDigitalMenu()" style="margin-top:8px;background:linear-gradient(135deg,#6a11cb 0%,#2575fc 100%);"><i class="fas fa-mobile-alt"></i> عرض المنيو الرقمي</button></div></div>`;
   addBotMessage(catalogHTML, getCurrentTime());
   scrollToBottom();
 }
 
-// Function to open digital menu
 function openDigitalMenu() {
   window.open('digitalmenu.html', '_blank', 'noopener,noreferrer');
 }
 
-// Show menu
 function showMenu() {
   currentStep = 'ordering';
-  
   let menuHTML = '<div class="menu-card">';
-  
   menuItems.forEach(item => {
     const isSelected = selectedItems[item.id] || false;
-    menuHTML += `
-      <div class="menu-item">
-        <div class="menu-item-add ${isSelected ? 'selected' : ''}" onclick="toggleItem(${item.id})">
-          ${isSelected ? '×' : '+'}
-        </div>
-        <div class="menu-item-image">
-          <img src="${item.image}" alt="${item.name}" onerror="this.src='images/item1.png'">
-        </div>
-        <div class="menu-item-details">
-          <div class="menu-item-name">${item.name}</div>
-          <div class="menu-item-desc">${item.description}</div>
-          <div class="menu-item-price">${item.price} ريال</div>
-        </div>
-      </div>
-    `;
+    menuHTML += `<div class="menu-item"><div class="menu-item-add ${isSelected ? 'selected' : ''}" onclick="toggleItem(${item.id})">${isSelected ? '×' : '+'}</div><div class="menu-item-image"><img src="${item.image}" alt="${item.name}" onerror="this.src='images/item1.png'"></div><div class="menu-item-details"><div class="menu-item-name">${item.name}</div><div class="menu-item-desc">${item.description}</div><div class="menu-item-price">${item.price} ريال</div></div></div>`;
   });
-  
   menuHTML += '</div>';
-  
   addBotMessage(menuHTML, getCurrentTime());
-  
-  // Show cart if items are selected
   updateCartDisplay();
 }
 
-// Toggle item selection
 function toggleItem(itemId) {
   if (selectedItems[itemId]) {
     delete selectedItems[itemId];
@@ -1644,289 +1292,102 @@ function toggleItem(itemId) {
     selectedItems[itemId] = true;
     cart.push(itemId);
   }
-  
-  // Update the UI
   const addButton = document.querySelector(`.menu-item-add[onclick="toggleItem(${itemId})"]`);
   if (addButton) {
     addButton.classList.toggle('selected');
     addButton.innerHTML = selectedItems[itemId] ? '×' : '+';
   }
-  
   updateCartDisplay();
 }
 
-// Update cart display
 function updateCartDisplay() {
-  // Remove existing cart if any
   const existingCart = document.querySelector('.cart-summary');
   if (existingCart) existingCart.remove();
-  
   const itemCount = Object.keys(selectedItems).length;
-  
   if (itemCount > 0) {
-    // Calculate total
     let total = 0;
     let itemsHTML = '';
-    
     Object.keys(selectedItems).forEach(itemId => {
       const item = menuItems.find(i => i.id == itemId);
       if (item) {
         total += item.price;
-        itemsHTML += `
-          <div class="cart-item">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">${item.price} ريال</div>
-          </div>
-        `;
+        itemsHTML += `<div class="cart-item"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">${item.price} ريال</div></div>`;
       }
     });
-    
-    const cartHTML = `
-      <div class="cart-summary">
-        <h3><i class="fas fa-shopping-bag"></i> طلبك</h3>
-        <div class="cart-items">
-          ${itemsHTML}
-        </div>
-        <div class="cart-total">
-          <div class="cart-total-label">الإجمالي</div>
-          <div class="cart-total-amount">${total} ريال</div>
-        </div>
-        <button class="checkout-btn" onclick="showDeliveryOptions()">
-          <i class="fas fa-lock"></i> تأكيد الطلب والدفع
-        </button>
-      </div>
-    `;
-    
+    const cartHTML = `<div class="cart-summary"><h3><i class="fas fa-shopping-bag"></i> طلبك</h3><div class="cart-items">${itemsHTML}</div><div class="cart-total"><div class="cart-total-label">الإجمالي</div><div class="cart-total-amount">${total} ريال</div></div><button class="checkout-btn" onclick="showDeliveryOptions()"><i class="fas fa-lock"></i> تأكيد الطلب والدفع</button></div>`;
     const chatContent = document.getElementById('chatContent');
     const cartDiv = document.createElement('div');
     cartDiv.innerHTML = cartHTML;
     chatContent.appendChild(cartDiv);
-    
     scrollToBottom();
   }
 }
 
-// Show delivery options
 function showDeliveryOptions() {
   currentStep = 'delivery';
-  
-  const deliveryHTML = `
-    <div class="delivery-card">
-      <div class="delivery-header">
-        <h3><i class="fas fa-truck"></i> طريقة الاستلام</h3>
-      </div>
-      <div class="delivery-option ${deliveryType === 'delivery' ? 'selected' : ''}" onclick="selectDelivery('delivery')">
-        <div class="delivery-icon">
-          <i class="fas fa-motorcycle"></i>
-        </div>
-        <div class="delivery-details">
-          <h4>توصيل إلى العنوان</h4>
-          <p>سيقوم سائقنا الخاص بتوصيل طلبك مع تجهيزات خاصة للحفاظ على جودة الطعام</p>
-          <p style="color: #00a884; margin-top: 5px;">+ 16 ريال (خدمة توصيل)</p>
-        </div>
-      </div>
-      <div class="delivery-option ${deliveryType === 'pickup' ? 'selected' : ''}" onclick="selectDelivery('pickup')">
-        <div class="delivery-icon">
-          <i class="fas fa-store"></i>
-        </div>
-        <div class="delivery-details">
-          <h4>استلام من المطعم</h4>
-          <p>يمكنك استلام الطلب من فرعنا في حي العليا مع خدمة الاستقبال المميزة</p>
-          <p style="color: #00a884; margin-top: 5px;">بدون رسوم إضافية</p>
-        </div>
-      </div>
-    </div>
-  `;
-  
+  const deliveryHTML = `<div class="delivery-card"><div class="delivery-header"><h3><i class="fas fa-truck"></i> طريقة الاستلام</h3></div><div class="delivery-option ${deliveryType === 'delivery' ? 'selected' : ''}" onclick="selectDelivery('delivery')"><div class="delivery-icon"><i class="fas fa-motorcycle"></i></div><div class="delivery-details"><h4>توصيل إلى العنوان</h4><p>سيقوم سائقنا الخاص بتوصيل طلبك مع تجهيزات خاصة للحفاظ على جودة الطعام</p><p style="color:#00a884;margin-top:4px;">+ 16 ريال (خدمة توصيل)</p></div></div><div class="delivery-option ${deliveryType === 'pickup' ? 'selected' : ''}" onclick="selectDelivery('pickup')"><div class="delivery-icon"><i class="fas fa-store"></i></div><div class="delivery-details"><h4>استلام من المطعم</h4><p>يمكنك استلام الطلب من فرعنا في حي العليا مع خدمة الاستقبال المميزة</p><p style="color:#00a884;margin-top:4px;">بدون رسوم إضافية</p></div></div></div>`;
   addBotMessage(deliveryHTML, getCurrentTime());
   scrollToBottom();
 }
 
-// Select delivery option - UPDATED: No confirmation button needed
 function selectDelivery(type) {
   deliveryType = type;
-  
-  // Update UI
   const deliveryOptions = document.querySelectorAll('.delivery-option');
-  deliveryOptions.forEach(option => {
-    option.classList.remove('selected');
-  });
-  
-  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}')"]`);
-  if (selectedOption) {
-    selectedOption.classList.add('selected');
-  }
-  
-  // AUTO PROCEED based on selection (NO CONFIRMATION BUTTON NEEDED)
+  deliveryOptions.forEach(option => option.classList.remove('selected'));
+  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}")]`);
+  if (selectedOption) selectedOption.classList.add('selected');
   setTimeout(() => {
     if (deliveryType === 'delivery') {
       showLocationSharing();
     } else {
       showPickupInfo();
     }
-  }, 300);
+  }, 250);
 }
 
-// Show location sharing for delivery
 function showLocationSharing() {
   currentStep = 'location';
-  
-  const locationHTML = `
-    <div class="location-card">
-      <div class="location-header">
-        <h3><i class="fas fa-map-marker-alt"></i> مشاركة الموقع</h3>
-      </div>
-      <div class="location-message">
-        <p style="color: #303030; margin-bottom: 20px; font-size: 14px;">
-          لمتابعة طلب التوصيل، نحتاج لمشاركة موقعك
-        </p>
-        <button class="location-btn" onclick="shareLocation()">
-          <i class="fas fa-location-arrow"></i> مشاركة الموقع الحالي
-        </button>
-      </div>
-      <div class="location-options">
-        <div class="location-option" onclick="useSavedAddress()">
-          <div class="location-option-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <div class="location-option-details">
-            <h4>استخدام عنوان محفوظ</h4>
-            <p>اختر من العناوين السابقة</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
+  const locationHTML = `<div class="location-card"><div class="location-header"><h3><i class="fas fa-map-marker-alt"></i> مشاركة الموقع</h3></div><div class="location-message"><p style="color:#303030;margin-bottom:16px;font-size:13px;">لمتابعة طلب التوصيل، نحتاج لمشاركة موقعك</p><button class="location-btn" onclick="shareLocation()"><i class="fas fa-location-arrow"></i> مشاركة الموقع الحالي</button></div><div class="location-options"><div class="location-option" onclick="useSavedAddress()"><div class="location-option-icon"><i class="fas fa-home"></i></div><div class="location-option-details"><h4>استخدام عنوان محفوظ</h4><p>اختر من العناوين السابقة</p></div></div></div></div>`;
   addBotMessage(locationHTML, getCurrentTime());
   scrollToBottom();
 }
 
-// Share current location
 function shareLocation() {
   userAddress = "الموقع الحالي (تم مشاركته)";
   addBotMessage("📍 تم مشاركة موقعك بنجاح!", getCurrentTime());
-  setTimeout(() => {
-    showPaymentOptions();
-  }, 1000);
+  setTimeout(() => { showPaymentOptions(); }, 800);
 }
 
-// Handle manual address input
-function handleManualAddress() {
-  return false;
-}
-
-// Use saved address
 function useSavedAddress() {
   userAddress = "العنوان المنزلي المحفوظ";
   addBotMessage(`✅ تم اختيار العنوان المحفوظ: ${userAddress}`, getCurrentTime());
-  setTimeout(() => {
-    showPaymentOptions();
-  }, 1000);
+  setTimeout(() => { showPaymentOptions(); }, 800);
 }
 
-// Show pickup info
 function showPickupInfo() {
-  const pickupHTML = `
-    <div class="location-card">
-      <div class="location-header">
-        <h3><i class="fas fa-store"></i> استلام من المطعم</h3>
-      </div>
-      <div class="location-message">
-        <p style="color: #303030; margin-bottom: 20px; font-size: 14px; text-align: center;">
-          📍 ${restaurant.address}<br>
-          ⏰ الوقت المتوقع للاستلام: 15-20 دقيقة<br>
-          📞 ${restaurant.phone}
-        </p>
-        <button class="checkout-btn" onclick="showPaymentOptions()">
-          <i class="fas fa-arrow-right"></i> المتابعة للدفع
-        </button>
-      </div>
-    </div>
-  `;
-  
+  const pickupHTML = `<div class="location-card"><div class="location-header"><h3><i class="fas fa-store"></i> استلام من المطعم</h3></div><div class="location-message"><p style="color:#303030;margin-bottom:16px;font-size:13px;text-align:center;">📍 ${restaurant.address}<br>⏰ الوقت المتوقع للاستلام: 15-20 دقيقة<br>📞 ${restaurant.phone}</p><button class="checkout-btn" onclick="showPaymentOptions()"><i class="fas fa-arrow-right"></i> المتابعة للدفع</button></div></div>`;
   addBotMessage(pickupHTML, getCurrentTime());
   scrollToBottom();
 }
 
-// Show payment options
 function showPaymentOptions() {
   currentStep = 'payment';
-  
-  // Calculate totals
   let itemsTotal = 0;
   Object.keys(selectedItems).forEach(itemId => {
     const item = menuItems.find(i => i.id == itemId);
     if (item) itemsTotal += item.price;
   });
-  
   const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
-  
-  const paymentHTML = `
-    <div class="payment-card">
-      <div class="payment-header">
-        <h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني الآمن</h3>
-      </div>
-      <div class="confirmation-details" style="padding: 15px;">
-        <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
-          <span style="color: #666666;">إجمالي الطلب:</span>
-          <span style="color: #303030; font-weight: 600;">${itemsTotal} ريال</span>
-        </div>
-        ${deliveryType === 'delivery' ? `
-        <div style="margin-bottom: 12px; display: flex; justify-content: space-between;">
-          <span style="color: #666666;">رسوم التوصيل:</span>
-          <span style="color: #303030; font-weight: 600;">${deliveryFee} ريال</span>
-        </div>
-        ` : ''}
-        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between;">
-          <span style="color: #303030; font-size: 16px; font-weight: 700;">الإجمالي النهائي:</span>
-          <span style="color: #00a884; font-size: 19px; font-weight: 700;">${total} ريال</span>
-        </div>
-      </div>
-      <div class="payment-option" onclick="completePayment()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
-          <i class="fab fa-apple-pay"></i>
-        </div>
-        <div class="payment-name">Apple Pay</div>
-        <i class="fas fa-chevron-left" style="color: #666666;"></i>
-      </div>
-      <div class="payment-option" onclick="goToStcPay()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);">
-          <i class="fas fa-mobile-alt"></i>
-        </div>
-        <div class="payment-name">STC Pay</div>
-        <i class="fas fa-chevron-left" style="color: #666666;"></i>
-      </div>
-      <div class="payment-option" onclick="goToCheckout()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);">
-          <i class="fas fa-credit-card"></i>
-        </div>
-        <div class="payment-name">Visa / Mastercard</div>
-        <i class="fas fa-chevron-left" style="color: #666666;"></i>
-      </div>
-      <div class="payment-option" onclick="goToCheckout()">
-        <div class="payment-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
-          <i class="fas fa-university"></i>
-        </div>
-        <div class="payment-name">بطاقة مدى</div>
-        <i class="fas fa-chevron-left" style="color: #666666;"></i>
-      </div>
-    </div>
-  `;
-  
+  const paymentHTML = `<div class="payment-card"><div class="payment-header"><h3><i class="fas fa-credit-card"></i> الدفع الإلكتروني الآمن</h3></div><div class="confirmation-details" style="padding:12px;"><div style="margin-bottom:10px;display:flex;justify-content:space-between;"><span style="color:#666;">إجمالي الطلب:</span><span style="color:#303030;font-weight:600;">${itemsTotal} ريال</span></div>${deliveryType === 'delivery' ? `<div style="margin-bottom:10px;display:flex;justify-content:space-between;"><span style="color:#666;">رسوم التوصيل:</span><span style="color:#303030;font-weight:600;">${deliveryFee} ريال</span></div>` : ''}<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,0,0,0.1);display:flex;justify-content:space-between;"><span style="color:#303030;font-size:15px;font-weight:700;">الإجمالي النهائي:</span><span style="color:#00a884;font-size:17px;font-weight:700;">${total} ريال</span></div></div><div class="payment-option" onclick="completePayment()"><div class="payment-icon" style="background:linear-gradient(135deg,#6a11cb 0%,#2575fc 100%);"><i class="fab fa-apple-pay"></i></div><div class="payment-name">Apple Pay</div><i class="fas fa-chevron-left" style="color:#666;"></i></div><div class="payment-option" onclick="goToStcPay()"><div class="payment-icon" style="background:linear-gradient(135deg,#00b09b 0%,#96c93d 100%);"><i class="fas fa-mobile-alt"></i></div><div class="payment-name">STC Pay</div><i class="fas fa-chevron-left" style="color:#666;"></i></div><div class="payment-option" onclick="goToCheckout()"><div class="payment-icon" style="background:linear-gradient(135deg,#FF416C 0%,#FF4B2B 100%);"><i class="fas fa-credit-card"></i></div><div class="payment-name">Visa / Mastercard</div><i class="fas fa-chevron-left" style="color:#666;"></i></div><div class="payment-option" onclick="goToCheckout()"><div class="payment-icon" style="background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%);"><i class="fas fa-university"></i></div><div class="payment-name">بطاقة مدى</div><i class="fas fa-chevron-left" style="color:#666;"></i></div></div>`;
   addBotMessage(paymentHTML, getCurrentTime());
   scrollToBottom();
 }
 
-// Complete payment (for Apple Pay demo)
 function completePayment() {
   currentStep = 'complete';
-  
-  // Calculate totals for confirmation
   let itemsTotal = 0;
   let itemsList = '';
-  
   Object.keys(selectedItems).forEach(itemId => {
     const item = menuItems.find(i => i.id == itemId);
     if (item) {
@@ -1934,75 +1395,28 @@ function completePayment() {
       itemsList += `<p>• ${item.name} - ${item.price} ريال</p>`;
     }
   });
-  
   const deliveryFee = deliveryType === 'delivery' ? 16 : 0;
   const total = itemsTotal + deliveryFee;
   const loyaltyPoints = Math.floor(total / 10);
   const orderId = Math.floor(1000 + Math.random() * 9000);
-  
-  const confirmationHTML = `
-    <div class="confirmation-card">
-      <div class="confirmation-header">
-        <div class="confirmation-icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <div>
-          <h3>تم تأكيد طلبك! 🎉</h3>
-        </div>
-      </div>
-      <div class="confirmation-details">
-        <p><strong>رقم الطلب:</strong> #${orderId}</p>
-        <p><strong>طريقة الدفع:</strong> Apple Pay</p>
-        <p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>
-        ${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}
-        <p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p>
-        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.02); border-radius: 10px;">
-          <p style="color: #303030; margin-bottom: 10px; font-weight: 600;">تفاصيل الطلب:</p>
-          ${itemsList}
-          ${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}
-          <p style="margin-top: 10px; color: #00a884; font-weight: 700;">الإجمالي: ${total} ريال</p>
-        </div>
-        <p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p>
-      </div>
-      <div class="confirmation-points">
-        <h4><i class="fas fa-gift"></i> مكافآت الولاء</h4>
-        <p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p>
-        <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
-      </div>
-    </div>
-    <div style="text-align: center; color: #666666; font-size: 14px; padding: 15px;">
-       شكرا لاختياركم مطعم دريم! 🍽️✨
-    </div>
-  `;
-  
+  const confirmationHTML = `<div class="confirmation-card"><div class="confirmation-header"><div class="confirmation-icon"><i class="fas fa-check"></i></div><div><h3>تم تأكيد طلبك! 🎉</h3></div></div><div class="confirmation-details"><p><strong>رقم الطلب:</strong> #${orderId}</p><p><strong>طريقة الدفع:</strong> Apple Pay</p><p><strong>طريقة الاستلام:</strong> ${deliveryType === 'delivery' ? 'توصيل إلى العنوان' : 'استلام من المطعم'}</p>${deliveryType === 'delivery' ? `<p><strong>العنوان:</strong> ${userAddress}</p>` : ''}<p><strong>التوقيت المتوقع:</strong> ${deliveryType === 'delivery' ? '45 دقيقة' : '25 دقيقة'}</p><div style="margin:12px 0;padding:12px;background:rgba(0,0,0,0.02);border-radius:8px;"><p style="color:#303030;margin-bottom:8px;font-weight:600;">تفاصيل الطلب:</p>${itemsList}${deliveryType === 'delivery' ? `<p>• رسوم التوصيل - 16 ريال</p>` : ''}<p style="margin-top:8px;color:#00a884;font-weight:700;">الإجمالي: ${total} ريال</p></div><p><strong>📞 للاستفسار:</strong> ${restaurant.phone}</p></div><div class="confirmation-points"><h4><i class="fas fa-gift"></i> مكافآت الولاء</h4><p>لقد حصلت على ${loyaltyPoints} نقطة مكافأة!</p><p style="font-size:12px;margin-top:3px;">يمكنك استخدامها في طلباتك القادمة</p></div></div><div style="text-align:center;color:#666;font-size:13px;padding:12px;">شكرا لاختياركم مطعم دريم! 🍽️✨</div>`;
   addBotMessage(confirmationHTML, getCurrentTime());
   scrollToBottom();
-  
-  // Reset for new order
   setTimeout(() => {
-    cart = [];
-    selectedItems = {};
-    deliveryType = '';
-    userAddress = '';
-    currentStep = 'welcome';
-    
+    cart = []; selectedItems = {}; deliveryType = ''; userAddress = ''; currentStep = 'welcome';
     addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
-  }, 3000);
+  }, 2500);
 }
 
-// NEW: Detect if embedded in iframe and adjust
+// Initialize
 window.onload = function() {
-  // Check if we're inside an iframe
   if (window !== window.top) {
     document.body.classList.add('embed-mode');
   }
-  
   initChat();
-  
-  // Add welcome message after a delay
   setTimeout(() => {
     document.getElementById('messageInput').value = "ابغي اطلب";
-  }, 1000);
+  }, 800);
 };
 </script>
 </body>
