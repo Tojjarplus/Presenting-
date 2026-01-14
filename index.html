@@ -998,11 +998,11 @@ body {
       
       <div class="restaurant-info">
         <div class="restaurant-avatar">
+          <!-- KEEP SAME: Your GitHub profile image -->
           <img src="images/profile.png" alt="ماكدونالدز" onerror="this.src='images/profile.png'">
         </div>
         <div class="restaurant-details">
           <h2>ماكدونالدز</h2>
-          <!-- CHANGED: Removed "التوصيل السريع" -->
           <p>متصل الآن</p>
         </div>
       </div>
@@ -1034,87 +1034,87 @@ body {
 </div>
 
 <script>
-// Restaurant data
+// Restaurant data - KEEP SAME
 const restaurant = {
   name: "ماكدونالدز",
   description: "أشهى الوجبات المقرمشة والوجبات السريعة بجودة عالية",
-  logo: "images/profile.png",
+  logo: "images/profile.png", // KEEP SAME
   address: "حي العليا، شارع الملك فهد، الرياض",
   phone: "011 234 5678",
   rating: "4.8 ★ (950 تقييم)"
 };
 
-// Menu items with your Arabic names and local images
+// Menu items - UPDATED NAMES, DESCRIPTIONS, AND IMAGES
 const menuItems = [
   {
     id: 1,
-    name: "وجبة لشخصين",
-    description: "وجبة خاصة لشخصين مع مشروبات",
+    name: "بيج ماك", // CHANGED: McDonald's name
+    description: "قطعتان من اللحم البقري ١٠٠٪ مع صلصة خاصة وخس وجبنة", // NEW: McDonald's description
     price: 85,
-    image: "images/item1.png"
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 2,
-    name: "وجبة جو دجاج",
-    description: "وجبة دجاج جو المقرمشة",
+    name: "تشيز برجر", // CHANGED: McDonald's name
+    description: "قطعة لحم بقري مع جبنة ذائبة ومخلل وبصل", // NEW: McDonald's description
     price: 65,
-    image: "images/item2.png"
+    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 3,
-    name: "وجبة بينوي",
-    description: "وجبة بينوي اللذيذة مع أصناف متنوعة",
+    name: "بطاطس ماكدونالدز", // CHANGED: McDonald's name
+    description: "بطاطس ذهبية مقرمشة مقلية بالزيت النباتي", // NEW: McDonald's description
     price: 75,
-    image: "images/item3.png"
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 4,
-    name: "وجبة الاحتفال",
-    description: "وجبة احتفالية كبيرة مع جميع الأصناف",
+    name: "تشيكن ماكنتجتس", // CHANGED: McDonald's name
+    description: "قطع دجاج مقرمشة مع صلصات التغميس المتنوعة", // NEW: McDonald's description
     price: 120,
-    image: "images/item4.png"
+    image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 5,
-    name: "وجبة جو دبل رويال",
-    description: "وجبة جو رويال مزدوجة وفاخرة",
+    name: "ماك فلوري", // CHANGED: McDonald's name
+    description: "آيس كريم فانيليا ناعم مع قطع بسكويت أوريو", // NEW: McDonald's description
     price: 110,
-    image: "images/item5.png"
+    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 6,
-    name: "الوجبة القيمة",
-    description: "وجبة اقتصادية مع قيمة ممتازة",
+    name: "كوكا كولا", // CHANGED: McDonald's name
+    description: "مشروب كوكا كولا مثلج منعش", // NEW: McDonald's description
     price: 55,
-    image: "images/item6.png"
+    image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 7,
-    name: "رويال ميل",
-    description: "الوجبة الملكية مع جميع الإضافات",
-    price: 95,
-    image: "images/item7.png"
+    name: "ميلك شيك فانيليا", // CHANGED: McDonald's name
+    description: "ميلك شيك فانيليا كريمي وحالم", // NEW: McDonald's description
+    price: 70,
+    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 8,
-    name: "وليمة أرز الدجاج الذهبي",
-    description: "وليمة دجاج مع أرز ذهبي لذيذ",
-    price: 130,
-    image: "images/item8.png"
+    name: "إيغ ماك مافن", // CHANGED: McDonald's name
+    description: "بيضة طازجة مع جبنة ولحم على خبز مافن", // NEW: McDonald's description
+    price: 95,
+    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 9,
-    name: "وجبة السعادة",
-    description: "وجبة تجلب السعادة مع أصناف مميزة",
-    price: 70,
-    image: "images/item9.png"
+    name: "فطيرة التفاح", // CHANGED: McDonald's name
+    description: "فطيرة تفاح ذهبية مقرمشة مع حشوة تفاح لذيذة", // NEW: McDonald's description
+    price: 130,
+    image: "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   },
   {
     id: 10,
-    name: "باكيت تندر مع الجرافي",
-    description: "باكيت تندر دجاج مع صوص الجرافي الخاص",
+    name: "سلطة جانبية", // CHANGED: McDonald's name
+    description: "سلطة طازجة مع خضروات متنوعة وصلصة خاصة", // NEW: McDonald's description
     price: 80,
-    image: "images/item10.png"
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=200&fit=crop" // CHANGED: Unsplash URL
   }
 ];
 
@@ -1508,6 +1508,7 @@ function showCatalog() {
   const catalogHTML = `
     <div class="catalog-message">
       <div class="catalog-image">
+        <!-- KEEP SAME: Your catalog image from GitHub -->
         <img src="images/item1.png" alt="${restaurant.name}" onerror="this.src='images/item1.png'">
       </div>
       <div class="catalog-details">
@@ -1682,7 +1683,7 @@ function selectDelivery(type) {
     option.classList.remove('selected');
   });
   
-  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}')"]`);
+  const selectedOption = document.querySelector(`.delivery-option[onclick="selectDelivery('${type}")]`);
   if (selectedOption) {
     selectedOption.classList.add('selected');
   }
@@ -1932,8 +1933,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
-
-
-
-
