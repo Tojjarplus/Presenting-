@@ -796,6 +796,189 @@ body {
   font-weight: 700;
 }
 
+/* ستايل بطاقة التتبع */
+.tracking-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.tracking-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 15px;
+}
+
+.tracking-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00a884 0%, #008f70 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+}
+
+.tracking-status {
+  flex: 1;
+}
+
+.tracking-status h4 {
+  color: #303030;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.tracking-status p {
+  color: #00a884;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tracking-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.tracking-step {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.tracking-step.completed {
+  opacity: 1;
+}
+
+.tracking-step.active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.tracking-step-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(0, 168, 132, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00a884;
+  font-size: 16px;
+}
+
+.tracking-step.completed .tracking-step-icon {
+  background: #00a884;
+  color: white;
+}
+
+.tracking-step.active .tracking-step-icon {
+  background: #00a884;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(0, 168, 132, 0.2);
+}
+
+.tracking-step-details {
+  flex: 1;
+}
+
+.tracking-step-details h5 {
+  color: #303030;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.tracking-step-details p {
+  color: #666666;
+  font-size: 11px;
+}
+
+/* ستايل نظام التقييم بالأزرار */
+.rating-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 10px;
+}
+
+.rating-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rating-header h3 {
+  color: #303030;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.rating-header p {
+  color: #666666;
+  font-size: 13px;
+}
+
+.rating-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.rating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 168, 132, 0.1);
+  border: 2px solid #00a884;
+  color: #00a884;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rating-btn:hover {
+  background: #00a884;
+  color: white;
+  transform: scale(1.1);
+}
+
+.rating-btn.selected {
+  background: #00a884;
+  color: white;
+}
+
+.rating-message {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(0, 168, 132, 0.05);
+  color: #303030;
+  font-size: 14px;
+  text-align: center;
+  border-right: 4px solid #00a884;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -848,6 +1031,7 @@ body {
   .menu-item-desc { font-size: 11px; }
   .menu-item-price { font-size: 14px; }
   .menu-item-add { width: 32px; height: 32px; font-size: 16px; }
+  .rating-btn { width: 45px; height: 45px; font-size: 16px; }
 }
 
 @media (max-width: 380px) {
@@ -856,6 +1040,7 @@ body {
   .bubble { font-size: 13px; padding: 8px 12px; }
   .menu-item { padding: 8px 10px; }
   .menu-item-image { width: 50px; height: 50px; }
+  .rating-btn { width: 40px; height: 40px; font-size: 15px; }
 }
 
 @media (max-width: 320px) {
@@ -866,6 +1051,7 @@ body {
   .input-area { padding: 10px 12px; }
   .input-area input { padding: 8px 14px; font-size: 13px; }
   .send-btn { width: 40px; height: 40px; font-size: 16px; }
+  .rating-btn { width: 35px; height: 35px; font-size: 14px; }
 }
 </style>
 </head>
@@ -1008,6 +1194,12 @@ let savedItemsTotal = 0;
 let savedDeliveryFee = 0;
 let savedGrandTotal = 0;
 
+// ========== متغيرات التتبع ==========
+let trackingInterval = null;
+let trackingStep = 0;
+let currentOrderId = null;
+let currentDeliveryType = null;
+
 // ========== دالة حساب المبالغ ==========
 function calculateTotals() {
   let itemsTotal = 0;
@@ -1108,6 +1300,168 @@ function payWithMada() {
   redirectToPayment('mada');
 }
 
+// ========== دوال تتبع الطلب (كل 3 ثواني) ==========
+
+/**
+ * بدء تتبع الطلب - كل 3 ثواني تظهر رسالة جديدة
+ */
+function startOrderTracking(deliveryType, orderId) {
+  // إيقاف أي تتبع سابق
+  if (trackingInterval) clearInterval(trackingInterval);
+  trackingStep = 0;
+  currentOrderId = orderId;
+  currentDeliveryType = deliveryType;
+  
+  // تحديد مسار التتبع حسب نوع الاستلام
+  const trackingSteps = deliveryType === 'delivery' 
+    ? [
+        { status: 'order_received', message: '✅ تم استلام طلبك', icon: 'fa-check-circle', time: 'الآن' },
+        { status: 'order_progress', message: '🔄 الطلب قيد التحضير', icon: 'fa-spinner', time: '3 ثواني' },
+        { status: 'in_kitchen', message: '👨‍🍳 الطلب في المطبخ', icon: 'fa-utensils', time: '6 ثواني' },
+        { status: 'driver_on_way', message: '🚚 السائق في الطريق إليك', icon: 'fa-motorcycle', time: '9 ثواني' },
+        { status: 'delivered', message: '📦 تم توصيل طلبك', icon: 'fa-check-circle', time: '12 ثانية' }
+      ]
+    : [
+        { status: 'order_received', message: '✅ تم استلام طلبك', icon: 'fa-check-circle', time: 'الآن' },
+        { status: 'order_progress', message: '🔄 الطلب قيد التحضير', icon: 'fa-spinner', time: '3 ثواني' },
+        { status: 'in_kitchen', message: '👨‍🍳 الطلب في المطبخ', icon: 'fa-utensils', time: '6 ثواني' },
+        { status: 'ready_pickup', message: '🏪 الطلب جاهز للاستلام', icon: 'fa-store', time: '9 ثواني' },
+        { status: 'picked_up', message: '📦 تم استلام الطلب', icon: 'fa-check-circle', time: '12 ثانية' }
+      ];
+  
+  // إرسال أول رسالة تتبع فوراً
+  setTimeout(() => {
+    sendTrackingMessage(trackingSteps[0]);
+  }, 1000);
+  
+  // إنشاء Interval جديد كل 3 ثواني للخطوات التالية
+  let stepIndex = 1;
+  trackingInterval = setInterval(() => {
+    if (stepIndex < trackingSteps.length) {
+      sendTrackingMessage(trackingSteps[stepIndex]);
+      stepIndex++;
+    } else {
+      // انتهت خطوات التتبع
+      clearInterval(trackingInterval);
+      trackingInterval = null;
+      
+      // بعد آخر خطوة بـ 3 ثواني، نعرض نظام التقييم
+      setTimeout(() => {
+        showRatingSystem(deliveryType, orderId);
+      }, 3000);
+    }
+  }, 3000);
+}
+
+/**
+ * إرسال رسالة تتبع
+ */
+function sendTrackingMessage(step) {
+  const timeNow = getCurrentTime();
+  
+  const trackingHTML = `
+    <div class="tracking-card">
+      <div class="tracking-header">
+        <div class="tracking-icon">
+          <i class="fas ${step.icon}"></i>
+        </div>
+        <div class="tracking-status">
+          <h4>تحديث الطلب #${currentOrderId}</h4>
+          <p>${step.message}</p>
+        </div>
+      </div>
+      <div class="tracking-progress">
+        <div style="color: #666666; font-size: 12px; text-align: left;">
+          <i class="fas fa-clock"></i> ${step.time}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  addBotMessage(trackingHTML, timeNow);
+  scrollToBottom();
+}
+
+/**
+ * عرض نظام التقييم - أزرار أرقام 1-5
+ */
+function showRatingSystem(deliveryType, orderId) {
+  const timeNow = getCurrentTime();
+  
+  const ratingHTML = `
+    <div class="rating-card">
+      <div class="rating-header">
+        <h3>⭐ كيف كانت تجربتك؟</h3>
+        <p>${deliveryType === 'delivery' ? 'توصيل' : 'استلام من المطعم'} - طلب #${orderId}</p>
+      </div>
+      <div class="rating-buttons">
+        <button class="rating-btn" onclick="submitRating(1, ${orderId})">1</button>
+        <button class="rating-btn" onclick="submitRating(2, ${orderId})">2</button>
+        <button class="rating-btn" onclick="submitRating(3, ${orderId})">3</button>
+        <button class="rating-btn" onclick="submitRating(4, ${orderId})">4</button>
+        <button class="rating-btn" onclick="submitRating(5, ${orderId})">5</button>
+      </div>
+      <div class="rating-message" style="background: rgba(0,168,132,0.05);">
+        <i class="fas fa-smile"></i> نرجو تقييم خدمتنا من 1 إلى 5
+      </div>
+    </div>
+  `;
+  
+  addBotMessage(ratingHTML, timeNow);
+  scrollToBottom();
+}
+
+/**
+ * إرسال التقييم
+ */
+function submitRating(rating, orderId) {
+  // إزالة الأزرار السابقة
+  const ratingCard = document.querySelector('.rating-card:last-child');
+  if (ratingCard) {
+    ratingCard.remove();
+  }
+  
+  let responseMessage = '';
+  
+  if (rating <= 2) {
+    responseMessage = `
+      <div style="background: #fff3cd; border-right: 4px solid #ffc107; padding: 15px; border-radius: 12px;">
+        <p style="color: #856404; margin-bottom: 5px; font-weight: 600;">😔 نشكرك على تقييمك ${rating} من 5</p>
+        <p style="color: #856404; font-size: 13px;">نأسف أن تجربتك لم تكن ممتازة. نعدك بتحسين خدماتنا في المرة القادمة!</p>
+        <p style="color: #856404; margin-top: 10px; font-size: 12px;"><i class="fas fa-heart"></i> فريق ماكدونالدز</p>
+      </div>
+    `;
+  } else {
+    responseMessage = `
+      <div style="background: #d4edda; border-right: 4px solid #28a745; padding: 15px; border-radius: 12px;">
+        <p style="color: #155724; margin-bottom: 5px; font-weight: 600;">🎉 شكراً لتقييمك ${rating} من 5!</p>
+        <p style="color: #155724; font-size: 13px;">نحن سعداء أن خدمتنا نالت إعجابك! ننتظرك مرة أخرى ❤️</p>
+        <p style="color: #155724; margin-top: 10px; font-size: 12px;"><i class="fas fa-heart"></i> فريق ماكدونالدز</p>
+      </div>
+    `;
+  }
+  
+  addBotMessage(responseMessage, getCurrentTime());
+  scrollToBottom();
+  
+  // إعادة تعيين الطلب بعد 5 ثواني
+  setTimeout(() => {
+    cart = [];
+    selectedItems = {};
+    deliveryType = '';
+    userAddress = '';
+    currentStep = 'welcome';
+    savedItemsTotal = 0;
+    savedDeliveryFee = 0;
+    savedGrandTotal = 0;
+    currentOrderId = null;
+    currentDeliveryType = null;
+    clearOrderFromLocalStorage();
+    
+    addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
+  }, 5000);
+}
+
 // ========== إصلاح مشكلة المجموع 0 - استخدام localStorage ==========
 function completePayment(paymentMethod = 'Apple Pay') {
   currentStep = 'complete';
@@ -1155,28 +1509,15 @@ function completePayment(paymentMethod = 'Apple Pay') {
         <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #666666; font-size: 14px; padding: 15px;">
-       شكرا لاختياركم ماكدونالدز! 🍔✨
-    </div>
   `;
   
   addBotMessage(confirmationHTML, getCurrentTime());
   scrollToBottom();
   
-  // Reset after 5 seconds
+  // ========== بدء تتبع الطلب بعد تأكيد الدفع ==========
   setTimeout(() => {
-    cart = [];
-    selectedItems = {};
-    deliveryType = '';
-    userAddress = '';
-    currentStep = 'welcome';
-    savedItemsTotal = 0;
-    savedDeliveryFee = 0;
-    savedGrandTotal = 0;
-    clearOrderFromLocalStorage();
-    
-    addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
-  }, 5000);
+    startOrderTracking(deliveryType, orderId);
+  }, 2000);
 }
 
 // ========== إصلاح تأكيد الدفع من الصفحات الخارجية - استخدام localStorage ==========
@@ -1254,28 +1595,17 @@ function showPaymentSuccessConfirmation(orderId, source) {
         <p style="font-size: 14px; margin-top: 5px;">يمكنك استخدامها في طلباتك القادمة</p>
       </div>
     </div>
-    <div style="text-align: center; color: #666666; font-size: 14px; padding: 20px;">
-      شكرا لاختياركم ماكدونالدز! 🍔✨
-    </div>
   `;
   
   addBotMessage(confirmationHTML, getCurrentTime());
   scrollToBottom();
   
-  // مسح الطلب من localStorage بعد التأكيد
-  clearOrderFromLocalStorage();
-  
-  // Reset after 5 seconds
+  // ========== بدء تتبع الطلب بعد تأكيد الدفع ==========
   setTimeout(() => {
-    cart = [];
-    selectedItems = {};
-    deliveryType = '';
-    userAddress = '';
-    currentStep = 'welcome';
-    savedItemsTotal = 0;
-    savedDeliveryFee = 0;
-    savedGrandTotal = 0;
-  }, 5000);
+    startOrderTracking(deliveryType, orderId);
+  }, 2000);
+  
+  // لا نمسح الطلب فوراً، بل بعد التتبع والتقييم
 }
 
 // ========== إصلاح طلب المنيو الرقمي ==========
@@ -1837,6 +2167,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
-
-
