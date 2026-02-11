@@ -627,6 +627,10 @@
       text-align: center;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .container { padding: 16px; }
@@ -643,7 +647,7 @@
       .item-price { font-size: 24px; }
     }
 
-    /* RTL Support - But keeping File 2 LTR design */
+    /* RTL Support */
     [dir="rtl"] {
       direction: rtl;
     }
@@ -683,9 +687,9 @@
     </div>
   </header>
   
-  <!-- CATEGORIES - PRESERVED FROM FILE 1 -->
+  <!-- CATEGORIES - FIXED: NOW FULLY WORKING -->
   <nav class="categories">
-    <button class="category-btn active" data-category="All">الكل</button>
+    <button class="category-btn active" data-category="all">الكل</button>
     <button class="category-btn" data-category="Burgers">برجر</button>
     <button class="category-btn" data-category="Chicken">دجاج</button>
     <button class="category-btn" data-category="Sides">مقبلات</button>
@@ -974,7 +978,7 @@ let currentItemId = null;
 let currentModifier = null;
 let currentQuantity = 1;
 
-// INITIALIZE MENU - PRESERVED
+// ========== FIX 1: CATEGORY FILTERS NOW WORKING ==========
 function initializeMenu() {
   const menuGrid = document.getElementById('menuGrid');
   menuGrid.innerHTML = '';
@@ -1003,14 +1007,25 @@ function initializeMenu() {
     menuGrid.appendChild(card);
   });
   
-  // Category filtering
+  // FIXED: Category filter event listeners
   document.querySelectorAll('.category-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all buttons
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+      
+      // Add active class to clicked button
       this.classList.add('active');
+      
+      // Get category
       const category = this.dataset.category;
+      
+      // Filter menu cards
       document.querySelectorAll('.menu-card').forEach(card => {
-        if (category === 'All' || card.dataset.category === category) {
+        if (category === 'all' || card.dataset.category === category) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -1126,7 +1141,7 @@ function closeModifierModal() {
   currentModifier = null;
 }
 
-// CART FUNCTIONS - PRESERVED
+// ========== FIX 2: CART TOTAL CALCULATION NOW ACCURATE ==========
 function updateCart() {
   const cartItems = document.getElementById('cartItems');
   const cartCount = document.querySelector('.cart-count');
@@ -1143,7 +1158,8 @@ function updateCart() {
   cartItems.innerHTML = '';
   
   cart.forEach((item, index) => {
-    const itemTotal = item.basePrice * item.quantity;
+    // FIXED: Use basePrice * quantity for accurate calculation
+    const itemTotal = Number(item.basePrice) * Number(item.quantity);
     total += itemTotal;
     
     const cartItem = document.createElement('div');
@@ -1172,7 +1188,9 @@ function updateCart() {
     cartItems.appendChild(cartItem);
   });
   
-  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+  // FIXED: Use total.toFixed(2) to ensure decimal places
+  const cartCountTotal = cart.reduce((sum, item) => sum + Number(item.quantity), 0);
+  cartCount.textContent = cartCountTotal;
   cartTotal.textContent = `${total.toFixed(2)} ريال`;
 }
 
@@ -1211,24 +1229,33 @@ function toggleCart() {
   cartContainer.style.display = cartContainer.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// CRITICAL: EXACT REDIRECT FUNCTIONALITY PRESERVED
+// ========== FIXED: PRICES NOW EXACTLY MATCH IN WHATSAPP REDIRECT ==========
 function redirectToWhatsAppOrder() {
   if (cart.length === 0) {
     alert('سلة التسوق فارغة. أضف عناصر إلى السلة أولاً.');
     return;
   }
   
+  // FIXED: Calculate total with proper decimal handling
+  const total = cart.reduce((sum, item) => {
+    return sum + (Number(item.basePrice) * Number(item.quantity));
+  }, 0);
+  
   const cartData = {
     items: cart.map(item => ({
       itemId: item.itemId,
       name: item.name,
-      basePrice: item.basePrice,
-      quantity: item.quantity,
-      modifier: item.modifier
+      basePrice: Number(item.basePrice),
+      quantity: Number(item.quantity),
+      modifier: item.modifier,
+      total: Number(item.basePrice) * Number(item.quantity)
     })),
-    total: cart.reduce((sum, item) => sum + (item.basePrice * item.quantity), 0),
+    total: Number(total.toFixed(2)),
     source: 'mcdonaldsmenu'
   };
+  
+  console.log('Cart Data:', cartData); // Debug: Verify prices match
+  console.log('Total:', total.toFixed(2));
   
   const encodedCartData = encodeURIComponent(JSON.stringify(cartData));
   window.location.href = `index.html?cartData=${encodedCartData}`;
