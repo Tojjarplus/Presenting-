@@ -6,7 +6,7 @@
 <title>WhatsApp Order - ماكدونالدز</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* [كل التصميم موجود كما هو - لم يتغير شيء] */
+/* [نفس التصميم - لم يتغير شيء] */
 * {
   margin: 0;
   padding: 0;
@@ -1027,16 +1027,61 @@ function calculateTotals() {
   return { itemsTotal, deliveryFee, grandTotal };
 }
 
-// ========== دالة إرسال معاملات URL ==========
-function redirectToPayment(paymentMethod) {
+// ========== دالة حفظ الطلب في localStorage قبل التوجيه ==========
+function saveOrderToLocalStorage(paymentMethod) {
   const totals = calculateTotals();
   const orderId = Math.floor(1000 + Math.random() * 9000);
   
+  const orderData = {
+    orderId: orderId,
+    itemsTotal: totals.itemsTotal,
+    deliveryFee: totals.deliveryFee,
+    grandTotal: totals.grandTotal,
+    deliveryType: deliveryType,
+    userAddress: userAddress,
+    paymentMethod: paymentMethod,
+    items: Object.keys(selectedItems).map(itemId => {
+      const item = menuItems.find(i => i.id == itemId);
+      return {
+        id: item.id,
+        name: item.name,
+        price: item.price
+      };
+    }),
+    timestamp: new Date().getTime()
+  };
+  
+  localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+  return orderData;
+}
+
+// ========== دالة استرجاع الطلب من localStorage ==========
+function getOrderFromLocalStorage() {
+  const orderData = localStorage.getItem('pendingOrder');
+  if (orderData) {
+    try {
+      return JSON.parse(orderData);
+    } catch (e) {
+      return null;
+    }
+  }
+  return null;
+}
+
+// ========== دالة مسح الطلب من localStorage ==========
+function clearOrderFromLocalStorage() {
+  localStorage.removeItem('pendingOrder');
+}
+
+// ========== دالة إرسال معاملات URL مع localStorage ==========
+function redirectToPayment(paymentMethod) {
+  const orderData = saveOrderToLocalStorage(paymentMethod);
+  
   let url = '';
   if (paymentMethod === 'stcpay') {
-    url = `./stcpay.html?orderId=${orderId}&total=${totals.grandTotal.toFixed(2)}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}&source=stcpay`;
+    url = `./stcpay.html?orderId=${orderData.orderId}&total=${orderData.grandTotal.toFixed(2)}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}&source=stcpay`;
   } else {
-    url = `./checkout.html?orderId=${orderId}&total=${totals.grandTotal.toFixed(2)}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}&payment=${paymentMethod}`;
+    url = `./checkout.html?orderId=${orderData.orderId}&total=${orderData.grandTotal.toFixed(2)}&items=${Object.keys(selectedItems).length}&delivery=${deliveryType}&payment=${paymentMethod}`;
   }
   
   window.location.href = url;
@@ -1063,7 +1108,7 @@ function payWithMada() {
   redirectToPayment('mada');
 }
 
-// ========== إصلاح مشكلة المجموع 0 ==========
+// ========== إصلاح مشكلة المجموع 0 - استخدام localStorage ==========
 function completePayment(paymentMethod = 'Apple Pay') {
   currentStep = 'complete';
   
@@ -1128,17 +1173,16 @@ function completePayment(paymentMethod = 'Apple Pay') {
     savedItemsTotal = 0;
     savedDeliveryFee = 0;
     savedGrandTotal = 0;
+    clearOrderFromLocalStorage();
     
     addBotMessage("هل ترغب في تقديم طلب جديد؟ اكتب 'أريد طلب' أو 'طلب جديد'", getCurrentTime());
   }, 5000);
 }
 
-// ========== إصلاح تأكيد الدفع من الصفحات الخارجية ==========
+// ========== إصلاح تأكيد الدفع من الصفحات الخارجية - استخدام localStorage ==========
 function showPaymentSuccessConfirmation(orderId, source) {
-  // استخراج المبلغ من URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const totalParam = urlParams.get('total');
-  const deliveryParam = urlParams.get('delivery');
+  // أولاً: محاولة استرجاع المبلغ من localStorage
+  const savedOrder = getOrderFromLocalStorage();
   
   let paymentMethodText = '';
   if (source === 'stcpay') paymentMethodText = 'STC Pay';
@@ -1147,14 +1191,27 @@ function showPaymentSuccessConfirmation(orderId, source) {
   else if (source === 'mada') paymentMethodText = 'Mada';
   else paymentMethodText = 'بطاقة بنكية';
   
-  // استخدام المبلغ من URL أو حسابها
-  let grandTotal = totalParam ? parseFloat(totalParam) : savedGrandTotal;
-  let itemsTotal = savedItemsTotal;
-  let deliveryFee = savedDeliveryFee;
+  // استخدام المبلغ من localStorage أو من المتغيرات
+  let grandTotal = savedOrder ? savedOrder.grandTotal : savedGrandTotal;
+  let itemsTotal = savedOrder ? savedOrder.itemsTotal : savedItemsTotal;
+  let deliveryFee = savedOrder ? savedOrder.deliveryFee : savedDeliveryFee;
   
-  if (deliveryParam) {
-    deliveryType = deliveryParam;
-    deliveryFee = deliveryParam === 'delivery' ? 16 : 0;
+  // إذا كان فيه delivery في localStorage
+  if (savedOrder && savedOrder.deliveryType) {
+    deliveryType = savedOrder.deliveryType;
+  }
+  
+  // إذا كان فيه userAddress في localStorage
+  if (savedOrder && savedOrder.userAddress) {
+    userAddress = savedOrder.userAddress;
+  }
+  
+  // إذا كان فيه items في localStorage
+  if (savedOrder && savedOrder.items) {
+    selectedItems = {};
+    savedOrder.items.forEach(item => {
+      selectedItems[item.id] = true;
+    });
   }
   
   const loyaltyPoints = Math.floor(grandTotal / 10);
@@ -1204,6 +1261,9 @@ function showPaymentSuccessConfirmation(orderId, source) {
   
   addBotMessage(confirmationHTML, getCurrentTime());
   scrollToBottom();
+  
+  // مسح الطلب من localStorage بعد التأكيد
+  clearOrderFromLocalStorage();
   
   // Reset after 5 seconds
   setTimeout(() => {
@@ -1320,10 +1380,6 @@ function checkPaymentSuccess() {
 
 function goToCheckout() {
   redirectToPayment('checkout');
-}
-
-function goToStcPay() {
-  redirectToPayment('stcpay');
 }
 
 function initChat() {
@@ -1515,7 +1571,7 @@ function toggleItem(itemId) {
   }
   
   updateCartDisplay();
-  calculateTotals(); // تحديث المبالغ
+  calculateTotals();
 }
 
 function updateCartDisplay() {
@@ -1613,7 +1669,7 @@ function selectDelivery(type) {
     selectedOption.classList.add('selected');
   }
   
-  calculateTotals(); // تحديث المبالغ مع رسوم التوصيل
+  calculateTotals();
   
   setTimeout(() => {
     if (deliveryType === 'delivery') {
