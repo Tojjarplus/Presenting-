@@ -624,20 +624,36 @@ body {
 // Get order details from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const orderId = urlParams.get('orderId') || '1234';
-const total = urlParams.get('total') || '0';
+// FIX 1: Convert total to number properly (parseFloat instead of string)
+const total = parseFloat(urlParams.get('total')) || 0;
 const items = urlParams.get('items') || '0';
 const delivery = urlParams.get('delivery') || 'pickup';
 
+// Helper function to safely format currency to 2 decimal places
+function formatCurrency(value) {
+  // Ensure we're working with a number
+  const num = typeof value === 'number' ? value : parseFloat(value) || 0;
+  // Fix floating point precision issues by rounding to 2 decimal places
+  return num.toFixed(2);
+}
+
 // Display order details
 function displayOrderDetails() {
-  // Update total amount
-  document.getElementById('totalAmount').textContent = `﷼ ${total}`;
-  document.getElementById('payBtn').textContent = `Pay ﷼ ${total}`;
+  // FIX 2: Round all displayed currency values to 2 decimal places
+  const formattedTotal = formatCurrency(total);
+  
+  // Update total amount displays
+  document.getElementById('totalAmount').textContent = `﷼ ${formattedTotal}`;
+  document.getElementById('payBtn').textContent = `Pay ﷼ ${formattedTotal}`;
   
   // Display order summary
   const orderDetails = document.getElementById('orderDetails');
   const deliveryFee = delivery === 'delivery' ? 16 : 0;
+  
+  // FIX 3: Fix subtotal calculation with proper rounding
   const subtotal = total - deliveryFee;
+  const formattedSubtotal = formatCurrency(subtotal);
+  const formattedDeliveryFee = formatCurrency(deliveryFee);
   
   orderDetails.innerHTML = `
     <div class="order-detail">
@@ -646,17 +662,17 @@ function displayOrderDetails() {
     </div>
     <div class="order-detail">
       <span>المجموع الفرعي:</span>
-      <span>${subtotal} ريال</span>
+      <span>${formattedSubtotal} ريال</span>
     </div>
     ${delivery === 'delivery' ? `
     <div class="order-detail">
       <span>رسوم التوصيل:</span>
-      <span>16 ريال</span>
+      <span>${formattedDeliveryFee} ريال</span>
     </div>
     ` : ''}
     <div class="order-detail total">
       <span>الإجمالي:</span>
-      <span>${total} ريال</span>
+      <span>${formattedTotal} ريال</span>
     </div>
   `;
 }
@@ -722,4 +738,3 @@ window.addEventListener('resize', function() {
 
 </body>
 </html>
-
