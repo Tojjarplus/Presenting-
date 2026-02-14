@@ -1822,6 +1822,7 @@ function processUserMessage(text) {
   }
 }
 
+// ========== الدالة المعدلة - إزالة الحقول الغير معرفة ==========
 function showCatalog() {
   currentStep = 'menu';
   
@@ -1832,7 +1833,7 @@ function showCatalog() {
       </div>
       <div class="catalog-details">
         <h3>${restaurant.name}</h3>
-        <p>${restaurant.description}<br>${restaurant.rating}</p>
+        <p>وجبات سريعة • برجر • بطاطس مقرمشة</p>
         <button class="catalog-btn" onclick="openDigitalMenu()" style="margin-top: 10px; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">
           <i class="fas fa-mobile-alt"></i> عرض المنيو الرقمي
         </button>
@@ -2165,5 +2166,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
-
